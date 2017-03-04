@@ -1,10 +1,6 @@
 ---
 layout: post
-title: To GSoC or not to GSoC
-description: ""
-category: releases
-author: Kumar Prasun
-tags: []
+title: To GSoc Or Not To GSoC
 ---
 
 > Well, it's madness season again.
