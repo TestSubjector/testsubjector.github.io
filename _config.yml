@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+name: Antithetical Parallels
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title

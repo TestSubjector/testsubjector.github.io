@@ -1,6 +1,7 @@
 ---
 layout: post
-title: To GSoc Or Not To GSoC
+title: "To GSoc Or Not To GSoC"
+date: 2017-03-04
 ---
 
 > Well, it's madness season again.
@@ -10,7 +11,7 @@ title: To GSoc Or Not To GSoC
 > For the uninitiated, you can know more about it here - https://summerofcode.withgoogle.com/
 
 > The idea is simple essentially,
-> Google in it's quest to promote [open source software](https://en.wikipedia.org/wiki/Open-source_software) will pay you a stipend to work in an organisation under this GSoC program.
+> Google in its quest to promote [open source software](https://en.wikipedia.org/wiki/Open-source_software) will pay you a stipend to work in an organisation under this GSoC program.
 > Open to university students, you code away in your summer vacations, and if the performance is satisfactory, you recieve a stipend based on *your country*. 
 
 > Now some people have a negative view of this whole...*festival*, with the reason being that they percieve the motivation to monetary.
