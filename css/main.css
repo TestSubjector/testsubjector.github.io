@@ -16,11 +16,11 @@ footer { border-top: 1px solid #d5d5d5; font-size: .8em; }
 /* Blog */
 ul.posts {
   list-style-type: none;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 ul.posts li {
-   line-height: 1.75em;
+   line-height: 1em;
 }
 
 ul.posts span {
