@@ -10,7 +10,7 @@ date: 2017-03-04
 
   
 > Yeah, the topic in question is Google Summer of Code 2017. 
-> For the uninitiated, you can know more about it [here](https://summerofcode.withgoogle.com/)
+> For the uninitiated, you can know more about it [here](https://summerofcode.withgoogle.com/).
 
 > The idea is simple essentially,
 > Google in its quest to promote [open source software](https://en.wikipedia.org/wiki/Open-source_software) will pay you a stipend to work in an organisation under the GSoC program.
@@ -38,9 +38,10 @@ date: 2017-03-04
   
 > *cough* *cough*
   
-> There is a [chapter](http://chapel.cray.com/publications/PMfPC-Chapel.pdf) in Programming Models for Parallel Computing, MIT Press which is on the Chael language (stumbled on it from the Chapel website).
+> There is a [chapter](http://chapel.cray.com/publications/PMfPC-Chapel.pdf) in Programming Models for Parallel Computing, MIT Press which is on the Chapel language (stumbled on it from the Chapel website).
 
-> It describes in brief, the histroy of Chapel, the ideas and design decisions and the also the ideals behind the language (plus a convienient tutorial to the language)
+> It describes in brief, the histroy of Chapel, the ideas and design decisions and the also the ideals behind the language (plus a convienient tutorial to the language).
 > Going through it, I felt like I wanted to associate with this. It's not a world-breaking motivator, but hey! It's a motivator nonetheless.
+> I'll see if any other organization matches my interest or not.
   
 > Here's hoping for the best.
