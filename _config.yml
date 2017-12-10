@@ -1,3 +1,5 @@
 name: Antithetical Parallels
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
+plugins:
+  - jekyll-feed
