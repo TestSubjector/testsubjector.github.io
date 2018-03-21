@@ -32,10 +32,11 @@ That should do it. Try typing `using TensorFlow` in the REPL to check if the pac
 **For GPU-enabled version of TensorFlow**  
   
 **The Nvidia Driver**  
-+ Right, that was the simple route for CPU usage. You can optimise CPU usage by [building TensorFlow from source](https://malmaud.github.io/TensorFlow.jl/latest/build_from_source.html). That's a bit outside the scope of a simple setup though.    
+  
+Right, that was the simple route for CPU usage. You can optimise CPU usage by [building TensorFlow from source](https://malmaud.github.io/TensorFlow.jl/latest/build_from_source.html). That's a bit outside the scope of a simple setup though.    
 Now if you want to use the shiny Nvidia graphics card i.e use *TensorFlow with GPU enabled*, there's going to be a bit of pain. In the range of possible scenarios, you could faces problems ranging from lower screen resolution to a flickering screen to a complete black screen.  
   
-+ The tricky thing is there's no one-shot cure to this problem. Here's the standard method -  
+The tricky thing is there's no one-shot cure to this problem. Here's the standard method -  
 `sudo add-apt-repository ppa:graphics-drivers/ppa`  
 `sudo apt-get update`  
 `sudo apt-get install nvidia-current`  
@@ -46,7 +47,7 @@ If you do face problems and are not sure what to do, don't panic. Try to access 
 `sudo apt-get purge nvidia-current`  
 `sudo reboot`  
   
-+ Right, as I said, different people with different setups + hardware + driver version will face different problems.  
+As I said, different people with different setups + hardware + driver version will face different problems.  
 The thing that worked for me personally (after hours of successive install and purge cycles) was to install the drivers not from the command line but from the GUI of the Additional Drivers application.  
 I simply selected the version(381) I wanted (select the circle on the left), which it automatically installed. Then, Reboot -> disable secure boot -> Voila!  
 Only thing I can say is, good luck with this step.  
