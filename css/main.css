@@ -1,9 +1,9 @@
-body { margin: 60px auto; width: 70%; }
+body { margin: 60px auto; width: 70%; background-color: #d9d9d9}
 
 a { text-decoration: none; color: #00a; }
 a:hover { text-decoration: underline; }
 
-p, ul { font-size: 100%; line-height: 1.2em; color: #333; }
+p, ul { font-size: 130%; line-height: 1.3em; color: #1a1a1a; }
 
 h1, h2, h3, h4 { font-size: 2em; font-family: 'Times New Roman', 'Helvetica', 'Arial', 'Sans-Serif'; }
 
@@ -20,11 +20,11 @@ ul.posts {
 }
 
 ul.posts li {
-   line-height: 1.2em;
+   line-height: 1.4em;
 }
 
 ul.posts span {
-  color: #aaa;
+  color: #1a1a1a;
   font-family: Monaco, "Courier New", monospace;
   font-size: 100%;
 }

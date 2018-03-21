@@ -9,7 +9,7 @@ Another very late post, I know.
 So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.  
 We had a really good chance of getting a place in the Finals (& a trip to MIT!), if not for some of these reasons -
 
-+ Two (out of 4) of our team members got bogged down with other college related activities. So it ended with me and [@legobridge](https://github.com/legobridge)
++ Two (out of 4) of our team members got bogged down with other college related activities. So it ended with me and @legobridge
 carrying the team.
 + Docker problems plagued me throughout the tournament. I lost 3-4 days cumulative in patching, updating, clearing, removing, re-installing docker to run the BattleCode scaffold.
 + A quota of max 4 International teams for the finals (out of the total 16) was implemented from this year.
