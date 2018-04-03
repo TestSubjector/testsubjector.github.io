@@ -29,21 +29,7 @@ ul.posts span {
   font-size: 100%;
 }
 
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
-}
-
-ul.posts li {
-   line-height: 1.4em;
-}
-
-ul.posts span {
-  color: #1a1a1a;
-  font-family: Monaco, "Courier New", monospace;
-  font-size: 100%;
-}
-
+/*Poetry*/
 ul.poetry {
   list-style-type: none;
   margin-bottom: 2em;

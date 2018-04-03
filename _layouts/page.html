@@ -1,16 +1,9 @@
 ---
 layout: default
 ---
+<h1>{{ page.title }}</h1>
+<p class="meta">{{ page.date | date_to_string }}</p>
 
-<div id="main" role="main">
-
-  <div class="page">
-      {% if page.title %}
-        <h5 class="page__title">{{ page.title }}</h5>
-      {% endif %}
-      {% if page.subtitle %}
-        <p class="page__subtitle">{{ page.subtitle }}</p>
-      {% endif %}
-    {{ content }}
-  </div>
+<div class="poetry">
+  {{ content }}
 </div>
