@@ -8,6 +8,6 @@ subtitle: Poetry. Old poetry. New poetry. DoTA poetry. Let us see.
 <p><{{ page.subtitle }}</p>
 <ul class="poetry">
   {% for post in site.poetry reversed %}
-    <li><a href="{{ poetry.url }}" title="{{ poetry.title }}">{{ poetry.title }}</a></li>
+    {% include post-entry.html %}
   {% endfor %}
 </ul>
