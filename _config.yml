@@ -1,8 +1,28 @@
+
 name: Antithetical Parallels
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
+encoding: "utf-8"
+author:
+  name: "TestSubjector" 
+
+comments: true
+
+include:
+- _pages
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-mentions
   - jekyll-archives
+  - jekyll-paginate
+
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+collections:
+  poetry:
+    output: true
+    permalink: /:collection/:title/
+

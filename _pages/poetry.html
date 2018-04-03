@@ -1,0 +1,10 @@
+---
+layout: page
+title: "Poetry"
+permalink: /poetry/
+subtitle: Poetry. Old poetry; new poetry; DoTA poetry. Let us see.
+---
+
+{% for post in site.poetry reversed %}
+  {% include post-entry.html %}
+{% endfor %}
