@@ -6,6 +6,6 @@ subtitle: Poetry. Old poetry. New poetry. DoTA poetry. Let us see.
 ---
 <ul class="poetry">
   {% for post in site.poetry reversed %}
-    {% include post-entry.html %}
+    <li><span>{{ poetry.date | date_to_string }}</span> &raquo; <a href="{{ poetry.url }}" title="{{ poetry.title }}">{{ poetry.title }}</a></li>
   {% endfor %}
 </ul>
