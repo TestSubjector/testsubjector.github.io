@@ -4,9 +4,7 @@ title: "Poetry"
 permalink: /poetry/
 subtitle: Poetry. Old poetry. New poetry. DoTA poetry. Let us see.
 ---
-<h1>{{ page.title }}</h1>
-<p><{{ page.subtitle }}</p>
 
   {% for post in site.poetry reversed %}
-    {% include post-entry.html %}
+    <li><a href="{{ poetry.url }}" title="{{ poetry.title }}">{{ poetry.title }}</a></li>
   {% endfor %}
