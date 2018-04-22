@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Antithetical Parallels</title>
+ <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
+ <link href="http://testsubjector.github.io/blog"/>
+ <updated>2018-04-22T11:16:42+05:30</updated>
+ <id>http://testsubjector.github.io/blog</id>
+ <author>
+   <name>Kumar Prasun</name>
+   <email>prasunk3@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>BattleCode Report</title>
+   <link href="http://testsubjector.github.io/blog/2018/03/14/BattleCode-Report"/>
+   <updated>2018-03-14T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2018/03/14/BattleCode-Report</id>
+   <content type="html">&lt;p&gt;Another very late post, I know.&lt;/p&gt;
+
+&lt;p&gt;So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.&lt;br /&gt;
+We had a really good chance of getting a place in the Finals (&amp;amp; a trip to MIT!), if not for some of these reasons -&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Two (out of 4) of our team members got bogged down with other college related activities. So it ended with me and @legobridge
+carrying the team.&lt;/li&gt;
+  &lt;li&gt;Docker problems plagued me throughout the tournament. I lost 3-4 days cumulative in patching, updating, clearing, removing, re-installing docker to run the BattleCode scaffold.&lt;/li&gt;
+  &lt;li&gt;A quota of max 4 International teams for the finals (out of the total 16 spots) was implemented for this year.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Very honestly, it was the last point that hurt the most. The International teams were as a whole, way more competitive and most of the top positions in the daily scrimmage rankings were captured by these teams. I understand the reason why it was done (last year had almost nil local presence) but I can’t help feel a bit salty. That’s because despite the other problems, we had a good chance of getting into the Finals, if not for the quota.&lt;/p&gt;
+
+&lt;p&gt;Sigh, quotas are a sticky, volatile and frustrating point for many Indians like in me in general.
+However, I can’t deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and the strategies and plans hatched and abandoned; it’s something I’ll definetly want to do again next year too.&lt;/p&gt;
+
+&lt;p&gt;Just no Docker again, please.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>RSS Feed & FeedReader Bot</title>
+   <link href="http://testsubjector.github.io/blog/2017/12/09/RSS-Feed-And-FeedReaderBot"/>
+   <updated>2017-12-09T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/12/09/RSS-Feed-And-FeedReaderBot</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;https://testsubjector.github.io/feed.xml&quot;&gt;RSS Feed(s)&lt;/a&gt; is/(are?) now enabled (if they weren’t already automatically done by Github Pages).&lt;/p&gt;
+
+&lt;p&gt;This is a good opportunity to talk about a bot, &lt;a href=&quot;https://storebot.me/bot/thefeedreaderbot&quot;&gt;Feed Reader Bot&lt;/a&gt;* for the popular messaging app &lt;a href=&quot;https://web.telegram.org&quot;&gt;Telegram&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;What this gives you is a separate chat room for all the interesting feeds you want to go through in one place. So essentially you get notifications when your favourite podcasts, news or game website or even a comic strip site has a new post.&lt;br /&gt;
+And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant View&lt;/a&gt; feature of Telegram, you get go through a very light-weight no-nonsense view of the stuff that you want to see. A good way to keep track of the thing you want to see.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;*The author is in no way affiliated with the Bot, except being a happy user of its free version.&lt;/em&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>BattleCode 2018 Announced!</title>
+   <link href="http://testsubjector.github.io/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!"/>
+   <updated>2017-12-09T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/12/09/BattleCode-2018-Has-Been-Announced!</id>
+   <content type="html">&lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
+
+&lt;p&gt;Do participate if you can, its gonna be one heck of a ride.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Setting Up TensorFlow On Julia</title>
+   <link href="http://testsubjector.github.io/blog/2017/11/12/Setting-Up-TensorFlow-On-Julia"/>
+   <updated>2017-11-12T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/11/12/Setting-Up-TensorFlow-On-Julia</id>
+   <content type="html">&lt;p&gt;&lt;em&gt;Note&lt;/em&gt; - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.&lt;/p&gt;
+
+&lt;p&gt;First, a few definitions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is &lt;a href=&quot;https://www.tensorflow.org&quot;&gt;TensorFlow&lt;/a&gt;?&lt;/strong&gt;&lt;br /&gt;
+TensorFlow is an open-source software library for dataflow programming across a range of tasks. It is a 
+symbolic math library, and is also used for machine learning applications such as neural networks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl&quot;&gt;TensorFlow,jl&lt;/a&gt;?&lt;/strong&gt;&lt;br /&gt;
+A wrapper around TensorFlow in the Julia language. Also, &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl/blob/master/docs/src/why_julia.md&quot;&gt;some advantages of this&lt;/a&gt; over Python.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s get everything set up.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Firstly, you need to &lt;a href=&quot;https://julialang.org/downloads/&quot;&gt;download Julia&lt;/a&gt;. For more complex ways of installation, &lt;a href=&quot;https://github.com/JuliaLang/julia#source-download-and-compilation&quot;&gt;see here&lt;/a&gt;. &lt;em&gt;Note&lt;/em&gt; - Download version 0.6 as it is the latest version of Julia supported for TensorFlow.jl; valid as of the date of this blog post being uploaded.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;For CPU version of TensorFlow&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Now, provided you only need the &lt;em&gt;CPU version&lt;/em&gt; (don’t have or want to use an Nvidia graphic card), first access the Julia REPL. For those who downloaded the binaries, they can find the julia executable in bin folder of the downloaded files. Now, do the following in the REPL -&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That should do it. Try typing &lt;code class=&quot;highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#troubleshooting&quot;&gt;issues from the ccall or python interop&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;For GPU-enabled version of TensorFlow&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Nvidia Driver&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Right, that was the simple route for CPU usage. You can optimise CPU usage by &lt;a href=&quot;https://malmaud.github.io/TensorFlow.jl/latest/build_from_source.html&quot;&gt;building TensorFlow from source&lt;/a&gt;. That’s a bit outside the scope of a simple setup though.  &lt;br /&gt;
+Now if you want to use the shiny Nvidia graphics card i.e use &lt;em&gt;TensorFlow with GPU enabled&lt;/em&gt;, there’s going to be a bit of pain. In the range of possible scenarios, you could faces problems ranging from lower screen resolution to a flickering screen to a complete black screen.&lt;/p&gt;
+
+&lt;p&gt;The tricky thing is there’s no one-shot cure to this problem. Here’s the standard method -&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:graphics-drivers/ppa&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install nvidia-current&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll be asked to enter a password to disable the secure boot after login. Be careful to not forget the password, in case of problems it can come handy.&lt;br /&gt;
+If you do face problems and are not sure what to do, don’t panic. Try to access the &lt;a href=&quot;https://askubuntu.com/questions/66195/what-is-a-tty-and-how-do-i-access-a-tty&quot;&gt;TTY&lt;/a&gt; and type in the following command to get back to how things were before -&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get purge nvidia-current&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As I said, different people with different setups + hardware + driver version will face different problems.&lt;br /&gt;
+The thing that worked for me personally (after hours of successive install and purge cycles) was to install the drivers not from the command line but from the GUI of the Additional Drivers application.&lt;br /&gt;
+I simply selected the version(381) I wanted (select the circle on the left), which it automatically installed. Then, Reboot -&amp;gt; disable secure boot -&amp;gt; Voila!&lt;br /&gt;
+Only thing I can say is, good luck with this step.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CUDA  and cuDNN&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;I used &lt;a href=&quot;https://www.nvidia.com/en-us/data-center/gpu-accelerated-applications/tensorflow/&quot;&gt;this complete guide by Nvidia itself&lt;/a&gt; to download these two components. Just one thing you have to make sure is that the CUDA version you download should be 8.x and the cuDNN version should be v5.x For other versions, &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#optional-building-the-tensorflow-library&quot;&gt;this may help&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Final step&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;If everything is holding together till now, then all you should need to do is -&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; ENV[&quot;TF_USE_GPU&quot;] = &quot;1&quot;&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+If typing &lt;code class=&quot;highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; and then running &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#basic-usage&quot;&gt;this code&lt;/a&gt; doesn’t give an error, then congratulations! You’ve made it through the setup.&lt;br /&gt;
+The actual coding now awaits.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Oh, yes. I forgot about this blog. Also, GSoC ended.</title>
+   <link href="http://testsubjector.github.io/blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended"/>
+   <updated>2017-11-08T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended</id>
+   <content type="html">&lt;p&gt;Whelp, this Github_page-blog-website chimera completely (or conveniently) 
+slipped from my mind. However, now that I’m delving properly into the fields
+of Computer Science that I’ve dreamed about as a kid (stay tuned!); this seems like the perfect place to record those experiences*.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*I plan to use Medium for the things that should ideally be targeted for mass audiences. This bare-bones-but-beautiful blog isn't suited for that kind of aim. But I'll keep a record of links of all such posts here.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s make good on the above decision right now! &lt;a href=&quot;https://medium.com/@prasunk2/and-so-the-curtain-falls-on-this-gsoc-journey-69f1e4d0e4ca&quot;&gt;Here’s my post on the whole GSoC experience
+(in Medium of course).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, all that has been said in this post has been said under the assumption of a sustained motivation cycle. If the chimera goes dark, you know what happened.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>GSoc Tales</title>
+   <link href="http://testsubjector.github.io/blog/2017/06/26/GSoc-Tales"/>
+   <updated>2017-06-26T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/06/26/GSoc-Tales</id>
+   <content type="html">&lt;p&gt;One month of the coding period is already up. You can read about my experiences till now at my official GSoC blog on Medium.
+Links -&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://medium.com/@prasunk2/its-fine-if-the-title-says-contributing-to-gsoc-and-open-source-improves-your-coding-skill-e6334041000f&quot;&gt;It’s fine if the title says “Contributing to GSoC and open-source improves your coding skill”, right?&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://medium.com/@prasunk2/has-it-been-a-month-already-d5e20755dd51&quot;&gt;Has it been a month already?&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>GSoCer? Yeap!</title>
+   <link href="http://testsubjector.github.io/blog/2017/05/11/GSoCer-Yeap!"/>
+   <updated>2017-05-11T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/05/11/GSoCer?-Yeap!</id>
+   <content type="html">&lt;p&gt;So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.&lt;/p&gt;
+
+&lt;p&gt;My &lt;a href=&quot;https://summerofcode.withgoogle.com/projects/#5088075618189312&quot;&gt;project&lt;/a&gt; got selected for OpenAstronomy, Google Summer of Code 2017!
+The effort put in the previous two months paid off. Really glad for that.&lt;/p&gt;
+
+&lt;p&gt;Now, as a student under OpenAstronomy I’m supposed to blog every two weeks on the work I’ve done and the current status of my project.
+This will hosted on the OpenAstronomy &lt;a href=&quot;http://openastronomy.org/Universe_OA/&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ve chosen to host these GSoC specific posts on Medium, because setting up category specific RSS-feeds on Github pages is a bit of a pain.
+And Medium is more visually appealing, of course.&lt;/p&gt;
+
+&lt;p&gt;Find them &lt;a href=&quot;https://medium.com/@prasunk2&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But don’t be so quick to leave this small blog, fellow non-existent reader!
+I’ll be still posting content(hopefully) not directly related to my project here.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>AstroLib.jl-It-Is</title>
+   <link href="http://testsubjector.github.io/blog/2017/03/16/AstroLib.jl-It-Is"/>
+   <updated>2017-03-16T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/03/16/AstroLib.jl-It-Is</id>
+   <content type="html">&lt;p&gt;So, its been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
+
+&lt;p&gt;While I still very much want to contribute to Chapel as a part of GSoC, the large knowledge barrier became very apparent as I went deeper through the codebase.
+It became very obvious that I had to reconsider, when I realised that all of my shortlisted projects (except perhaps the idea of porting my image processing project) didn’t really require much use of the Chapel language itself.
+That was a bummer, because I really wanted to go for a project that involved the compiler and the language itself.&lt;/p&gt;
+
+&lt;p&gt;So yeah, Chapel is put in cold storage, as far as GSoC is concerned.
+&lt;a href=&quot;http://write.flossmanuals.net/gsocstudentguide/finding-the-right-project/&quot;&gt;Which isn’t really a bad thing&lt;/a&gt;, at least considered to getting selected somehow and failing to deliver.&lt;/p&gt;
+
+&lt;p&gt;Now, in parallel to Chapel, I was considering two more organisations -&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.copyleftgames.org/&quot;&gt;Copyleft Games&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/JuliaAstro/&quot;&gt;JuliaAstro&lt;/a&gt; (specifically AstroLib.jl)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of the set of project ideas from Copyleft Games involves designing an actual game(!). I’m a staunch loyalist of the &lt;a href=&quot;https://github.com/godotengine/godot&quot;&gt;Godot&lt;/a&gt; game engine and I didn’t really want to go through another game engine. So that left me with…&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/JuliaAstro/AstroLib.jl&quot;&gt;AstroLib.jl&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I had found and instantly forked this repo in December, last year. All the space geeks out there will understand why.&lt;/p&gt;
+
+&lt;p&gt;Quoting the repository’s README, the purpose of AstroLib is “to provide users with a set of small generic routines useful above all in astronomical and astrophysical context”.&lt;/p&gt;
+
+&lt;p&gt;As usual though, I was dawdling on getting started with contributing to this repo.
+Browsing through the GSoC organisation list, I found the parent organisation of AstroLib.jl (JuliaAstro) listed under Open Astronomy.
+&lt;a href=&quot;http://openastronomy.org/&quot;&gt;Open Astronomy&lt;/a&gt; is an umbrella organisation currently formed by eight organisations that develop tools for different aspects on astronomy.&lt;/p&gt;
+
+&lt;p&gt;So I contacted the folks at JuliaAstro, sending a project idea that involved expanding the current number of procedures/functions in the AstroLib library.
+I’m happy to say that I got very encouraging replies from their side, including advice on how to go about from that initial stage.&lt;/p&gt;
+
+&lt;p&gt;I’ll diverge for a second and talk about &lt;em&gt;mentors&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Mentors are essentially representatives of their projects, to the students applying for GSoC.
+They help the student contributors integrate into their project’s community. In addition they are supposed to give guidance such as pointers to useful documentation, code reviews, setting milestones for the students.&lt;/p&gt;
+
+&lt;p&gt;And let me tell you, few things are as motivating as having friendly and encouraging mentors.
+The mentor for AstroLib.jl, Mosè Giordano has been really helpful to me.
+He has guided me through the common pitfalls a Julia newbie stumbles on, and has been very tolerant of the (very :P ) &lt;em&gt;silly mistakes&lt;/em&gt; I have made in my first few PRs to the AstroLib.jl repository.&lt;/p&gt;
+
+&lt;p&gt;More on that later.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>To GSoc Or Not To GSoC</title>
+   <link href="http://testsubjector.github.io/blog/2017/03/04/To-GSoc-Or-Not-To-GSoC"/>
+   <updated>2017-03-04T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2017/03/04/To-GSoc-Or-Not-To-GSoC</id>
+   <content type="html">&lt;p&gt;Well, it’s madness season again.&lt;/p&gt;
+
+&lt;p&gt;When people who you never thought would give a damn about programming, will start acting if that has been there lifelong ambition.&lt;/p&gt;
+
+&lt;p&gt;Yeah, the topic in question is Google Summer of Code 2017.
+For the uninitiated, you can know more about it &lt;a href=&quot;https://summerofcode.withgoogle.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The idea is simple essentially,
+Google in its quest to promote &lt;a href=&quot;https://en.wikipedia.org/wiki/Open-source_software&quot;&gt;open source software&lt;/a&gt; will pay you a stipend to work in an organisation under the GSoC program.&lt;/p&gt;
+
+&lt;p&gt;Open to all university students, you code away your summer vacations, and if the performance is satisfactory, you receive a stipend based on &lt;em&gt;your country&lt;/em&gt; at the end.&lt;/p&gt;
+
+&lt;p&gt;Now some people have a negative view of this whole…&lt;em&gt;festival&lt;/em&gt;, with the reason being that they perceive the motivation to monetary.&lt;/p&gt;
+
+&lt;p&gt;I don’t want to go much into that, but from what I see, monetary motivation has been an accepted motivator throughout all disciplines and arts that exist.
+And several past GSoC-ers have become integral members, for the organisation they had had mentored under.&lt;/p&gt;
+
+&lt;p&gt;Perhaps more succinctly put, what better way is there to attract overworked always-broke college students to the world of open source?&lt;/p&gt;
+
+&lt;p&gt;Anyway, I think I’ll have a go at it this year.
+The organization that I’ll try for will most probably be Chapel, a parallel programming language whose development is lead by &lt;a href=&quot;http://www.cray.com/&quot;&gt;Cray Inc&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Why Chapel? Well, the organization has been floating around the back of my head since GSoC 2016. And I recently got a project under a professor to make a proof of concept image-encrypter in Chapel.
+So that’s a win-win situation for me.&lt;/p&gt;
+
+&lt;p&gt;But that’s not all of the reason, right?
+Yeap, you got it. The answer is…&lt;/p&gt;
+
+&lt;p&gt;POWER!!! UNLIMITED… POWER!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;cough&lt;/em&gt; &lt;em&gt;cough&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There is a &lt;a href=&quot;http://chapel.cray.com/publications/PMfPC-Chapel.pdf&quot;&gt;chapter&lt;/a&gt; in Programming Models for Parallel Computing, MIT Press which is on the Chapel language (stumbled on it from the Chapel website).&lt;/p&gt;
+
+&lt;p&gt;It describes in brief, the history of Chapel, the ideas and design decisions and the also the ideals behind the language (plus a convenient tutorial to the language).
+Going through it, I felt like I wanted to associate with this. It’s not a world-breaking motivator, but hey! It’s a motivator nonetheless.
+Although,I’ll see if any other organization matches my interest or not.&lt;/p&gt;
+
+&lt;p&gt;Here’s hoping for the best.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>

@@ -1,6 +1,6 @@
 ---
-layout: poetry
-title: A Question Of Nature
+layout: post
+title: "A Question Of Nature"
 date: 2017-03-03
 ---
 

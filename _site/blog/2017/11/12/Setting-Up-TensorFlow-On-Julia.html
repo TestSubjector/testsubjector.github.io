@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting Up TensorFlow On Julia</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/poetry">Poetry</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<div class="container">
+
+  <h1>Setting Up TensorFlow On Julia</h1>
+<p class="meta">12 Nov 2017</p>
+
+<div class="post">
+  <p><em>Note</em> - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.</p>
+
+<p>First, a few definitions.</p>
+
+<p><strong>What is <a href="https://www.tensorflow.org">TensorFlow</a>?</strong><br />
+TensorFlow is an open-source software library for dataflow programming across a range of tasks. It is a 
+symbolic math library, and is also used for machine learning applications such as neural networks.</p>
+
+<p><strong>What is <a href="https://github.com/malmaud/TensorFlow.jl">TensorFlow,jl</a>?</strong><br />
+A wrapper around TensorFlow in the Julia language. Also, <a href="https://github.com/malmaud/TensorFlow.jl/blob/master/docs/src/why_julia.md">some advantages of this</a> over Python.</p>
+
+<p>Now, let’s get everything set up.</p>
+
+<ul>
+  <li>Firstly, you need to <a href="https://julialang.org/downloads/">download Julia</a>. For more complex ways of installation, <a href="https://github.com/JuliaLang/julia#source-download-and-compilation">see here</a>. <em>Note</em> - Download version 0.6 as it is the latest version of Julia supported for TensorFlow.jl; valid as of the date of this blog post being uploaded.</li>
+</ul>
+
+<p><strong>For CPU version of TensorFlow</strong></p>
+<ul>
+  <li>Now, provided you only need the <em>CPU version</em> (don’t have or want to use an Nvidia graphic card), first access the Julia REPL. For those who downloaded the binaries, they can find the julia executable in bin folder of the downloaded files. Now, do the following in the REPL -<br />
+<code class="highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
+<code class="highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL</li>
+</ul>
+
+<p>That should do it. Try typing <code class="highlighter-rouge">using TensorFlow</code> in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see <a href="https://github.com/malmaud/TensorFlow.jl#troubleshooting">issues from the ccall or python interop</a>.</p>
+
+<p><strong>For GPU-enabled version of TensorFlow</strong></p>
+
+<p><strong>The Nvidia Driver</strong></p>
+
+<p>Right, that was the simple route for CPU usage. You can optimise CPU usage by <a href="https://malmaud.github.io/TensorFlow.jl/latest/build_from_source.html">building TensorFlow from source</a>. That’s a bit outside the scope of a simple setup though.  <br />
+Now if you want to use the shiny Nvidia graphics card i.e use <em>TensorFlow with GPU enabled</em>, there’s going to be a bit of pain. In the range of possible scenarios, you could faces problems ranging from lower screen resolution to a flickering screen to a complete black screen.</p>
+
+<p>The tricky thing is there’s no one-shot cure to this problem. Here’s the standard method -<br />
+<code class="highlighter-rouge">sudo add-apt-repository ppa:graphics-drivers/ppa</code><br />
+<code class="highlighter-rouge">sudo apt-get update</code><br />
+<code class="highlighter-rouge">sudo apt-get install nvidia-current</code><br />
+<code class="highlighter-rouge">sudo reboot</code></p>
+
+<p>You’ll be asked to enter a password to disable the secure boot after login. Be careful to not forget the password, in case of problems it can come handy.<br />
+If you do face problems and are not sure what to do, don’t panic. Try to access the <a href="https://askubuntu.com/questions/66195/what-is-a-tty-and-how-do-i-access-a-tty">TTY</a> and type in the following command to get back to how things were before -<br />
+<code class="highlighter-rouge">sudo apt-get purge nvidia-current</code><br />
+<code class="highlighter-rouge">sudo reboot</code></p>
+
+<p>As I said, different people with different setups + hardware + driver version will face different problems.<br />
+The thing that worked for me personally (after hours of successive install and purge cycles) was to install the drivers not from the command line but from the GUI of the Additional Drivers application.<br />
+I simply selected the version(381) I wanted (select the circle on the left), which it automatically installed. Then, Reboot -&gt; disable secure boot -&gt; Voila!<br />
+Only thing I can say is, good luck with this step.</p>
+
+<p><strong>CUDA  and cuDNN</strong></p>
+<ul>
+  <li>I used <a href="https://www.nvidia.com/en-us/data-center/gpu-accelerated-applications/tensorflow/">this complete guide by Nvidia itself</a> to download these two components. Just one thing you have to make sure is that the CUDA version you download should be 8.x and the cuDNN version should be v5.x For other versions, <a href="https://github.com/malmaud/TensorFlow.jl#optional-building-the-tensorflow-library">this may help</a>.</li>
+</ul>
+
+<p><strong>Final step</strong></p>
+<ul>
+  <li>If everything is holding together till now, then all you should need to do is -<br />
+<code class="highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
+<code class="highlighter-rouge">julia&gt; ENV["TF_USE_GPU"] = "1"</code>  # In the Julia REPL<br />
+<code class="highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL<br />
+If typing <code class="highlighter-rouge">using TensorFlow</code> and then running <a href="https://github.com/malmaud/TensorFlow.jl#basic-usage">this code</a> doesn’t give an error, then congratulations! You’ve made it through the setup.<br />
+The actual coding now awaits.</li>
+</ul>
+
+</div>
+
+</div>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>

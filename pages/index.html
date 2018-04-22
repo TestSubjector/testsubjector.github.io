@@ -1,0 +1,14 @@
+---
+layout: default
+title: "Poetry Corner"
+permalink: /poetry/
+subtitle: Poetry. Old poetry. New poetry. DoTA poetry. Let us see.
+---
+<h1>{{ page.title }}</h1>
+
+<ul class="poetry">
+  {% for post in site.poetry %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+  {% endfor %}
+
+</ul>

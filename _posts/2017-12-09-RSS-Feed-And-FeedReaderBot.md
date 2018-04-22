@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "RSS Feed & FeedReader Bot"
-date: 2017-11-12
+date: 2017-12-09
 ---
 
 [RSS Feed(s)](https://testsubjector.github.io/feed.xml) is/(are?) now enabled (if they weren't already automatically done by Github Pages).  
