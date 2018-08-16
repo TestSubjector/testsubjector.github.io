@@ -12,11 +12,11 @@ include:
 - _pages
 
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-mentions
   - jekyll-archives
   - jekyll-paginate
+  - jekyll-feed
 
 paginate: 5
 paginate_path: "/blog/page:num/"

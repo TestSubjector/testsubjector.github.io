@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Question Of Nature"
-date: 2017-03-03
+date: 2018-03-03
 ---
 
 "What is Nature?" one may ask.  
@@ -9,7 +9,6 @@ The sun and the moon in their eternal dance,
 The bountiful green in a sea of grass,  
 Or a flash of flowers,  
 Their colours (colors?) bright and fast.  
-
   
 Is it the brotherhood of silent trees?  
 Sheltering any creature, demanding no fee.  
