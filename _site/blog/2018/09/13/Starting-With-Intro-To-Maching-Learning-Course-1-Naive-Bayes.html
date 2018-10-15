@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Starting With Intro To Maching Learning Course 1- Naive Bayes</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/poetry">Poetry</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<post class="container">
+
+  <h1>Starting With Intro To Maching Learning Course 1- Naive Bayes</h1>
+<p class="meta">13 Sep 2018</p>
+
+
+<!-- Begin Article
+================================================== -->
+
+
+<post class="post">
+  <p>In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a <strong>Disaster Zone</strong>, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.<br />
+That, and I’m now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world.</p>
+
+<p>Now, AI was something I wanted to get into as kid(and seeing everyone else suddenly get hyped about the same, in these last few years has been damn frustrating (The competition!)). 
+Anyway, I can rant a lot about this to be sure; but let’s get on with the main topic.</p>
+
+<p>I’ve started with the basic of the basics, the Udacity course Introduction To Machine Learning. I’ll try to put up updates about this course as I go deeper into it. 
+Maybe I’ll also put up some summary notes here in the future? Let’s try with a brief one.</p>
+
+<p>The first main topic, Naive Bayes can be (on the code side) be summed up by the following few lines -</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features_train</span><span class="p">,</span> <span class="n">labels_train</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">features_test</span><span class="p">,</span> <span class="n">labels_test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Shoutout to my <a href="http://arnavdhamija.com/">friend</a> for prodding me to <em>attempt</em> to blog again.</p>
+
+</post>
+
+<div class="container">
+	<div class="row">
+
+			
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2018/03/14/BattleCode-Report"> &laquo; BattleCode Report</a>
+            
+            
+            <a class="next d-block col-md-6 text-lg-right" href="http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game">Whiskquilibrium The Game &raquo; </a>
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+		</div>
+		<!-- End Post -->
+
+	</div>
+</div>
+<!-- End Article
+================================================== -->
+
+  
+
+<!-- Begin Comments
+================================================== -->
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">              
+            <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = ''; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+                
+        </div>
+    </div>
+</div>
+<!--End Comments
+================================================== -->
+
+</post>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>
