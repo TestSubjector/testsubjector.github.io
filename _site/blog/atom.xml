@@ -4,7 +4,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2018-10-16T03:23:37+05:30</updated>
+ <updated>2018-10-21T12:37:20+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -13,19 +13,73 @@
 
  
  <entry>
+   <title>Julia Context Free Grammar</title>
+   <link href="http://testsubjector.github.io/blog/2018/10/21/Julia-Context-Free-Grammar"/>
+   <updated>2018-10-21T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2018/10/21/Julia-Context-Free-Grammar</id>
+   <content type="html">&lt;p&gt;Gists in Github Pages, lovely.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/TestSubjector/6a407f9a4ba5996a1692c9b9f6c0eb84.js&quot;&gt;&lt;/script&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
    <title>Whiskquilibrium The Game</title>
    <link href="http://testsubjector.github.io/blog/2018/10/16/Whiskquilibrium-The-Game"/>
    <updated>2018-10-16T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/10/16/Whiskquilibrium-The-Game</id>
    <content type="html">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.&lt;br /&gt;
-Hackathons I felt are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;br /&gt;
-Still, it’s a good thing to try out if you’re in a coding slump.&lt;/p&gt;
+Hackathons I fell are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;/p&gt;
 
-&lt;p&gt;with a team consisting of me, &lt;a href=&quot;&quot;&gt;Kushal Agarwal&lt;/a&gt;, &lt;a href=&quot;&quot;&gt;Arnav Dhamija&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;Nischay Ram&lt;/a&gt; (and a team appropriately called )&lt;/p&gt;
+&lt;p&gt;Still, it’s a good thing to try out at least once and/or if you’re in a coding slump.&lt;/p&gt;
 
-&lt;p&gt;We devised and developed Whiskquilibrium , a 2D platformer game.
-It involves a cat named “Minto” trapped in a quantum world. She has the ability to shift her state between being alive and a ghostly dead form. Her prescence itself changes the nature of the world around her. Can you solve the obstacles in her path that prevent her from escaping the mad world she is in?
-Goal - To be developed enough to be released on Steam&lt;/p&gt;
+&lt;p&gt;With a team consisting of me, &lt;a href=&quot;https://github.com/legobridge&quot;&gt;Kushal Agarwal&lt;/a&gt;, &lt;a href=&quot;https://github.com/shortstheory&quot;&gt;Arnav Dhamija&lt;/a&gt; and &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; (appropriately called Team “CanWeGetBackToYouLater”), we devised and developed &lt;strong&gt;Whiskquilibrium&lt;/strong&gt;. A 2D platformer game in the Godot game engine.&lt;/p&gt;
+
+&lt;p&gt;Here’s the PR promoting synopsis - &lt;em&gt;It involves a cat named “Minto” trapped in a quantum world. She has the ability to shift her state between being alive and a ghostly dead form. Her presence itself changes the nature of the world around her. Can you solve the obstacles in her path that prevent her from escaping the mad world she is in?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Essentially, the game consisted of a cat character that has the power to switch colors between white and black and has to clear several levels.&lt;/li&gt;
+  &lt;li&gt;The blocks themselves in these levels are white, black or gray(level borders). The game mechanic is developed in the form of the cat being able to traverse through blocks of the same colour while being able to &lt;em&gt;paint&lt;/em&gt; the blocks of the opposite colour, when &lt;em&gt;you stop touching that block&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;The cat can jump in its default black colour&lt;/li&gt;
+  &lt;li&gt;The cat cannot jump when it switches to white(dead) state but has limited ability to fly which can be refilled by colouring up black blocks to white.&lt;/li&gt;
+  &lt;li&gt;The number of switches possible in a level is limited.&lt;/li&gt;
+  &lt;li&gt;The level can be reset at anytime (this is not a roguelike game &lt;em&gt;phew&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are the sketches of the above mechanics, that we developed during the hackathon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/8AlZv8xCgjfwt2wv5z/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Colour/ Switch&quot; /&gt;
+&lt;img src=&quot;https://media.giphy.com/media/j9O9cCf7lmJzql78oc/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Fly&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The judging of the Game Dev section of the Hackathon was done by professionals from EA India (&lt;em&gt;insert jokes about DLCs here&lt;/em&gt;).&lt;br /&gt;
+Suffice to say we did not win the 1st (given to a team that used RPG Maker to make more than 20 levels of content) or 2nd prize given to a team who make a game using their on OpenGL game engine (which they had been working on more than a few months, which highlights another problem of hackathons).&lt;/p&gt;
+
+&lt;p&gt;Thankfully, we had a spot in the next 3 ranks (we were lazily, not told the exact rank since the &lt;strong&gt;prizes&lt;/strong&gt; for these 3 spots were the same).&lt;br /&gt;
+&lt;img src=&quot;https://i.imgur.com/Jn5q0K1.jpg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;The Prize&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was actually very happy at the way the judges had given scores to be honest. They had instantly picked out people who had cut and pasted code and assests from the net (essentially cheating) quite quickly. It was satisfying to watch them (such participants) being tongue-tied when the difficult questions where asked, I’ll admit.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This hackathon actually helped me fulfill one my college goals, which was to make a proper effort at a developing a game. Who knows? If we are able to actually gather willpower, maybe we’ll polish this and release this on Steam.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Game development, in itself…is a pain. We had 4 people in our team and around 18 hours of time to understand Godot and make something. I can remember at least 5 instances, where at least one of us was on the verge of screaming, killing the other three and dancing on their corpses. The essence and the main difficulty with game development that I felt was that, everything in games are linked. It’s like how a real world behaves.&lt;br /&gt;
+You want to change one move? Change everything that is dependent on that move.&lt;br /&gt;
+You want to add visual indicators? Make sure that they -&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;follow the camera&lt;/li&gt;
+  &lt;li&gt;are resized properly when the camera is zoomed in/out&lt;/li&gt;
+  &lt;li&gt;do not lag behing key presses&lt;/li&gt;
+  &lt;li&gt;look good&lt;/li&gt;
+  &lt;li&gt;and work as they are supposed too&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now when you are novice (like we where), where and how to actually implement the above in a game engine(all of whom a bazillion icons to chose from), is more than a bit of a pain.&lt;/p&gt;
+
+&lt;p&gt;To conclude,&lt;br /&gt;
+the most amazing yet sad thing is, at the end of it all, we were more than happy at what we had been able to accomplish at the hackathon. We were sleep deprived of course, but seeing that the game actually came to life brought that small-persistent-warm-giddy feeling to our hearts (We had implemented sound effects. Sound effects!).&lt;/p&gt;
+
+&lt;p&gt;The reason I was feeling sad though, was because of one of the conclusions I had reached. That was, while being an indie game developer will definetly be a fun and interesting job, you really need to be a bit of a masochist to be able to qualify for such a job.&lt;/p&gt;
+
 </content>
  </entry>
  

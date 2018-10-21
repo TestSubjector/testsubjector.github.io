@@ -1,12 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-16T03:23:37+05:30</updated><id>http://localhost:4000/</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings On Projects &amp; Other Things</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Whiskquilibrium The Game</title><link href="http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game" rel="alternate" type="text/html" title="Whiskquilibrium The Game" /><published>2018-10-16T00:00:00+05:30</published><updated>2018-10-16T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game</id><content type="html" xml:base="http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.&lt;br /&gt;
-Hackathons I felt are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;br /&gt;
-Still, it’s a good thing to try out if you’re in a coding slump.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-21T12:37:20+05:30</updated><id>http://localhost:4000/</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings On Projects &amp; Other Things</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Julia Context Free Grammar</title><link href="http://localhost:4000/blog/2018/10/21/Julia-Context-Free-Grammar" rel="alternate" type="text/html" title="Julia Context Free Grammar" /><published>2018-10-21T00:00:00+05:30</published><updated>2018-10-21T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/10/21/Julia-Context-Free-Grammar</id><content type="html" xml:base="http://localhost:4000/blog/2018/10/21/Julia-Context-Free-Grammar">&lt;p&gt;Gists in Github Pages, lovely.&lt;/p&gt;
 
-&lt;p&gt;with a team consisting of me, &lt;a href=&quot;&quot;&gt;Kushal Agarwal&lt;/a&gt;, &lt;a href=&quot;&quot;&gt;Arnav Dhamija&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;Nischay Ram&lt;/a&gt; (and a team appropriately called )&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/TestSubjector/6a407f9a4ba5996a1692c9b9f6c0eb84.js&quot;&gt;&lt;/script&gt;</content><author><name>TestSubjector</name></author><summary type="html">Gists in Github Pages, lovely.</summary></entry><entry><title type="html">Whiskquilibrium The Game</title><link href="http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game" rel="alternate" type="text/html" title="Whiskquilibrium The Game" /><published>2018-10-16T00:00:00+05:30</published><updated>2018-10-16T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game</id><content type="html" xml:base="http://localhost:4000/blog/2018/10/16/Whiskquilibrium-The-Game">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.&lt;br /&gt;
+Hackathons I fell are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;/p&gt;
 
-&lt;p&gt;We devised and developed Whiskquilibrium , a 2D platformer game.
-It involves a cat named “Minto” trapped in a quantum world. She has the ability to shift her state between being alive and a ghostly dead form. Her prescence itself changes the nature of the world around her. Can you solve the obstacles in her path that prevent her from escaping the mad world she is in?
-Goal - To be developed enough to be released on Steam&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">On 29th and 30th September, I had the chance to participate in the Megathon Hackathon at IIIT Hyderabad. Hackathons I felt are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours. Still, it’s a good thing to try out if you’re in a coding slump. with a team consisting of me, Kushal Agarwal, Arnav Dhamija and Nischay Ram (and a team appropriately called )</summary></entry><entry><title type="html">Starting With Intro To Maching Learning Course 1- Naive Bayes</title><link href="http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes" rel="alternate" type="text/html" title="Starting With Intro To Maching Learning Course 1- Naive Bayes" /><published>2018-09-13T00:00:00+05:30</published><updated>2018-09-13T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1--Naive%20Bayes</id><content type="html" xml:base="http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes">&lt;p&gt;In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a &lt;strong&gt;Disaster Zone&lt;/strong&gt;, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.&lt;br /&gt;
+&lt;p&gt;Still, it’s a good thing to try out at least once and/or if you’re in a coding slump.&lt;/p&gt;
+
+&lt;p&gt;With a team consisting of me, &lt;a href=&quot;https://github.com/legobridge&quot;&gt;Kushal Agarwal&lt;/a&gt;, &lt;a href=&quot;https://github.com/shortstheory&quot;&gt;Arnav Dhamija&lt;/a&gt; and &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; (appropriately called Team “CanWeGetBackToYouLater”), we devised and developed &lt;strong&gt;Whiskquilibrium&lt;/strong&gt;. A 2D platformer game in the Godot game engine.&lt;/p&gt;
+
+&lt;p&gt;Here’s the PR promoting synopsis - &lt;em&gt;It involves a cat named “Minto” trapped in a quantum world. She has the ability to shift her state between being alive and a ghostly dead form. Her presence itself changes the nature of the world around her. Can you solve the obstacles in her path that prevent her from escaping the mad world she is in?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Essentially, the game consisted of a cat character that has the power to switch colors between white and black and has to clear several levels.&lt;/li&gt;
+  &lt;li&gt;The blocks themselves in these levels are white, black or gray(level borders). The game mechanic is developed in the form of the cat being able to traverse through blocks of the same colour while being able to &lt;em&gt;paint&lt;/em&gt; the blocks of the opposite colour, when &lt;em&gt;you stop touching that block&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;The cat can jump in its default black colour&lt;/li&gt;
+  &lt;li&gt;The cat cannot jump when it switches to white(dead) state but has limited ability to fly which can be refilled by colouring up black blocks to white.&lt;/li&gt;
+  &lt;li&gt;The number of switches possible in a level is limited.&lt;/li&gt;
+  &lt;li&gt;The level can be reset at anytime (this is not a roguelike game &lt;em&gt;phew&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are the sketches of the above mechanics, that we developed during the hackathon.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/8AlZv8xCgjfwt2wv5z/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Colour/ Switch&quot; /&gt;
+&lt;img src=&quot;https://media.giphy.com/media/j9O9cCf7lmJzql78oc/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Fly&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The judging of the Game Dev section of the Hackathon was done by professionals from EA India (&lt;em&gt;insert jokes about DLCs here&lt;/em&gt;).&lt;br /&gt;
+Suffice to say we did not win the 1st (given to a team that used RPG Maker to make more than 20 levels of content) or 2nd prize given to a team who make a game using their on OpenGL game engine (which they had been working on more than a few months, which highlights another problem of hackathons).&lt;/p&gt;
+
+&lt;p&gt;Thankfully, we had a spot in the next 3 ranks (we were lazily, not told the exact rank since the &lt;strong&gt;prizes&lt;/strong&gt; for these 3 spots were the same).&lt;br /&gt;
+&lt;img src=&quot;https://i.imgur.com/Jn5q0K1.jpg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;The Prize&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was actually very happy at the way the judges had given scores to be honest. They had instantly picked out people who had cut and pasted code and assests from the net (essentially cheating) quite quickly. It was satisfying to watch them (such participants) being tongue-tied when the difficult questions where asked, I’ll admit.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This hackathon actually helped me fulfill one my college goals, which was to make a proper effort at a developing a game. Who knows? If we are able to actually gather willpower, maybe we’ll polish this and release this on Steam.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Game development, in itself…is a pain. We had 4 people in our team and around 18 hours of time to understand Godot and make something. I can remember at least 5 instances, where at least one of us was on the verge of screaming, killing the other three and dancing on their corpses. The essence and the main difficulty with game development that I felt was that, everything in games are linked. It’s like how a real world behaves.&lt;br /&gt;
+You want to change one move? Change everything that is dependent on that move.&lt;br /&gt;
+You want to add visual indicators? Make sure that they -&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;follow the camera&lt;/li&gt;
+  &lt;li&gt;are resized properly when the camera is zoomed in/out&lt;/li&gt;
+  &lt;li&gt;do not lag behing key presses&lt;/li&gt;
+  &lt;li&gt;look good&lt;/li&gt;
+  &lt;li&gt;and work as they are supposed too&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now when you are novice (like we where), where and how to actually implement the above in a game engine(all of whom a bazillion icons to chose from), is more than a bit of a pain.&lt;/p&gt;
+
+&lt;p&gt;To conclude,&lt;br /&gt;
+the most amazing yet sad thing is, at the end of it all, we were more than happy at what we had been able to accomplish at the hackathon. We were sleep deprived of course, but seeing that the game actually came to life brought that small-persistent-warm-giddy feeling to our hearts (We had implemented sound effects. Sound effects!).&lt;/p&gt;
+
+&lt;p&gt;The reason I was feeling sad though, was because of one of the conclusions I had reached. That was, while being an indie game developer will definetly be a fun and interesting job, you really need to be a bit of a masochist to be able to qualify for such a job.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">On 29th and 30th September, I had the chance to participate in the Megathon Hackathon at IIIT Hyderabad. Hackathons I fell are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours. Still, it’s a good thing to try out at least once and/or if you’re in a coding slump. With a team consisting of me, Kushal Agarwal, Arnav Dhamija and Nischay Ram (appropriately called Team “CanWeGetBackToYouLater”), we devised and developed Whiskquilibrium. A 2D platformer game in the Godot game engine. Here’s the PR promoting synopsis - It involves a cat named “Minto” trapped in a quantum world. She has the ability to shift her state between being alive and a ghostly dead form. Her presence itself changes the nature of the world around her. Can you solve the obstacles in her path that prevent her from escaping the mad world she is in? Essentially, the game consisted of a cat character that has the power to switch colors between white and black and has to clear several levels. The blocks themselves in these levels are white, black or gray(level borders). The game mechanic is developed in the form of the cat being able to traverse through blocks of the same colour while being able to paint the blocks of the opposite colour, when you stop touching that block. The cat can jump in its default black colour The cat cannot jump when it switches to white(dead) state but has limited ability to fly which can be refilled by colouring up black blocks to white. The number of switches possible in a level is limited. The level can be reset at anytime (this is not a roguelike game phew) Here are the sketches of the above mechanics, that we developed during the hackathon.</summary></entry><entry><title type="html">Starting With Intro To Maching Learning Course 1- Naive Bayes</title><link href="http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes" rel="alternate" type="text/html" title="Starting With Intro To Maching Learning Course 1- Naive Bayes" /><published>2018-09-13T00:00:00+05:30</published><updated>2018-09-13T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1--Naive%20Bayes</id><content type="html" xml:base="http://localhost:4000/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes">&lt;p&gt;In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a &lt;strong&gt;Disaster Zone&lt;/strong&gt;, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.&lt;br /&gt;
 That, and I’m now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world.&lt;/p&gt;
 
 &lt;p&gt;Now, AI was something I wanted to get into as kid(and seeing everyone else suddenly get hyped about the same, in these last few years has been damn frustrating (The competition!)). 
@@ -145,43 +188,4 @@ And Medium is more visually appealing, of course.&lt;/p&gt;
 &lt;p&gt;Find them &lt;a href=&quot;https://medium.com/@prasunk2&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;But don’t be so quick to leave this small blog, fellow non-existent reader!
-I’ll be still posting content(hopefully) not directly related to my project here.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.</summary></entry><entry><title type="html">AstroLib.jl-It-Is</title><link href="http://localhost:4000/blog/2017/03/16/AstroLib.jl-It-Is" rel="alternate" type="text/html" title="AstroLib.jl-It-Is" /><published>2017-03-16T00:00:00+05:30</published><updated>2017-03-16T00:00:00+05:30</updated><id>http://localhost:4000/blog/2017/03/16/AstroLib.jl-It-Is</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/16/AstroLib.jl-It-Is">&lt;p&gt;So, its been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
-
-&lt;p&gt;While I still very much want to contribute to Chapel as a part of GSoC, the large knowledge barrier became very apparent as I went deeper through the codebase.
-It became very obvious that I had to reconsider, when I realised that all of my shortlisted projects (except perhaps the idea of porting my image processing project) didn’t really require much use of the Chapel language itself.
-That was a bummer, because I really wanted to go for a project that involved the compiler and the language itself.&lt;/p&gt;
-
-&lt;p&gt;So yeah, Chapel is put in cold storage, as far as GSoC is concerned.
-&lt;a href=&quot;http://write.flossmanuals.net/gsocstudentguide/finding-the-right-project/&quot;&gt;Which isn’t really a bad thing&lt;/a&gt;, at least considered to getting selected somehow and failing to deliver.&lt;/p&gt;
-
-&lt;p&gt;Now, in parallel to Chapel, I was considering two more organisations -&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.copyleftgames.org/&quot;&gt;Copyleft Games&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/JuliaAstro/&quot;&gt;JuliaAstro&lt;/a&gt; (specifically AstroLib.jl)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;One of the set of project ideas from Copyleft Games involves designing an actual game(!). I’m a staunch loyalist of the &lt;a href=&quot;https://github.com/godotengine/godot&quot;&gt;Godot&lt;/a&gt; game engine and I didn’t really want to go through another game engine. So that left me with…&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/JuliaAstro/AstroLib.jl&quot;&gt;AstroLib.jl&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I had found and instantly forked this repo in December, last year. All the space geeks out there will understand why.&lt;/p&gt;
-
-&lt;p&gt;Quoting the repository’s README, the purpose of AstroLib is “to provide users with a set of small generic routines useful above all in astronomical and astrophysical context”.&lt;/p&gt;
-
-&lt;p&gt;As usual though, I was dawdling on getting started with contributing to this repo.
-Browsing through the GSoC organisation list, I found the parent organisation of AstroLib.jl (JuliaAstro) listed under Open Astronomy.
-&lt;a href=&quot;http://openastronomy.org/&quot;&gt;Open Astronomy&lt;/a&gt; is an umbrella organisation currently formed by eight organisations that develop tools for different aspects on astronomy.&lt;/p&gt;
-
-&lt;p&gt;So I contacted the folks at JuliaAstro, sending a project idea that involved expanding the current number of procedures/functions in the AstroLib library.
-I’m happy to say that I got very encouraging replies from their side, including advice on how to go about from that initial stage.&lt;/p&gt;
-
-&lt;p&gt;I’ll diverge for a second and talk about &lt;em&gt;mentors&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Mentors are essentially representatives of their projects, to the students applying for GSoC.
-They help the student contributors integrate into their project’s community. In addition they are supposed to give guidance such as pointers to useful documentation, code reviews, setting milestones for the students.&lt;/p&gt;
-
-&lt;p&gt;And let me tell you, few things are as motivating as having friendly and encouraging mentors.
-The mentor for AstroLib.jl, Mosè Giordano has been really helpful to me.
-He has guided me through the common pitfalls a Julia newbie stumbles on, and has been very tolerant of the (very :P ) &lt;em&gt;silly mistakes&lt;/em&gt; I have made in my first few PRs to the AstroLib.jl repository.&lt;/p&gt;
-
-&lt;p&gt;More on that later.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">So, its been a dozen days since my last post, and well, things have changed.</summary></entry></feed>
+I’ll be still posting content(hopefully) not directly related to my project here.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.</summary></entry></feed>
