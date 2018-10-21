@@ -20,11 +20,14 @@ layout: default
 
             <!-- Prev/Next -->
             <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <br></br>
             {% if page.previous.url %}
-            <a class="prev d-block col-md-6" href="{{page.previous.url | absolute_url}}"> &laquo; {{page.previous.title}}</a>
+            <a class="prev d-block col-md-6" href="{{page.previous.url | absolute_url}}"> Previous Post &laquo;  {{page.previous.title}} </a>
             {% endif %}
+            <br></br>
             {% if page.next.url %}
-            <a class="next d-block col-md-6 text-lg-right" href="{{page.next.url | absolute_url}}">{{page.next.title}} &raquo; </a>
+            <a class="next d-block col-md-6 text-lg-right" href="{{page.next.url | absolute_url}}"> {{page.next.title}} &raquo; Next Post </a>
             {% endif %}
             <div class="clearfix"></div>
             </div>
@@ -45,7 +48,7 @@ layout: default
 <div class="container">
     <div id="comments" class="row justify-content-center mb-5">
         <div class="col-md-8">              
-            {% include disqus.html %}                
+                           
         </div>
     </div>
 </div>
