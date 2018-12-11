@@ -15,9 +15,9 @@ carrying the team.
 + A quota of max 4 International teams for the finals (out of the total 16 spots) was implemented for this year.
   
 
-Very honestly, it was the last point that hurt the most. The International teams were as a whole, way more competitive and most of the top positions in the daily scrimmage rankings were captured by these teams. I understand the reason why it was done (last year had almost nil local presence) but I can't help feel a bit salty. That's because despite the other problems, we had a good chance of getting into the Finals, if not for the quota.
+Very honestly, it was the last point that hurt the most. The "International" teams were as a whole way more competitive; most of the top positions in the daily scrimmage rankings were captured by these teams. I understand the reason why it was done (last year had almost nil local presence) but I can't help feel a bit salty. Mainly due to the fact that despite the other problems, we had a good chance of getting into the Finals, if not for the quota.
   
-Sigh, quotas are a sticky, volatile and frustrating point for many Indians like in me in general.
-However, I can't deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and the strategies and plans hatched and abandoned; it's something I'll definetly want to do again next year too.
+Sigh, quotas are a sticky, volatile and frustrating point for many people in my country, including me, in general(*puns*).
+However, I can't deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and Discord; the strategies and plans hatched and abandoned. It's something I'll definetly want to do again next year too.
   
   Just no Docker again, please.
