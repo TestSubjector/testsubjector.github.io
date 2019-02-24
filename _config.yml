@@ -4,7 +4,7 @@ markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 encoding: "utf-8"
 author:
-  name: "TestSubjector" 
+  name: "TestSubjector"
 
 comments: true
 
@@ -12,6 +12,7 @@ include:
 - _pages
 
 plugins:
+  - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-mentions
   - jekyll-archives
@@ -25,4 +26,3 @@ collections:
   poetry:
     output: true
     permalink: /:collection/:title/
-
