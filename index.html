@@ -4,14 +4,14 @@ title: Antithetical Parallels
 ---
 		<div class="blurb">
 			<h1>Salutations</h1>
-			<p>I'm using Github Pages to blog about my projects, poetry and whatnot. As long as my willpower 
-				doesn't go AFK that is.	Don't be confused by the simple(-est?) layout. 
-				<br></br> 
+			<p>I'm using Github Pages to blog about my projects, poetry and whatnot. As long as my willpower
+				doesn't go AFK that is.	Don't be confused by the simple(-est?) layout.
+				<br></br>
 				It's a feature.
 			</p>
 		</div>
 		<br></br>
-        
+
     <h5 class="page__title">Recent Posts</h5>
     {% for post in site.posts limit: 5 %}
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>

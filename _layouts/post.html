@@ -20,7 +20,7 @@ layout: default
 
             <!-- Prev/Next -->
             <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-            
+
             <br></br>
             {% if page.previous.url %}
             <a class="prev d-block col-md-6" href="{{page.previous.url | absolute_url}}"> Previous Post &laquo;  {{page.previous.title}} </a>
@@ -33,24 +33,17 @@ layout: default
             </div>
             <!-- End Categories -->
 
-		</div>
-		<!-- End Post -->
-
+            <!-- Begin Comments
+            ================================================== -->
+            <div class="just-comments"
+            data-allowguests="true"
+            data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+            </div>
+            <!--End Comments
+            ================================================== -->
 	</div>
+	<!-- End Post -->
+
 </div>
 <!-- End Article
-================================================== -->
-
-  
-
-<!-- Begin Comments
-================================================== -->
-<div class="container">
-    <div id="comments" class="row justify-content-center mb-5">
-        <div class="col-md-8">              
-                           
-        </div>
-    </div>
-</div>
-<!--End Comments
 ================================================== -->

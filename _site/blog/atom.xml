@@ -4,13 +4,26 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2019-02-24T17:08:52+05:30</updated>
+ <updated>2019-03-14T23:54:19+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
    <email>prasunk3@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Comments Now Work On Pi Day</title>
+   <link href="http://testsubjector.github.io/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"/>
+   <updated>2019-03-14T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id>
+   <content type="html">&lt;p&gt;Well, there’s not much of a Pi day celeberation (or even mention) on our side of the world.&lt;br /&gt;
+That’s simply because we go for a DD/MM format rather than peculiar MM/DD format, for dates.&lt;br /&gt;
+There’s a small irony here, in the sense that the dates for these posts require a YYYY-MM-DD format.&lt;br /&gt;
+&lt;br /&gt;
+Additionally, I’ve caved into giving an option for comments on all my posts. I’m sure that’ll go swimmingly. Pretty sure.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Future Plans</title>
