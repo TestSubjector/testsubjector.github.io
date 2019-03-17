@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Making A Simple Telegram Bot In Julia</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+    <script async src="https://just-comments.com/w.js"></script>
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/poetry">Poetry</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<post class="container">
+
+  <h1>Making A Simple Telegram Bot In Julia</h1>
+<p class="meta">17 Mar 2019</p>
+
+
+<!-- Begin Article
+================================================== -->
+
+
+<post class="post">
+  <p>Note - Not proofread yet
+So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. <br />
+And well, what better language to use than Julia? Yes, Python has a much more developed library for Telegram bots, but where is the fun in that? <br />
+<br />
+So, here I’ll be doing a quick run-through on how I a simple bot was made for Telegram called WikiRandom bot. The purpose of the bot is simple and clean, a user will ask the bot to give a link to any random article on Wikipedia and the bot will give respond with such a link.<br /></p>
+
+<p>Here is an example of the bot in action - <br />
+<img src="http://localhost:4000/images/telegrambots/workinglist.png" margin:="" auto="" alt="It's Alive!" /></p>
+
+<p>Now, let’s start with a simple primer for those not familiar with the topic in hand.<br /></p>
+
+<p><strong>What is Telegram?</strong><br />
+It is a chat application like Messenger or WhatsApp with the added promise of being much more secure (and a clean UI!)</p>
+
+<p><strong>What is a <a href="https://core.telegram.org/bots">Telegram Bot</a>?</strong><br />
+Telegram provides this nifty feature of bots, which are in essence small pieces of code wrapped up in accout. You communicate with the bot using valid commands and the bot responds to those commands based on how it is coded.</p>
+
+<p><strong>What is Julia?</strong><br />
+It is a good language to code in. Faster than Python (usually) but with code that looks like it’s a long lost brother to the Python syntax. For anything more than that, please find out by yourself.<br /></p>
+
+<p>Now, we start looking into the actual approach to build our bot.
+<strong>Creating a bot</strong></p>
+<ul>
+  <li>Firstly, we need to have a bot to call our own. Bots in Telegram <em>are special accounts that do not require an additional phone number to set up</em> and to make these special accounts, Telegram provides an … in-built bot(!) called the <a href="https://telegram.me/botfather">BotFather</a>. Once you have it running, it is pretty self explainatory in the way it is supposed to be used.
+<br /><br />
+<img src="http://localhost:4000/images/telegrambots/botfather1.png" margin:="" auto="" alt="The Botfather" />
+<br /><br />
+<strong>Communicating with your bot</strong></li>
+  <li>After the bot has been named, its details set up and after it has been adopted as an official child (do remember that adoption is invalid if the bot token is lost, which is also a sign of bad parenting), the next thing required is a way to communicate with it. Stumped? Well, no need to worry. In this highly introverted age, humans have made a marvellous tool called the application programming interface (APIs) to remove all unnecessary friendly social communication. <a href="https://core.telegram.org/bots/api">Telegram’s API</a> is a party to this principle.
+<br /><br />
+<strong>Wrappers and the beauty of the open-source world</strong></li>
+  <li>But wait, we plan to use Julia for this. How does one go about linking the language to the APIs i.e creating a wrapper library? Seems like a lot of effort. It’s simple really, you simply don’t make that effort. Someone else usually has done it already. And the person in question is <a href="https://github.com/Moelf">Moelf</a> with his Julia wrapper library <a href="https://github.com/Moelf/Telegrambot.jl">Telegrambot.jl</a>. Huge thanks to him for that. You can also find his blog on the topic <a href="https://blog.jling.dev/a-telegram-bot-in-julia/">here</a>.
+<br /><br />
+<strong>Getting the bot commands running</strong></li>
+  <li>Now, first thing first is to get the <a href="https://github.com/Moelf/Telegrambot.jl/blob/master/README.md">example shown in the README</a> for the Telegrambot.jl running. After that is done, we diverge on how to make our <em>random_wikipedia_page_giver</em> bot.
+<br /><br /></li>
+  <li>We would like to have a main() function, which will act as the placeholder where all the code runs -
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">using</span> <span class="n">Telegrambot</span>
+<span class="k">function</span><span class="nf"> main</span><span class="x">()</span>
+  <span class="n">botApi</span> <span class="o">=</span> <span class="o">&lt;</span><span class="s">"get your own token, shoo!"</span><span class="o">&gt;</span>
+  <span class="n">txtCmds</span> <span class="o">=</span> <span class="n">Dict</span><span class="x">()</span>
+  <span class="n">txtCmds</span><span class="x">[</span><span class="s">"start"</span><span class="x">]</span> <span class="o">=</span> <span class="n">welcomeMessage</span> <span class="c"># this will respond to '/start'</span>
+  <span class="n">txtCmds</span><span class="x">[</span><span class="s">"repeatmessage"</span><span class="x">]</span> <span class="o">=</span> <span class="n">echo</span> <span class="c"># this will respond to '/repeatmessage &lt;any thing&gt;'</span>
+  <span class="n">txtCmds</span><span class="x">[</span><span class="s">"randomarticle"</span><span class="x">]</span> <span class="o">=</span> <span class="n">getRandomWikiPage</span> <span class="c"># this will give the random article we require</span>
+  <span class="n">inlineOpts</span> <span class="o">=</span> <span class="n">Dict</span><span class="x">()</span> <span class="c">#Title, result pair</span>
+  <span class="n">startBot</span><span class="x">(</span><span class="n">botApi</span><span class="x">;</span> <span class="n">textHandle</span> <span class="o">=</span> <span class="n">txtCmds</span><span class="x">,</span> <span class="n">inlineQueryHandle</span> <span class="o">=</span> <span class="n">inlineOpts</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Now the inner workings of the code will be understood by going through the docs but essentially the <em>txtCmnds</em> are the text commands that we will give as input to the bot and get the expected response in return. The startBot method make sures that everything is running in a neat, tight loop. For example, here is the /<em>repeatmessage</em> command in action.<br /><br />
+<img src="http://localhost:4000/images/telegrambots/repeatmessage.png" margin:="" auto="" alt="Repeat Message" />
+<br /><br />
+<strong>Bot Commands - Minor</strong></li>
+  <li>The commands are functions themselves, so we write them over in seperate commands.jl file. The two simpler commands are -
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># This command gives a greeting to you, how polite</span>
+<span class="k">function</span><span class="nf"> welcomeMessage</span><span class="x">(</span><span class="n">incoming</span><span class="o">::</span><span class="kt">AbstractString</span><span class="x">)</span>
+  <span class="k">return</span> <span class="s">"Welcome, the most generic greeting ever"</span>
+<span class="k">end</span>
+<span class="c"># Echo back whatever has been said by the user</span>
+<span class="k">function</span><span class="nf"> echo</span><span class="x">(</span><span class="n">incoming</span><span class="o">::</span><span class="kt">AbstractString</span><span class="x">)</span>
+  <span class="k">return</span> <span class="n">incoming</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Its time to digress a bit. The thing was that originally using the welcomeMessage command will pretty quickly fill your console with warning messages quickly - <br /><br />
+<img src="http://localhost:4000/images/telegrambots/allstringstarterror.png" margin:="" auto="" alt="Warnings everywhere" />
+<br /><br /></li>
+  <li>The details can be learned about in this <a href="https://github.com/Moelf/Telegrambot.jl/issues/5">issue</a>. In brief, the way the wrapper code was set up required all comands to have a message after command (<em>/bot_command</em> non_empty_message). Moelf fixed the issue by himself (even though I said I’ll do it, mid-semester exams made it impossible for me to quickly work on this). So this is a non-issue now.
+<br /><br />
+<strong>Bot Command - Major</strong></li>
+  <li>The <em>/randomarticle</em> command, the crux of our code requires two things. Since we need to get articles from wikipedia randomly, it may seem like we will have to create a repository of multiple links on Wikipedia and randomly choose one of those links when a user gives a request. There is a simple way. Wikipedia has an API(who would have know it) that will automatically give you the metadata for a random page on Wikipedia.<br /><br /></li>
+  <li>All we now require is a way to communicate with this API. We use a Julia library called <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> for this purpose. With all the key ingredients ready, the final code for the function will loke somewhat like -
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">using</span> <span class="n">HTTP</span>
+<span class="k">function</span><span class="nf"> getRandomWikiPage</span><span class="x">(</span><span class="n">incoming</span><span class="o">::</span><span class="kt">AbstractString</span><span class="x">)</span>
+  <span class="n">httpResponse</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">.</span><span class="n">request</span><span class="x">(</span><span class="s">"GET"</span><span class="x">,</span> <span class="s">"https://en.wikipedia.org/w/api.php?action=query&amp;list=random&amp;format=json&amp;rnnamespace=0&amp;rnlimit=1"</span><span class="x">;</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
+  <span class="n">responseData</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="x">(</span><span class="kt">String</span><span class="x">(</span><span class="n">httpResponse</span><span class="o">.</span><span class="n">body</span><span class="x">)[:])</span>
+  <span class="c"># print(responseData)</span>
+  <span class="n">regexMatch</span> <span class="o">=</span> <span class="n">match</span><span class="x">(</span><span class="n">r</span><span class="s">"</span><span class="se">\"</span><span class="s">id</span><span class="se">\"</span><span class="s">:\d+"</span><span class="x">,</span> <span class="n">responseData</span><span class="x">)</span>
+  <span class="c"># print(regexMatch.match)</span>
+  <span class="n">idMatch</span> <span class="o">=</span> <span class="n">regexMatch</span><span class="o">.</span><span class="n">match</span><span class="x">[</span><span class="mi">6</span><span class="x">:</span><span class="k">end</span><span class="x">]</span>
+  <span class="c"># return idMatch</span>
+  <span class="k">return</span> <span class="n">string</span><span class="x">(</span><span class="s">"https://en.wikipedia.org/?curid="</span><span class="x">,</span> <span class="n">idMatch</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>From the return statement you can see that this function will return a (pseudo)random article link on Wikipedia to the user.
+<br /><br />
+<strong>Packing up</strong></li>
+  <li>A small problem I’ve found people face difficulty with, when using Julia is in how to use functions across multiple files. The answer is <em><a href="https://docs.julialang.org/en/v1/manual/modules/index.html">modules</a></em>, _a nifty yet a somewhat back and forth experience (it has both import and using, cmon!). I usually refer to the way I saw modules being used back in my GSoC days with AstroLib.jl, when Julia was still at v0.6. The code for a module, stored in the file which I’ll call main_module.jl is -
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__precompile__</span><span class="x">()</span>
+<span class="k">module</span> <span class="n">main_module</span>
+  <span class="n">include</span><span class="x">(</span><span class="s">"WikiRandom.jl"</span><span class="x">)</span> <span class="c"># This contains the main function</span>
+  <span class="k">export</span> <span class="n">main</span>
+  <span class="n">include</span><span class="x">(</span><span class="s">"commands.jl"</span><span class="x">)</span> <span class="c"># This contains all the commands</span>
+  <span class="k">export</span> <span class="n">welcomeMessage</span><span class="x">,</span> <span class="n">echo</span><span class="x">,</span> <span class="n">getRandomWikiPage</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+    <p><br /><br />
+<strong>Persistent Running</strong></p>
+  </li>
+  <li>So we have the bot, the module, the code and the commands ready. How to run everything? Simple, you make small script to execute!
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">push!</span><span class="x">(</span><span class="n">LOAD_PATH</span><span class="x">,</span> <span class="s">"/path/to/directory/containing/the/code"</span><span class="x">)</span>
+<span class="n">using</span> <span class="n">main_module</span>
+<span class="n">main</span><span class="x">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Perfect, all you need to do is keep your system running 24/7 with the code executing in the background for the bot to be always up. Which, as you can see is a slight problem. What you need, is the cloud(or a Raspberry Pi and unlimited net, but I don’t have the former). To keep the bot persistent, I created a VM instance in Google Cloud (many other cloud free-for-small-use-case services are not available in my region or problematic to set up with Julia. If someone knows of an alternative, please do tell). <br /><br /></li>
+  <li>Shift all the necessary code to the instance and a simple <em>nohup /path/to/julia/execuable your_script_to_run_the_code.jl &amp;</em> command later, you have bot that you can access from Telegram anytime and share it with your friends and just feel happy looking at it working. Until your free one-year Google subscription ends or until someone makes a half-hearted attempt at breaking the bot. <br /><br /></li>
+  <li>As of this moment(when the post appears online), the WikiRandom bot works - http://t.me/WikiRandomBot. Please have a go at using it (without trying to break it preferably). I may come back to this and improve the commands and response from the bots if I use it enough. Or I could just revert the code back to when the bot was its utopian form.
+<br /><br />
+<img src="http://localhost:4000/images/telegrambots/allstart.png" margin:="" auto="" alt="Perfection" />
+<br /><br /></li>
+</ul>
+
+<p>Thank you for reading this roughly made article.</p>
+
+</post>
+
+<div class="container">
+	<div class="row">
+
+			
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+
+            <br></br>
+            
+            <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"> Previous Post &laquo;  Comments Now Work On Pi Day </a>
+            
+            <br></br>
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Begin Comments
+            ================================================== -->
+            <div class="just-comments"
+            data-allowguests="true"
+            data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+            </div>
+            <!--End Comments
+            ================================================== -->
+	</div>
+	<!-- End Post -->
+
+</div>
+<!-- End Article
+================================================== -->
+
+
+</post>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>
