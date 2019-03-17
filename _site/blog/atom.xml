@@ -4,7 +4,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2019-03-14T23:54:19+05:30</updated>
+ <updated>2019-03-17T12:57:56+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -13,15 +13,71 @@
 
  
  <entry>
+   <title>Making A Simple Telegram Bot In Julia</title>
+   <link href="http://testsubjector.github.io/blog/2019/03/15/Making-A-Simple-Telegram-Bot-In-Julia"/>
+   <updated>2019-03-15T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2019/03/15/Making-A-Simple-Telegram-Bot-In-Julia</id>
+   <content type="html">&lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
+And well, what better language to use than Julia? Yes, Python has a much more developed library for Telegram bots, but where is the fun in that? &lt;br /&gt;
+&lt;br /&gt;
+So, here I’ll be doing a quick run-through on how I a simple bot was made for Telegram called WikiRandom bot. The purpose of the bot is simple and clean, a user will ask the bot to give a link to any random article on Wikipedia and the bot will give respond with such a link.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here is an example of the bot in action - &lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/telegrambots/workinglist.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;It's Alive!&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, let’s start with a simple primer for those not familiar with the topic in hand.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is Telegram?&lt;/strong&gt;&lt;br /&gt;
+It is a chat application like Messenger or WhatsApp with the added promise of being much more secure (and a clean UI!)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is a &lt;a href=&quot;https://core.telegram.org/bots&quot;&gt;Telegram Bot&lt;/a&gt;?&lt;/strong&gt;&lt;br /&gt;
+Telegram provides this nifty feature of bots, which are in essence small pieces of code wrapped up in accout. You communicate with the bot using valid commands and the bot responds to those commands based on how it is coded.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is Julia?&lt;/strong&gt;&lt;br /&gt;
+It is a good language to code in. Faster than Python (usually) but with code that looks like it’s a long lost brother to the Python syntax. For anything more than that, please find out by yourself.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we start looking into the actual approach to build our bot.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Firstly, we need to have a bot to call our own. Bots in Telegram &lt;em&gt;are special accounts that do not require an additional phone number to set up&lt;/em&gt; and to make these special accounts, Telegram provides an … in-built bot(!) called the &lt;a href=&quot;https://telegram.me/botfather&quot;&gt;BotFather&lt;/a&gt;. Once you have it running, it is pretty self explainatory in the way it is supposed to be used.
+&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/telegrambots/botfather1.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;The Botfather&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;After the bot has been named, its details set up and after it has been adopted as an official child (do remember that adoption is invalid if the bot token is lost, which is also a sign of bad parenting), the next thing required is a way to communicate with it. Stumped? Well, no need to worry. In this highly introverted age, humans have made a marvellous tool called the application programming interface (APIs) to remove all unnecessary friendly social communication. &lt;a href=&quot;https://core.telegram.org/bots/api&quot;&gt;Telegram’s API&lt;/a&gt; is a party to this principle.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;But wait, we plan to use Julia for this. How does one go about linking the language to the APIs i.e creating a wrapper library? Seems like a lot of effort. It’s simple really, you simply don’t make that effort. Someone else usually has done it already. And the person in question is &lt;a href=&quot;https://github.com/Moelf&quot;&gt;Moelf&lt;/a&gt; with his Julia wrapper library &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl&quot;&gt;Telegrambot.jl&lt;/a&gt;. Huge thanks to him for that.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Now, first thing first is to get the example shown in the README for the Telegrambot.jl running. After that is done, we diverge on how to make our &lt;em&gt;random_wikipedia_page_giver&lt;/em&gt; bot.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;We would like to have a main() function which will act as the place where all the code runs, something like this -
+    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Telegrambot&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;botApi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;get your own token, shoo!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;start&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;welcomeMessage&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will respond to '/start'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;repeatmessage&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will respond to '/repeatmessage &amp;lt;any thing&amp;gt;'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;randomarticle&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRandomWikiPage&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will give the random article we require&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;inlineOpts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Title, result pair&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;startBot&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;botApi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textHandle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inlineQueryHandle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inlineOpts&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The txtCmnds are the text commands that we will give as input to the bot, and get the expected response in result. For example, here is the /&lt;em&gt;repeatmessage&lt;/em&gt; command in action.&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://localhost:4000/images/telegrambots/repeatmessage.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;Repeat Message&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Comments Now Work On Pi Day</title>
    <link href="http://testsubjector.github.io/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"/>
    <updated>2019-03-14T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id>
    <content type="html">&lt;p&gt;Well, there’s not much of a Pi day celeberation (or even mention) on our side of the world.&lt;br /&gt;
-That’s simply because we go for a DD/MM format rather than peculiar MM/DD format, for dates.&lt;br /&gt;
-There’s a small irony here, in the sense that the dates for these posts require a YYYY-MM-DD format.&lt;br /&gt;
+That’s simply because we go for a DD/MM format rather than peculiar MM/DD format for dates.&lt;br /&gt;
+So we usually refer to this day as 14/03 rather than 03/14, which is…more bland yes.&lt;br /&gt;
+There’s a small irony here, in the sense, that the dates for these posts (you can see it below the title of this post) require a YYYY-MM-DD format.&lt;br /&gt;
 &lt;br /&gt;
-Additionally, I’ve caved into giving an option for comments on all my posts. I’m sure that’ll go swimmingly. Pretty sure.&lt;/p&gt;
+Additionally, I’ve caved into giving an option for comments on all my posts (&lt;a href=&quot;https://60devs.com/adding-comments-to-your-jekyll-blog.html&quot;&gt;guidance taken from here&lt;/a&gt;). I’m sure this’ll go swimmingly. Pretty sure.&lt;/p&gt;
 </content>
  </entry>
  

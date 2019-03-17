@@ -5,8 +5,9 @@ permalink: /blog/:year/:month/:day/:title
 encoding: "utf-8"
 author:
   name: "TestSubjector"
-
+url: https://testsubjector.github.io/
 comments: true
+highlighter: rouge
 
 include:
 - _pages
