@@ -28,6 +28,6 @@ Speaking freely, I can potentially have to construct deep differential equations
 These objectives/goals are lofty.
 It's just that I don't have much do otherwise now. So why not?
 
-Also, I went through some of the previous posts; agonized over the silly mistakes made (some were fixed); looked critically at the UI of the site (I dont care what you say, it's perfect I tell ya) and hope to make a lot of posts with stellar content for the future.
+Also, I went through some of the previous posts; agonized over the silly mistakes made (some were fixed); looked critically at the UI of the site (I don't care what you say, it's perfect I tell ya) and hope to make a lot of posts with stellar content for the future.
 
 Sigh, this is hard.

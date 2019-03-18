@@ -4,7 +4,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2019-03-17T14:24:21+05:30</updated>
+ <updated>2019-03-18T08:11:11+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -17,41 +17,40 @@
    <link href="http://testsubjector.github.io/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia"/>
    <updated>2019-03-17T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia</id>
-   <content type="html">&lt;p&gt;Note - Not proofread yet
-So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
-And well, what better language to use than Julia? Yes, Python has a much more developed library for Telegram bots, but where is the fun in that? &lt;br /&gt;
+   <content type="html">&lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
+And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? &lt;br /&gt;
 &lt;br /&gt;
-So, here I’ll be doing a quick run-through on how I a simple bot was made for Telegram called WikiRandom bot. The purpose of the bot is simple and clean, a user will ask the bot to give a link to any random article on Wikipedia and the bot will give respond with such a link.&lt;br /&gt;&lt;/p&gt;
+Therefore, here I’ll be doing a quick run-through on how a simple bot called WikiRandom bot was made for Telegram. The purpose of the bot is very simple and concise i.e a user will ask the bot for a link to any random article on Wikipedia and the bot will respond with such a link.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is an example of the bot in action - &lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/workinglist.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;It's Alive!&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Now, let’s start with a simple primer for those not familiar with the topic in hand.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Firstly, let’s start with a quick primer for those not familiar with the topic in hand.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is Telegram?&lt;/strong&gt;&lt;br /&gt;
-It is a chat application like Messenger or WhatsApp with the added promise of being much more secure (and a clean UI!)&lt;/p&gt;
+It is a chat application, similar to Messenger or WhatsApp with the added promise of being much more secure (and a clean UI!)&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is a &lt;a href=&quot;https://core.telegram.org/bots&quot;&gt;Telegram Bot&lt;/a&gt;?&lt;/strong&gt;&lt;br /&gt;
-Telegram provides this nifty feature of bots, which are in essence small pieces of code wrapped up in accout. You communicate with the bot using valid commands and the bot responds to those commands based on how it is coded.&lt;/p&gt;
+Telegram provides this nifty feature known as bots, which are in essence small pieces of code wrapped up as a dummy account. You can communicate with the bot using valid commands and the bot responds to those commands based on how it is programmed.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is Julia?&lt;/strong&gt;&lt;br /&gt;
-It is a good language to code in. Faster than Python (usually) but with code that looks like it’s a long lost brother to the Python syntax. For anything more than that, please find out by yourself.&lt;br /&gt;&lt;/p&gt;
+It is a good language to code in. Faster than Python (usually) but with code that looks like it’s a long lost brother to the Python syntax. For anything more than that, please find out by means of some healthy googling.&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, we start looking into the actual approach to build our bot.
 &lt;strong&gt;Creating a bot&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Firstly, we need to have a bot to call our own. Bots in Telegram &lt;em&gt;are special accounts that do not require an additional phone number to set up&lt;/em&gt; and to make these special accounts, Telegram provides an … in-built bot(!) called the &lt;a href=&quot;https://telegram.me/botfather&quot;&gt;BotFather&lt;/a&gt;. Once you have it running, it is pretty self explainatory in the way it is supposed to be used.
+  &lt;li&gt;Before anything else, we need to have a bot to call our own. Bots in Telegram &lt;em&gt;are special accounts that do not require an additional phone number to set up&lt;/em&gt; and to make these special accounts Telegram provides an … in-built bot(!) called the &lt;a href=&quot;https://telegram.me/botfather&quot;&gt;BotFather&lt;/a&gt;. Once you have it running, it is pretty self explanatory in the way it is supposed to be used.
 &lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/botfather1.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;The Botfather&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Communicating with your bot&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;After the bot has been named, its details set up and after it has been adopted as an official child (do remember that adoption is invalid if the bot token is lost, which is also a sign of bad parenting), the next thing required is a way to communicate with it. Stumped? Well, no need to worry. In this highly introverted age, humans have made a marvellous tool called the application programming interface (APIs) to remove all unnecessary friendly social communication. &lt;a href=&quot;https://core.telegram.org/bots/api&quot;&gt;Telegram’s API&lt;/a&gt; is a party to this principle.
+  &lt;li&gt;When the bot has been named, its details set up and after it has been adopted as an official child (do remember that adoption is invalid if the bot token is lost, which is also a sign of bad parenting), the next thing required is a way to communicate with it. Stumped? Well, no need to worry. In this highly introverted age, humans have made a marvellous tool called the application programming interface (APIs) to remove all unnecessary friendly social communication. &lt;a href=&quot;https://core.telegram.org/bots/api&quot;&gt;Telegram’s API&lt;/a&gt; is a party to this principle.
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Wrappers and the beauty of the open-source world&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;But wait, we plan to use Julia for this. How does one go about linking the language to the APIs i.e creating a wrapper library? Seems like a lot of effort. It’s simple really, you simply don’t make that effort. Someone else usually has done it already. And the person in question is &lt;a href=&quot;https://github.com/Moelf&quot;&gt;Moelf&lt;/a&gt; with his Julia wrapper library &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl&quot;&gt;Telegrambot.jl&lt;/a&gt;. Huge thanks to him for that. You can also find his blog on the topic &lt;a href=&quot;https://blog.jling.dev/a-telegram-bot-in-julia/&quot;&gt;here&lt;/a&gt;.
+  &lt;li&gt;But wait, we plan to use Julia for this. How does one go about linking the language to the APIs i.e creating a wrapper library? This seems like a lot of effort. It’s all very simple really, you simply don’t make that effort. Someone else usually has done all that hard work already. And the person in question is &lt;a href=&quot;https://github.com/Moelf&quot;&gt;Moelf&lt;/a&gt; with his Julia wrapper library &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl&quot;&gt;Telegrambot.jl&lt;/a&gt;. Huge shoutout to him. You can also find his blog on the topic &lt;a href=&quot;https://blog.jling.dev/a-telegram-bot-in-julia/&quot;&gt;here&lt;/a&gt;.
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Getting the bot commands running&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Now, first thing first is to get the &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl/blob/master/README.md&quot;&gt;example shown in the README&lt;/a&gt; for the Telegrambot.jl running. After that is done, we diverge on how to make our &lt;em&gt;random_wikipedia_page_giver&lt;/em&gt; bot.
+  &lt;li&gt;Let’s start with the nitty-gritty now. First thing first is to get the &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl/blob/master/README.md&quot;&gt;example shown in the README&lt;/a&gt; for the Telegrambot.jl running. It’s a simple way to make sure that everything has been set up properly on all sides. After that is done, we direct ourselves on how to make our so called &lt;em&gt;random_wikipedia_page_giver&lt;/em&gt; bot.
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
   &lt;li&gt;We would like to have a main() function, which will act as the placeholder where all the code runs -
     &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Telegrambot&lt;/span&gt;
@@ -66,11 +65,11 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Now the inner workings of the code will be understood by going through the docs but essentially the &lt;em&gt;txtCmnds&lt;/em&gt; are the text commands that we will give as input to the bot and get the expected response in return. The startBot method make sures that everything is running in a neat, tight loop. For example, here is the /&lt;em&gt;repeatmessage&lt;/em&gt; command in action.&lt;br /&gt;&lt;br /&gt;
+  &lt;li&gt;Now the inner workings of the code will be understood by going through the docs but essentially the &lt;em&gt;txtCmnds&lt;/em&gt; are the text commands that will be given as input to the bot and in return the bot gives the expected response. The startBot method make sures that everything is running in a neat, tight loop. For example of a text command, here is the /&lt;em&gt;repeatmessage&lt;/em&gt; command in action.&lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/repeatmessage.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;Repeat Message&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Bot Commands - Minor&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;The commands are functions themselves, so we write them over in seperate commands.jl file. The two simpler commands are -
+  &lt;li&gt;The commands are functions themselves, so we can write them over in separate commands.jl file. The two simple commands are -
     &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# This command gives a greeting to you, how polite&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; welcomeMessage&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AbstractString&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Welcome, the most generic greeting ever&quot;&lt;/span&gt;
@@ -81,14 +80,14 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Its time to digress a bit. The thing was that originally using the welcomeMessage command will pretty quickly fill your console with warning messages quickly - &lt;br /&gt;&lt;br /&gt;
+  &lt;li&gt;It’s time to digress a bit. There was an issue originally that could easily lead to using the welcomeMessage command (or some other command) to pretty quickly fill your console with warning messages - &lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/allstringstarterror.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;Warnings everywhere&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;The details can be learned about in this &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl/issues/5&quot;&gt;issue&lt;/a&gt;. In brief, the way the wrapper code was set up required all comands to have a message after command (&lt;em&gt;/bot_command&lt;/em&gt; non_empty_message). Moelf fixed the issue by himself (even though I said I’ll do it, mid-semester exams made it impossible for me to quickly work on this). So this is a non-issue now.
+  &lt;li&gt;The details can be learned about in this &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl/issues/5&quot;&gt;issue&lt;/a&gt;. In brief, the way the wrapper code was set up required all commands to have a message(parameter) when sent to the bot (&lt;em&gt;/bot_command&lt;/em&gt; non_empty_message). Moelf fixed the issue by himself, adding other improvements to the code (even though I said I’ll do it, mid-semester exams made it impossible for me to quickly work on this). So this is a non-issue now.
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Bot Command - Major&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;The &lt;em&gt;/randomarticle&lt;/em&gt; command, the crux of our code requires two things. Since we need to get articles from wikipedia randomly, it may seem like we will have to create a repository of multiple links on Wikipedia and randomly choose one of those links when a user gives a request. There is a simple way. Wikipedia has an API(who would have know it) that will automatically give you the metadata for a random page on Wikipedia.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;All we now require is a way to communicate with this API. We use a Julia library called &lt;a href=&quot;https://github.com/JuliaWeb/HTTP.jl&quot;&gt;HTTP.jl&lt;/a&gt; for this purpose. With all the key ingredients ready, the final code for the function will loke somewhat like -
+  &lt;li&gt;The &lt;em&gt;/randomarticle&lt;/em&gt; command, which will be the crux of our code requires two things. Since we need to get articles from Wikipedia randomly, it may appear at first glance that we will have to create a database of multiple links consisting of Wikipedia pages and randomly choose one of those links when a user gives a request. There is thankfully a simpler way to do this. Wikipedia has an API(who would have known it) that will automatically give you the metadata for a random page on Wikipedia.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;All we now require is a way to communicate with this API. We use a Julia library called &lt;a href=&quot;https://github.com/JuliaWeb/HTTP.jl&quot;&gt;HTTP.jl&lt;/a&gt; for this purpose. With all the key ingredients ready, the final code for the command will look something like -
     &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; getRandomWikiPage&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AbstractString&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;httpResponse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://en.wikipedia.org/w/api.php?action=query&amp;amp;list=random&amp;amp;format=json&amp;amp;rnnamespace=0&amp;amp;rnlimit=1&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
@@ -105,7 +104,7 @@ It is a good language to code in. Faster than Python (usually) but with code tha
   &lt;li&gt;From the return statement you can see that this function will return a (pseudo)random article link on Wikipedia to the user.
 &lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Packing up&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;A small problem I’ve found people face difficulty with, when using Julia is in how to use functions across multiple files. The answer is &lt;em&gt;&lt;a href=&quot;https://docs.julialang.org/en/v1/manual/modules/index.html&quot;&gt;modules&lt;/a&gt;&lt;/em&gt;, _a nifty yet a somewhat back and forth experience (it has both import and using, cmon!). I usually refer to the way I saw modules being used back in my GSoC days with AstroLib.jl, when Julia was still at v0.6. The code for a module, stored in the file which I’ll call main_module.jl is -
+  &lt;li&gt;A small problem that I’ve found people face difficulty with when using Julia is, in how to use functions across multiple files. The answer is &lt;em&gt;&lt;a href=&quot;https://docs.julialang.org/en/v1/manual/modules/index.html&quot;&gt;modules&lt;/a&gt;&lt;/em&gt;, _a nifty yet a somewhat back and forth experience (it has both import and using, cmon!). I usually refer to the way I saw modules being used back in my GSoC days with AstroLib.jl, when Julia was still at v0.6. The code for a module, stored in the file which I’ll call main_module.jl is -
     &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;__precompile__&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main_module&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;WikiRandom.jl&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# This contains the main function&lt;/span&gt;
@@ -117,15 +116,15 @@ It is a good language to code in. Faster than Python (usually) but with code tha
     &lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;strong&gt;Persistent Running&lt;/strong&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;So we have the bot, the module, the code and the commands ready. How to run everything? Simple, you make small script to execute!
-    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;push!&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOAD_PATH&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/path/to/directory/containing/the/code&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+  &lt;li&gt;So we have the bot, the module, the code and the commands ready. How to we get everything to run? Simple, make a small script to execute!
+    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;push!&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOAD_PATH&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/path/to/directory/containing/the/code&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# A somewhat annoying workaround required when using modules in Julia&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main_module&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Perfect, all you need to do is keep your system running 24/7 with the code executing in the background for the bot to be always up. Which, as you can see is a slight problem. What you need, is the cloud(or a Raspberry Pi and unlimited net, but I don’t have the former). To keep the bot persistent, I created a VM instance in Google Cloud (many other cloud free-for-small-use-case services are not available in my region or problematic to set up with Julia. If someone knows of an alternative, please do tell). &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Shift all the necessary code to the instance and a simple &lt;em&gt;nohup /path/to/julia/execuable your_script_to_run_the_code.jl &amp;amp;&lt;/em&gt; command later, you have bot that you can access from Telegram anytime and share it with your friends and just feel happy looking at it working. Until your free one-year Google subscription ends or until someone makes a half-hearted attempt at breaking the bot. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;As of this moment(when the post appears online), the WikiRandom bot works - http://t.me/WikiRandomBot. Please have a go at using it (without trying to break it preferably). I may come back to this and improve the commands and response from the bots if I use it enough. Or I could just revert the code back to when the bot was its utopian form.
+  &lt;li&gt;Perfect, now all you need to do is keep your system running 24/7 with the code executing in the background; so that the bot will be always up. Which, as you can see is a slight problem. What you need, is the cloud(or a Raspberry Pi and unlimited net, but I don’t have the former). To keep the bot persistent, I created a VM instance in Google Cloud for this purpose (many other cloud free-for-small-use-case services are not available in my region or problematic to set up with Julia. If someone knows of an alternative, please do tell). &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Shift all the necessary code to the instance and a simple &lt;em&gt;nohup /path/to/julia/executable your_script_to_run_the_code.jl &amp;amp;&lt;/em&gt; command later, you have bot that you can access from Telegram anytime and share it with your friends and just feel happy seeing it in action. Until of course the free one-year Google subscription ends or till someone makes a half-hearted attempt at breaking the bot. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;As of this moment(when the post appears online), the WikiRandom bot works - http://t.me/WikiRandomBot. Please have a go at using it (without trying to break it preferably). I may come back to this and improve the commands and response from the bots if I use it enough in the future. Or I could just revert the code back to when the bot was in its utopian form (shown below).
 &lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/allstart.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;Perfection&quot; /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
@@ -140,7 +139,7 @@ It is a good language to code in. Faster than Python (usually) but with code tha
    <link href="http://testsubjector.github.io/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"/>
    <updated>2019-03-14T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id>
-   <content type="html">&lt;p&gt;Well, there’s not much of a Pi day celeberation (or even mention) on our side of the world.&lt;br /&gt;
+   <content type="html">&lt;p&gt;Well, there’s not much of a Pi day celebration (or even mention) on our side of the world.&lt;br /&gt;
 That’s simply because we go for a DD/MM format rather than peculiar MM/DD format for dates.&lt;br /&gt;
 So we usually refer to this day as 14/03 rather than 03/14, which is…more bland yes.&lt;br /&gt;
 There’s a small irony here, in the sense, that the dates for these posts (you can see it below the title of this post) require a YYYY-MM-DD format.&lt;br /&gt;
@@ -178,7 +177,7 @@ Which is why I’m here.&lt;/p&gt;
 These objectives/goals are lofty.
 It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
 
-&lt;p&gt;Also, I went through some of the previous posts; agonized over the silly mistakes made (some were fixed); looked critically at the UI of the site (I dont care what you say, it’s perfect I tell ya) and hope to make a lot of posts with stellar content for the future.&lt;/p&gt;
+&lt;p&gt;Also, I went through some of the previous posts; agonized over the silly mistakes made (some were fixed); looked critically at the UI of the site (I don’t care what you say, it’s perfect I tell ya) and hope to make a lot of posts with stellar content for the future.&lt;/p&gt;
 
 &lt;p&gt;Sigh, this is hard.&lt;/p&gt;
 </content>
@@ -201,7 +200,7 @@ It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2018/10/16/Whiskquilibrium-The-Game"/>
    <updated>2018-10-16T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/10/16/Whiskquilibrium-The-Game</id>
-   <content type="html">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.&lt;br /&gt;
+   <content type="html">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.
 Hackathons I fell are a bit of a strange thing, the novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;/p&gt;
 
 &lt;p&gt;Still, it’s a good thing to try out at least once and/or if you’re in a coding slump.&lt;/p&gt;
@@ -224,34 +223,33 @@ Hackathons I fell are a bit of a strange thing, the novelty of cooking something
 &lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/8AlZv8xCgjfwt2wv5z/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Colour/ Switch&quot; /&gt;
 &lt;img src=&quot;https://media.giphy.com/media/j9O9cCf7lmJzql78oc/giphy.gif&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;Fly&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The judging of the Game Dev section of the Hackathon was done by professionals from EA India (&lt;em&gt;insert jokes about DLCs here&lt;/em&gt;).&lt;br /&gt;
+&lt;p&gt;The judging of the Game Dev section of the Hackathon was done by professionals from EA India (&lt;em&gt;insert jokes about DLCs here&lt;/em&gt;).
 Suffice to say, we did not win the 1st (given to a team that used RPG Maker to make more than 20 levels of content) or the 2nd prize (given to a team who make a game using their on OpenGL game engine, which they had been working on more than a few months, highlighting a major problem in my opinion, of hackathons).&lt;/p&gt;
 
-&lt;p&gt;Thankfully, we had a spot in the next 3 ranks (we were lazily not told the exact rank, since the &lt;strong&gt;prizes&lt;/strong&gt; for these 3 spots were the same).&lt;br /&gt;
+&lt;p&gt;Thankfully, we had a spot in the next 3 ranks (we were lazily not told the exact rank, since the &lt;strong&gt;prizes&lt;/strong&gt; for these 3 spots were the same).
 &lt;img src=&quot;https://i.imgur.com/Jn5q0K1.jpg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;The Prize&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I was actually very happy at the way the judges gave out their decisions, to be honest. They had instantly picked out people who had Ctrl C+V’ed code and assests from the net (essentially cheating). It was satisfying to watch them (those participants guilty of the aforementioned crime) being tongue-tied when the hard questions where asked. That I’ll admit.&lt;/p&gt;
+&lt;p&gt;I was actually very happy at the way the judges gave out their decisions, to be honest. They had instantly picked out people who had Ctrl C+V’ed code and assets from the net (essentially cheating). It was satisfying to watch them (those participants guilty of the aforementioned crime) being tongue-tied when the hard questions where asked. That I’ll admit.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This hackathon actually helped me fulfill one my college goals, which was to make a proper effort at a developing a game. Who knows? If we are able to actually gather willpower, maybe we’ll polish this and release this on Steam.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Game development, in itself…is a pain. We had 4 people in our team and around 18 hours of time to understand Godot and make something. I can remember at least 5 instances, where at least one of us was on the verge of screaming, killing the other three and dancing on their corpses. The essence and the main difficulty with game development that I felt was that, everything in games are linked. It’s like how a real world behaves.&lt;br /&gt;
-You want to change one move? Change everything that is dependent on that move.&lt;br /&gt;
+&lt;p&gt;Game development, in itself…is a pain. We had 4 people in our team and around 18 hours of time to understand Godot and make something. I can remember at least 5 instances, where at least one of us was on the verge of screaming, killing the other three and dancing on their corpses. The essence and the main difficulty with game development that I felt was that, everything in games are linked. It’s like how a real world behaves.
+You want to change one move? Change everything that is dependent on that move.
 You want to add visual indicators? Make sure that they -&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;follow the camera&lt;/li&gt;
   &lt;li&gt;are resized properly when the camera is zoomed in/out&lt;/li&gt;
-  &lt;li&gt;do not lag behing key presses&lt;/li&gt;
+  &lt;li&gt;do not lag behind key presses&lt;/li&gt;
   &lt;li&gt;look good&lt;/li&gt;
   &lt;li&gt;and work as they are supposed too&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Now when you are novice (like we where), where and how to actually implement the above in a game engine(all of whom a bazillion icons to chose from) is more than a bit of a pain.&lt;/p&gt;
+&lt;p&gt;Now when you are novice (like we where), where and how to actually implement the above in a game engine(all of whom a bazillion icons to choose from) is more than a bit of a pain.&lt;/p&gt;
 
-&lt;p&gt;To conclude,&lt;br /&gt;
+&lt;p&gt;To conclude,
 the most amazing yet sad thing is, at the end of it all, we were more than happy at what we had been able to accomplish at the hackathon. We were sleep deprived of course, but seeing that the game actually came to life brought that small-persistent-warm-giddy feeling to our hearts (We had implemented sound effects. Sound effects!).&lt;/p&gt;
 
-&lt;p&gt;The reason I was feeling down though, was because of a conclusion I had come to. That was, while being an indie game developer will definetly be a fun and interesting career, you really need to be a bit of a masochist to be able to endure such a worklife.&lt;/p&gt;
-
+&lt;p&gt;The reason I was feeling down though, was because of a conclusion I had come to. That was, while being an indie game developer will definitely be a fun and interesting career, you really need to be a bit of a masochist to be able to endure such a worklife.&lt;/p&gt;
 </content>
  </entry>
  
@@ -289,7 +287,7 @@ Maybe I’ll also put up some summary notes here in the future? Let’s try with
    <id>http://testsubjector.github.io//blog/2018/03/14/BattleCode-Report</id>
    <content type="html">&lt;p&gt;Another very late post, I know.&lt;/p&gt;
 
-&lt;p&gt;So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.&lt;br /&gt;
+&lt;p&gt;So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.
 We had a really good chance of getting a place in the Finals (&amp;amp; a trip to MIT!), if not for some of these reasons -&lt;/p&gt;
 
 &lt;ul&gt;
@@ -302,7 +300,7 @@ carrying the team.&lt;/li&gt;
 &lt;p&gt;Very honestly, it was the last point that hurt the most. The “International” teams were as a whole way more competitive; most of the top positions in the daily scrimmage rankings were captured by these teams. I understand the reason why it was done (last year had almost nil local presence) but I can’t help feel a bit salty. Mainly due to the fact that despite the other problems, we had a good chance of getting into the Finals, if not for the quota.&lt;/p&gt;
 
 &lt;p&gt;Sigh, quotas are a sticky, volatile and frustrating point for many people in my country, including me, in general(&lt;em&gt;puns&lt;/em&gt;).
-However, I can’t deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and Discord; the strategies and plans hatched and abandoned. It’s something I’ll definetly want to do again next year too.&lt;/p&gt;
+However, I can’t deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and Discord; the strategies and plans hatched and abandoned. It’s something I’ll definitely want to do again next year too.&lt;/p&gt;
 
 &lt;p&gt;Just no Docker again, please.&lt;/p&gt;
 </content>
@@ -331,7 +329,7 @@ And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant
    <id>http://testsubjector.github.io//blog/2017/12/09/BattleCode-2018-Has-Been-Announced!</id>
    <content type="html">&lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
 
-&lt;p&gt;Do participate if you can, its gonna be one heck of a ride.&lt;/p&gt;
+&lt;p&gt;Do participate if you can, it’s gonna be one heck of a ride.&lt;/p&gt;
 </content>
  </entry>
  
@@ -471,7 +469,7 @@ I’ll be still posting content(hopefully) not directly related to my project he
    <link href="http://testsubjector.github.io/blog/2017/03/16/AstroLib.jl-It-Is"/>
    <updated>2017-03-16T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/03/16/AstroLib.jl-It-Is</id>
-   <content type="html">&lt;p&gt;So, its been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
+   <content type="html">&lt;p&gt;So, it’s been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
 
 &lt;p&gt;While I still very much want to contribute to Chapel as a part of GSoC, the large knowledge barrier became very apparent as I went deeper through the codebase.
 It became very obvious that I had to reconsider, when I realised that all of my shortlisted projects (except perhaps the idea of porting my image processing project) didn’t really require much use of the Chapel language itself.

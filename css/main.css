@@ -23,13 +23,13 @@ a:hover {
 
 
 p {
-  font-size: 1.2em; line-height: 1.5; color:rgba(0,0,0,.8);
+  font-size: 1em; line-height: 1.6; color:rgba(0,0,0,.8);
   align-items:center;
   font-family: 'Oxygen';
 }
 
 ul {
-  font-size: 1.2em; line-height: 1.5; color:rgba(0,0,0,.8);
+  font-size: 1em; line-height: 1.6; color:rgba(0,0,0,.8);
   align-items:center;
   display:inline-block;
   font-family: 'Oxygen';
