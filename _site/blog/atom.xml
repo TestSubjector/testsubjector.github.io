@@ -4,7 +4,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2019-03-18T08:11:11+05:30</updated>
+ <updated>2019-03-18T08:33:48+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -36,9 +36,10 @@ Telegram provides this nifty feature known as bots, which are in essence small p
 &lt;p&gt;&lt;strong&gt;What is Julia?&lt;/strong&gt;&lt;br /&gt;
 It is a good language to code in. Faster than Python (usually) but with code that looks like it’s a long lost brother to the Python syntax. For anything more than that, please find out by means of some healthy googling.&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Now, we start looking into the actual approach to build our bot.
-&lt;strong&gt;Creating a bot&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
+  &lt;li&gt;Now, we start looking into the actual approach to build our bot.
+&lt;br /&gt;&lt;br /&gt;
+&lt;strong&gt;Creating a bot&lt;/strong&gt;&lt;/li&gt;
   &lt;li&gt;Before anything else, we need to have a bot to call our own. Bots in Telegram &lt;em&gt;are special accounts that do not require an additional phone number to set up&lt;/em&gt; and to make these special accounts Telegram provides an … in-built bot(!) called the &lt;a href=&quot;https://telegram.me/botfather&quot;&gt;BotFather&lt;/a&gt;. Once you have it running, it is pretty self explanatory in the way it is supposed to be used.
 &lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;http://localhost:4000/images/telegrambots/botfather1.png&quot; margin:=&quot;&quot; auto=&quot;&quot; alt=&quot;The Botfather&quot; /&gt;

@@ -24,7 +24,8 @@ Telegram provides this nifty feature known as bots, which are in essence small p
 **What is Julia?**<br/>
 It is a good language to code in. Faster than Python (usually) but with code that looks like it's a long lost brother to the Python syntax. For anything more than that, please find out by means of some healthy googling.<br/>
 
-Now, we start looking into the actual approach to build our bot.
+* Now, we start looking into the actual approach to build our bot.
+<br><br/>
 **Creating a bot**
 * Before anything else, we need to have a bot to call our own. Bots in Telegram *are special accounts that do not require an additional phone number to set up* and to make these special accounts Telegram provides an ... in-built bot(!) called the [BotFather](https://telegram.me/botfather). Once you have it running, it is pretty self explanatory in the way it is supposed to be used.
 <br><br/>
