@@ -1,16 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+    <!-- <script async src="https://just-comments.com/w.js"></script> -->
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/poetry">Poetry</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<post class="container">
+
+  <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2020-01-07T15:03:50+05:30</updated>
+ <updated>2020-01-10T16:25:32+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
    <email>prasunk3@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>New Year With LaTeX Support</title>
+   <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support"/>
+   <updated>2020-01-07T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support</id>
+   <content type="html">&lt;p&gt;It’s a new year!&lt;br /&gt;
+Which means another go at this blog.&lt;br /&gt;
+For &lt;script type=&quot;math/tex&quot;&gt;\forall posts \in blog&lt;/script&gt;, enable LaTeX.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Making A Simple Telegram Bot In Julia</title>
@@ -54,14 +85,14 @@ It is a good language to code in. Faster than Python (usually) but with code tha
   &lt;li&gt;Let’s start with the nitty-gritty now. First thing first is to get the &lt;a href=&quot;https://github.com/Moelf/Telegrambot.jl/blob/master/README.md&quot;&gt;example shown in the README&lt;/a&gt; for the Telegrambot.jl running. It’s a simple way to make sure that everything has been set up properly on all sides. After that is done, we direct ourselves on how to make our so called &lt;em&gt;random_wikipedia_page_giver&lt;/em&gt; bot.
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
   &lt;li&gt;We would like to have a main() function, which will act as the placeholder where all the code runs -
-    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Telegrambot&lt;/span&gt;
+    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Telegrambot&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;botApi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;get your own token, shoo!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;start&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;welcomeMessage&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will respond to '/start'&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;repeatmessage&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will respond to '/repeatmessage &amp;lt;any thing&amp;gt;'&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;randomarticle&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getRandomWikiPage&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# this will give the random article we require&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;inlineOpts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Title, result pair&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;inlineOpts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Title, result pair&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;startBot&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;botApi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textHandle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txtCmds&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inlineQueryHandle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inlineOpts&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
@@ -89,14 +120,14 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 &lt;strong&gt;Bot Command - Major&lt;/strong&gt;&lt;/li&gt;
   &lt;li&gt;The &lt;em&gt;/randomarticle&lt;/em&gt; command, which will be the crux of our code requires two things. Since we need to get articles from Wikipedia randomly, it may appear at first glance that we will have to create a database of multiple links consisting of Wikipedia pages and randomly choose one of those links when a user gives a request. There is thankfully a simpler way to do this. Wikipedia has an API(who would have known it) that will automatically give you the metadata for a random page on Wikipedia.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
   &lt;li&gt;All we now require is a way to communicate with this API. We use a Julia library called &lt;a href=&quot;https://github.com/JuliaWeb/HTTP.jl&quot;&gt;HTTP.jl&lt;/a&gt; for this purpose. With all the key ingredients ready, the final code for the command will look something like -
-    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;
+    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; getRandomWikiPage&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;incoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AbstractString&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;httpResponse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://en.wikipedia.org/w/api.php?action=query&amp;amp;list=random&amp;amp;format=json&amp;amp;rnnamespace=0&amp;amp;rnlimit=1&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;responseData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpResponse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)[:])&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;responseData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;httpResponse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;])&lt;/span&gt;
   &lt;span class=&quot;c&quot;&gt;# print(responseData)&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;regexMatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;:\d+&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;responseData&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;c&quot;&gt;# print(regexMatch.match)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;idMatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regexMatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;idMatch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regexMatch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt;
   &lt;span class=&quot;c&quot;&gt;# return idMatch&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://en.wikipedia.org/?curid=&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idMatch&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -118,8 +149,8 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 &lt;strong&gt;Persistent Running&lt;/strong&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;So we have the bot, the module, the code and the commands ready. How to we get everything to run? Simple, make a small script to execute!
-    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;push!&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOAD_PATH&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/path/to/directory/containing/the/code&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# A somewhat annoying workaround required when using modules in Julia&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main_module&lt;/span&gt;
+    &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;push!&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;LOAD_PATH&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/path/to/directory/containing/the/code&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# A somewhat annoying workaround required when using modules in Julia&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main_module&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
@@ -358,11 +389,11 @@ A wrapper around TensorFlow in the Julia language. Also, &lt;a href=&quot;https:
 &lt;p&gt;&lt;strong&gt;For CPU version of TensorFlow&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Now, provided you only need the &lt;em&gt;CPU version&lt;/em&gt; (don’t have or want to use an Nvidia graphic card), first access the Julia REPL. For those who downloaded the binaries, they can find the julia executable in bin folder of the downloaded files. Now, do the following in the REPL -&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;/li&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;That should do it. Try typing &lt;code class=&quot;highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#troubleshooting&quot;&gt;issues from the ccall or python interop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That should do it. Try typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#troubleshooting&quot;&gt;issues from the ccall or python interop&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;For GPU-enabled version of TensorFlow&lt;/strong&gt;&lt;/p&gt;
 
@@ -372,15 +403,15 @@ A wrapper around TensorFlow in the Julia language. Also, &lt;a href=&quot;https:
 Now if you want to use the shiny Nvidia graphics card i.e use &lt;em&gt;TensorFlow with GPU enabled&lt;/em&gt;, there’s going to be a bit of pain. In the range of possible scenarios, you could faces problems ranging from lower screen resolution to a flickering screen to a complete black screen.&lt;/p&gt;
 
 &lt;p&gt;The tricky thing is there’s no one-shot cure to this problem. Here’s the standard method -&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:graphics-drivers/ppa&lt;/code&gt;&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install nvidia-current&lt;/code&gt;&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo add-apt-repository ppa:graphics-drivers/ppa&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get install nvidia-current&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;You’ll be asked to enter a password to disable the secure boot after login. Be careful to not forget the password, in case of problems it can come handy.&lt;br /&gt;
 If you do face problems and are not sure what to do, don’t panic. Try to access the &lt;a href=&quot;https://askubuntu.com/questions/66195/what-is-a-tty-and-how-do-i-access-a-tty&quot;&gt;TTY&lt;/a&gt; and type in the following command to get back to how things were before -&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get purge nvidia-current&lt;/code&gt;&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo apt-get purge nvidia-current&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;As I said, different people with different setups + hardware + driver version will face different problems.&lt;br /&gt;
 The thing that worked for me personally (after hours of successive install and purge cycles) was to install the drivers not from the command line but from the GUI of the Additional Drivers application.&lt;br /&gt;
@@ -395,10 +426,10 @@ Only thing I can say is, good luck with this step.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Final step&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;If everything is holding together till now, then all you should need to do is -&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; ENV[&quot;TF_USE_GPU&quot;] = &quot;1&quot;&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
-If typing &lt;code class=&quot;highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; and then running &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#basic-usage&quot;&gt;this code&lt;/a&gt; doesn’t give an error, then congratulations! You’ve made it through the setup.&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.add(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;julia&amp;gt; ENV[&quot;TF_USE_GPU&quot;] = &quot;1&quot;&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;julia&amp;gt; Pkg.build(&quot;TensorFlow&quot;)&lt;/code&gt;  # In the Julia REPL&lt;br /&gt;
+If typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;using TensorFlow&lt;/code&gt; and then running &lt;a href=&quot;https://github.com/malmaud/TensorFlow.jl#basic-usage&quot;&gt;this code&lt;/a&gt; doesn’t give an error, then congratulations! You’ve made it through the setup.&lt;br /&gt;
 The actual coding now awaits.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
@@ -413,7 +444,7 @@ The actual coding now awaits.&lt;/li&gt;
 slipped from my mind. However, now that I’m delving properly into the fields
 of Computer Science that I’ve dreamed about as a kid (stay tuned!); this seems like the perfect place to record those experiences*.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;*I plan to use Medium for the things that should ideally be targeted for mass audiences. This bare-bones-but-beautiful blog isn't suited for that kind of aim. But I'll keep a record of links of all such posts here.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*I plan to use Medium for the things that should ideally be targeted for mass audiences. This bare-bones-but-beautiful blog isn't suited for that kind of aim. But I'll keep a record of links of all such posts here.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Let’s make good on the above decision right now! &lt;a href=&quot;https://medium.com/@prasunk2/and-so-the-curtain-falls-on-this-gsoc-journey-69f1e4d0e4ca&quot;&gt;Here’s my post on the whole GSoC experience
 (in Medium of course).&lt;/a&gt;&lt;/p&gt;
@@ -561,3 +592,15 @@ Although,I’ll see if any other organization matches my interest or not.&lt;/p&
  
  
 </feed>
+
+</post>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>

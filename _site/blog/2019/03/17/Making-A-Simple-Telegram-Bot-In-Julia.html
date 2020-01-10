@@ -4,7 +4,7 @@
     <title>Making A Simple Telegram Bot In Julia</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
-    <script async src="https://just-comments.com/w.js"></script>
+    <!-- <script async src="https://just-comments.com/w.js"></script> -->
   </head>
 
   <body>
@@ -65,14 +65,14 @@ It is a good language to code in. Faster than Python (usually) but with code tha
   <li>Let’s start with the nitty-gritty now. First thing first is to get the <a href="https://github.com/Moelf/Telegrambot.jl/blob/master/README.md">example shown in the README</a> for the Telegrambot.jl running. It’s a simple way to make sure that everything has been set up properly on all sides. After that is done, we direct ourselves on how to make our so called <em>random_wikipedia_page_giver</em> bot.
 <br /><br /></li>
   <li>We would like to have a main() function, which will act as the placeholder where all the code runs -
-    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">using</span> <span class="n">Telegrambot</span>
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">Telegrambot</span>
 <span class="k">function</span><span class="nf"> main</span><span class="x">()</span>
   <span class="n">botApi</span> <span class="o">=</span> <span class="o">&lt;</span><span class="s">"get your own token, shoo!"</span><span class="o">&gt;</span>
-  <span class="n">txtCmds</span> <span class="o">=</span> <span class="n">Dict</span><span class="x">()</span>
+  <span class="n">txtCmds</span> <span class="o">=</span> <span class="kt">Dict</span><span class="x">()</span>
   <span class="n">txtCmds</span><span class="x">[</span><span class="s">"start"</span><span class="x">]</span> <span class="o">=</span> <span class="n">welcomeMessage</span> <span class="c"># this will respond to '/start'</span>
   <span class="n">txtCmds</span><span class="x">[</span><span class="s">"repeatmessage"</span><span class="x">]</span> <span class="o">=</span> <span class="n">echo</span> <span class="c"># this will respond to '/repeatmessage &lt;any thing&gt;'</span>
   <span class="n">txtCmds</span><span class="x">[</span><span class="s">"randomarticle"</span><span class="x">]</span> <span class="o">=</span> <span class="n">getRandomWikiPage</span> <span class="c"># this will give the random article we require</span>
-  <span class="n">inlineOpts</span> <span class="o">=</span> <span class="n">Dict</span><span class="x">()</span> <span class="c">#Title, result pair</span>
+  <span class="n">inlineOpts</span> <span class="o">=</span> <span class="kt">Dict</span><span class="x">()</span> <span class="c">#Title, result pair</span>
   <span class="n">startBot</span><span class="x">(</span><span class="n">botApi</span><span class="x">;</span> <span class="n">textHandle</span> <span class="o">=</span> <span class="n">txtCmds</span><span class="x">,</span> <span class="n">inlineQueryHandle</span> <span class="o">=</span> <span class="n">inlineOpts</span><span class="x">)</span>
 <span class="k">end</span>
 </code></pre></div>    </div>
@@ -100,14 +100,14 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 <strong>Bot Command - Major</strong></li>
   <li>The <em>/randomarticle</em> command, which will be the crux of our code requires two things. Since we need to get articles from Wikipedia randomly, it may appear at first glance that we will have to create a database of multiple links consisting of Wikipedia pages and randomly choose one of those links when a user gives a request. There is thankfully a simpler way to do this. Wikipedia has an API(who would have known it) that will automatically give you the metadata for a random page on Wikipedia.<br /><br /></li>
   <li>All we now require is a way to communicate with this API. We use a Julia library called <a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a> for this purpose. With all the key ingredients ready, the final code for the command will look something like -
-    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">using</span> <span class="n">HTTP</span>
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">using</span> <span class="n">HTTP</span>
 <span class="k">function</span><span class="nf"> getRandomWikiPage</span><span class="x">(</span><span class="n">incoming</span><span class="o">::</span><span class="kt">AbstractString</span><span class="x">)</span>
   <span class="n">httpResponse</span> <span class="o">=</span> <span class="n">HTTP</span><span class="o">.</span><span class="n">request</span><span class="x">(</span><span class="s">"GET"</span><span class="x">,</span> <span class="s">"https://en.wikipedia.org/w/api.php?action=query&amp;list=random&amp;format=json&amp;rnnamespace=0&amp;rnlimit=1"</span><span class="x">;</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
-  <span class="n">responseData</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="x">(</span><span class="kt">String</span><span class="x">(</span><span class="n">httpResponse</span><span class="o">.</span><span class="n">body</span><span class="x">)[:])</span>
+  <span class="n">responseData</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="x">(</span><span class="kt">String</span><span class="x">(</span><span class="n">httpResponse</span><span class="o">.</span><span class="n">body</span><span class="x">)[</span><span class="o">:</span><span class="x">])</span>
   <span class="c"># print(responseData)</span>
   <span class="n">regexMatch</span> <span class="o">=</span> <span class="n">match</span><span class="x">(</span><span class="n">r</span><span class="s">"</span><span class="se">\"</span><span class="s">id</span><span class="se">\"</span><span class="s">:\d+"</span><span class="x">,</span> <span class="n">responseData</span><span class="x">)</span>
   <span class="c"># print(regexMatch.match)</span>
-  <span class="n">idMatch</span> <span class="o">=</span> <span class="n">regexMatch</span><span class="o">.</span><span class="n">match</span><span class="x">[</span><span class="mi">6</span><span class="x">:</span><span class="k">end</span><span class="x">]</span>
+  <span class="n">idMatch</span> <span class="o">=</span> <span class="n">regexMatch</span><span class="o">.</span><span class="n">match</span><span class="x">[</span><span class="mi">6</span><span class="o">:</span><span class="k">end</span><span class="x">]</span>
   <span class="c"># return idMatch</span>
   <span class="k">return</span> <span class="n">string</span><span class="x">(</span><span class="s">"https://en.wikipedia.org/?curid="</span><span class="x">,</span> <span class="n">idMatch</span><span class="x">)</span>
 <span class="k">end</span>
@@ -129,8 +129,8 @@ It is a good language to code in. Faster than Python (usually) but with code tha
 <strong>Persistent Running</strong></p>
   </li>
   <li>So we have the bot, the module, the code and the commands ready. How to we get everything to run? Simple, make a small script to execute!
-    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">push!</span><span class="x">(</span><span class="n">LOAD_PATH</span><span class="x">,</span> <span class="s">"/path/to/directory/containing/the/code"</span><span class="x">)</span> <span class="c"># A somewhat annoying workaround required when using modules in Julia</span>
-<span class="n">using</span> <span class="n">main_module</span>
+    <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">push!</span><span class="x">(</span><span class="nb">LOAD_PATH</span><span class="x">,</span> <span class="s">"/path/to/directory/containing/the/code"</span><span class="x">)</span> <span class="c"># A somewhat annoying workaround required when using modules in Julia</span>
+<span class="k">using</span> <span class="n">main_module</span>
 <span class="n">main</span><span class="x">()</span>
 </code></pre></div>    </div>
   </li>
@@ -160,16 +160,18 @@ It is a good language to code in. Faster than Python (usually) but with code tha
             
             <br></br>
             
+            <a class="next d-block col-md-6 text-lg-right" href="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support"> New Year With LaTeX Support &raquo; Next Post </a>
+            
             <div class="clearfix"></div>
             </div>
             <!-- End Categories -->
 
             <!-- Begin Comments
             ================================================== -->
-            <div class="just-comments"
+            <!-- <div class="just-comments"
             data-allowguests="true"
             data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
-            </div>
+            </div> -->
             <!--End Comments
             ================================================== -->
 	</div>

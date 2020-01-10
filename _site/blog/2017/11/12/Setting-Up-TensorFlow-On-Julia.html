@@ -4,7 +4,7 @@
     <title>Setting Up TensorFlow On Julia</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
-    <script async src="https://just-comments.com/w.js"></script>
+    <!-- <script async src="https://just-comments.com/w.js"></script> -->
   </head>
 
   <body>
@@ -48,11 +48,11 @@ A wrapper around TensorFlow in the Julia language. Also, <a href="https://github
 <p><strong>For CPU version of TensorFlow</strong></p>
 <ul>
   <li>Now, provided you only need the <em>CPU version</em> (don’t have or want to use an Nvidia graphic card), first access the Julia REPL. For those who downloaded the binaries, they can find the julia executable in bin folder of the downloaded files. Now, do the following in the REPL -<br />
-<code class="highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
-<code class="highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL</li>
+<code class="language-plaintext highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
+<code class="language-plaintext highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL</li>
 </ul>
 
-<p>That should do it. Try typing <code class="highlighter-rouge">using TensorFlow</code> in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see <a href="https://github.com/malmaud/TensorFlow.jl#troubleshooting">issues from the ccall or python interop</a>.</p>
+<p>That should do it. Try typing <code class="language-plaintext highlighter-rouge">using TensorFlow</code> in the REPL to check if the package is running perfectly. Refer to the link ahead in case you see <a href="https://github.com/malmaud/TensorFlow.jl#troubleshooting">issues from the ccall or python interop</a>.</p>
 
 <p><strong>For GPU-enabled version of TensorFlow</strong></p>
 
@@ -62,15 +62,15 @@ A wrapper around TensorFlow in the Julia language. Also, <a href="https://github
 Now if you want to use the shiny Nvidia graphics card i.e use <em>TensorFlow with GPU enabled</em>, there’s going to be a bit of pain. In the range of possible scenarios, you could faces problems ranging from lower screen resolution to a flickering screen to a complete black screen.</p>
 
 <p>The tricky thing is there’s no one-shot cure to this problem. Here’s the standard method -<br />
-<code class="highlighter-rouge">sudo add-apt-repository ppa:graphics-drivers/ppa</code><br />
-<code class="highlighter-rouge">sudo apt-get update</code><br />
-<code class="highlighter-rouge">sudo apt-get install nvidia-current</code><br />
-<code class="highlighter-rouge">sudo reboot</code></p>
+<code class="language-plaintext highlighter-rouge">sudo add-apt-repository ppa:graphics-drivers/ppa</code><br />
+<code class="language-plaintext highlighter-rouge">sudo apt-get update</code><br />
+<code class="language-plaintext highlighter-rouge">sudo apt-get install nvidia-current</code><br />
+<code class="language-plaintext highlighter-rouge">sudo reboot</code></p>
 
 <p>You’ll be asked to enter a password to disable the secure boot after login. Be careful to not forget the password, in case of problems it can come handy.<br />
 If you do face problems and are not sure what to do, don’t panic. Try to access the <a href="https://askubuntu.com/questions/66195/what-is-a-tty-and-how-do-i-access-a-tty">TTY</a> and type in the following command to get back to how things were before -<br />
-<code class="highlighter-rouge">sudo apt-get purge nvidia-current</code><br />
-<code class="highlighter-rouge">sudo reboot</code></p>
+<code class="language-plaintext highlighter-rouge">sudo apt-get purge nvidia-current</code><br />
+<code class="language-plaintext highlighter-rouge">sudo reboot</code></p>
 
 <p>As I said, different people with different setups + hardware + driver version will face different problems.<br />
 The thing that worked for me personally (after hours of successive install and purge cycles) was to install the drivers not from the command line but from the GUI of the Additional Drivers application.<br />
@@ -85,10 +85,10 @@ Only thing I can say is, good luck with this step.</p>
 <p><strong>Final step</strong></p>
 <ul>
   <li>If everything is holding together till now, then all you should need to do is -<br />
-<code class="highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
-<code class="highlighter-rouge">julia&gt; ENV["TF_USE_GPU"] = "1"</code>  # In the Julia REPL<br />
-<code class="highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL<br />
-If typing <code class="highlighter-rouge">using TensorFlow</code> and then running <a href="https://github.com/malmaud/TensorFlow.jl#basic-usage">this code</a> doesn’t give an error, then congratulations! You’ve made it through the setup.<br />
+<code class="language-plaintext highlighter-rouge">julia&gt; Pkg.add("TensorFlow")</code>  # In the Julia REPL<br />
+<code class="language-plaintext highlighter-rouge">julia&gt; ENV["TF_USE_GPU"] = "1"</code>  # In the Julia REPL<br />
+<code class="language-plaintext highlighter-rouge">julia&gt; Pkg.build("TensorFlow")</code>  # In the Julia REPL<br />
+If typing <code class="language-plaintext highlighter-rouge">using TensorFlow</code> and then running <a href="https://github.com/malmaud/TensorFlow.jl#basic-usage">this code</a> doesn’t give an error, then congratulations! You’ve made it through the setup.<br />
 The actual coding now awaits.</li>
 </ul>
 
@@ -116,10 +116,10 @@ The actual coding now awaits.</li>
 
             <!-- Begin Comments
             ================================================== -->
-            <div class="just-comments"
+            <!-- <div class="just-comments"
             data-allowguests="true"
             data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
-            </div>
+            </div> -->
             <!--End Comments
             ================================================== -->
 	</div>
