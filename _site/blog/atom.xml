@@ -4,7 +4,6 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
-    <!-- <script async src="https://just-comments.com/w.js"></script> -->
   </head>
 
   <body>
@@ -24,7 +23,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2020-01-10T16:25:32+05:30</updated>
+ <updated>2020-01-10T22:03:47+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -33,13 +32,15 @@
 
  
  <entry>
-   <title>New Year With LaTeX Support</title>
-   <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support"/>
+   <title>New Year With LaTeX Support & Comment Changes</title>
+   <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes"/>
    <updated>2020-01-07T00:00:00+05:30</updated>
-   <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support</id>
+   <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes</id>
    <content type="html">&lt;p&gt;It’s a new year!&lt;br /&gt;
 Which means another go at this blog.&lt;br /&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;\forall posts \in blog&lt;/script&gt;, enable LaTeX.&lt;/p&gt;
+
+&lt;p&gt;Additionally, I’ve shifted from &lt;em&gt;just-comments&lt;/em&gt; to the &lt;em&gt;&lt;a href=&quot;https://utteranc.es/&quot;&gt;utterances.es&lt;/a&gt;&lt;/em&gt; widget. For a cleaner and less spam-ish comment interface.&lt;/p&gt;
 </content>
  </entry>
  
