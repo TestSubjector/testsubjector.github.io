@@ -2,13 +2,13 @@
 body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 60px auto;
+  margin: 100px auto;
   border: #E3EDF3 0px solid;
   width: 70%;
   white-space: body;
   overflow: auto;
   background: #F7FAFB;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 a {
@@ -23,13 +23,13 @@ a:hover {
 
 
 p {
-  font-size: 1em; line-height: 1.3; color:rgba(0,0,0,.8);
+  font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
   font-family: 'Oxygen';
 }
 
 ul {
-  font-size: 1em; line-height: 1.3; color:rgba(0,0,0,.8);
+  font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
   display:inline-block;
   font-family: 'Oxygen';

@@ -1,4 +1,259 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-10T22:03:47+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings On Projects &amp; Other Things</subtitle><author><name>TestSubjector</name></author><entry><title type="html">New Year With LaTeX Support &amp;amp; Comment Changes</title><link href="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes" rel="alternate" type="text/html" title="New Year With LaTeX Support &amp; Comment Changes" /><published>2020-01-07T00:00:00+05:30</published><updated>2020-01-07T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes</id><content type="html" xml:base="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes">&lt;p&gt;It’s a new year!&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-03-26T21:04:34+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">The Julia Compilation Process</title><link href="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process" rel="alternate" type="text/html" title="The Julia Compilation Process" /><published>2020-03-26T00:00:00+05:30</published><updated>2020-03-26T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process</id><content type="html" xml:base="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process">&lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
+
+&lt;h3 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h3&gt;
+
+&lt;p&gt;Julia has a just-in-time (JIT) compilation. This means that the code is
+dynamically compiled during the execution of the program, also known as
+the program run time. In this way the previous step of compiling the
+code into an executable is completely excluded from consideration.&lt;/p&gt;
+
+&lt;p&gt;The idea behind JIT compilation is to bring the benefits of both
+(static) compilation and interpretation.&lt;/p&gt;
+
+&lt;p&gt;JIT compilers can also do dynamic recompilation which is targeted
+recompilation of certain sections of the codebase when the compiler
+believes that the newly generated code will be more efficient, based on
+information not available to a traditional static compiler. This
+information in most cases is the run time environment in which the
+program executes.&lt;/p&gt;
+
+&lt;p&gt;How does the run time environment matter?&lt;/p&gt;
+
+&lt;p&gt;During run time, interpreters have access to input parameters, control
+flow, and target machine specifics. This information may change from run
+to run or be unobtainable prior to run-time. Additionally, gathering
+some types of information about a program before it runs may involve
+algorithms which are undecidable using static analysis. &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h3&gt;
+
+&lt;p&gt;Due to the time taken by the JIT compiler to initially load the code and
+compile it for the first time during an execution, there is an initial
+lag in the runtime of a program. The Julia programming language, as a
+dependent of the JIT compiler also accrue these delays. This is the main
+reason for the repeated advice to do a &lt;em&gt;warmup call&lt;/em&gt; on any segment of
+the code before it is benchmarked, so as to avoid incurring the
+compilation time in the benchmark statistics.&lt;/p&gt;
+
+&lt;p&gt;It is important to note that there are major differences between the
+working of Julia’s JIT compiler and that of say Python. The compilation
+target of Python is specialised bytecode which is then interpreted by
+the CPython interpreter.&lt;/p&gt;
+
+&lt;p&gt;In the case of Julia, there are four major level of disassembly steps
+which transforms the source code directly to native machine code. This
+adds to the compilation complexity, but in return helps Julia gain it’s
+much vaunted speed.&lt;/p&gt;
+
+&lt;h3 id=&quot;julias-four-level-disassembly-compilation&quot;&gt;Julia’s Four Level Disassembly Compilation&lt;/h3&gt;
+
+&lt;p&gt;We introduce the various stages of Julia compilation, their purpose and
+a small insight into how to utilise the information given by them. Each
+stage of Julia compilation has its own lowered form, an intermediate
+representation of the original code in question.&lt;/p&gt;
+
+&lt;p&gt;Let us declare and then call a test method &lt;em&gt;pos(x)&lt;/em&gt; which will return
+the input argument x if x is greater than zero, otherwise it will return
+zero in the same type (integer/float etc) as that of input x.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zero&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;zero&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt; &lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;generic&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt; with&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first step is the construction of the lowered code form, which is
+used by the further type inference and code generation processes. In the
+lowered form there are fewer types of nodes, all macros are expanded,
+and all control flow is converted to explicit branches and sequences of
+statements. This means transforming the method from Julia’s high-level
+syntax (for example iterative statements or ternary operators) to a
+smaller set of common primitives (for example gotos).&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_lowered&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;___&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %2&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zero&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;___&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The typed inferred incarnation of the code is similar to the lowered
+form, but with expressions annotated with type information and some
+generic function calls replaced with their implementations. The
+code_typed macro presents a method implementation for a particular set
+of argument types after type inference and inlining. More on this later.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_typed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slt_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;___&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %1&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Julia uses the LLVM compiler framework to generate machine code. LLVM
+defines an assembly-like language which it uses as a shared intermediate
+representation (IR) between different compiler optimization passes and
+other tools in the framework. Julia uses LLVM’s C++ API to construct the
+LLVM IR in memory and then call some LLVM optimization passes on that
+form. When you call \@code_llvm you see the LLVM IR after generation
+and some high-level optimizations of the method.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_llvm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;x&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;nd&quot;&gt;@REPL&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;within&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@julia_pos_17096&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;icmp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sgt&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i64&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;
+    &lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since Julia executes native code, the last form a method implementation
+takes is what the machine actually executes. This is just binary code in
+memory, which is rather hard to read. The &quot;assembly language&quot; form of
+the method represents the instructions and registers with names and some
+form of simple syntax to help express what instructions do. In general,
+assembly language remains fairly close to one-to-one correspondence with
+machine code. In particular, one can always &quot;disassemble&quot; assembly
+code into machine code.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_native&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;
+    &lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;REPL&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;within&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;movq&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rdi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rax&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sarq&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;63&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rax&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;andnq&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rdi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rax&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rax&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;retq&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;nopl&lt;/span&gt;    &lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rax&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;x&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We mentioned that in the type inferred step, the compiler presents a
+method implementation for a particular set of argument. Let us take an
+example to highlight this. The entire process starts when the function
+&lt;em&gt;pos(x)&lt;/em&gt; is called with say, an integer argument x = 1. The JIT compiler
+now knows the type of x (which will be inferred in the &lt;em&gt;typed inferring
+stage&lt;/em&gt; of the compilation process). Using this information, it can then
+compile a specialised version of the pos(x) to handle integers. This is
+stored in the memory.&lt;/p&gt;
+
+&lt;p&gt;Suppose that the function &lt;em&gt;pos(x)&lt;/em&gt; is called again, however this time
+the argument passed as x, is of the type float. The JIT compiler will
+again infer the types of the variables wherever necessary in the
+function and generate a new specialised version to handle this type of
+argument.&lt;/p&gt;
+
+&lt;p&gt;This entire feature is known as multiple dispatch. It can be perceived
+that multiple dispatch is similar to static function overloading, found
+in other languages but here the operation happens at runtime.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_typed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slt_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;└──&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %1&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_typed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lt_float&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;└──&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %1&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;type-instability&quot;&gt;Type Instability&lt;/h2&gt;
+
+&lt;p&gt;Let us declare a modified test method &lt;em&gt;pos1(x)&lt;/em&gt; which will return the
+value zero in integer type rather than in the type of x in the original
+function, given that its return condition is fulfilled.&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can see that for an integer input x, the typed form of code is
+exactly the same. However, the code complexity steeply increases for a
+input x which is of floating value type.&lt;/p&gt;
+
+&lt;p&gt;The reason for this is that zero is an integer (Int64 more specifically)
+and x might be of any type. Thus depending one the value of x, this
+modified method might return a value of either type, highlighted by
+&lt;em&gt;UnionFloat64, Int64&lt;/em&gt; in the generated code. This is one example of
+type-instability, which can lead to slowdown of code execution. One of
+the reasons being that the compiler has to execute more number of
+instructions to complete the same task (compare this typed pos1(x)
+generated code with that of the code generated by pos(x)).&lt;/p&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_typed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slt_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;└──&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %1&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        &lt;span class=&quot;n&quot;&gt;julia&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@code_typed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pos1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;CodeInfo&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sitofp&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lt_float&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq_float&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lt_float&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; 
+                &lt;span class=&quot;mf&quot;&gt;9.223372036854776e18&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;and_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fptosi&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slt_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;and_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;│&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;or_int&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;└──&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;goto&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#3 if not %9&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;─&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Union&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;One may ask that why doesn’t Julia enforce type-stability. Among the
+multiple reasons, one strikingly important one is that Julia is not a
+statically typed language. These type-stability issues exist in some
+measure in all dynamic languages. Not enforcing type-stability also
+allows the existence of a rich Julia type environment, allowing the
+inclusion of parametric and dispatch types.&lt;/p&gt;
+
+&lt;p&gt;Type-stability is much more important factor for Julia compared to
+several other dynamic languages, and the reason for this was nicely
+summarised by one of this language’s main developer -&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&quot;Basically we can only produce good code, possibly among the best of
+any code produced by JIT thanks to LLVM’s optimization passes, but can
+only do so for good julia code (i.e. if you follow performance tip). If
+you fail to do that, or write in a pattern that’s frequently seen in
+R/python/JS, the performance will be much slower compare to other JIT
+out there since the JIT for those languages has to deal with these code
+so they implements a lot of speculative or profiling based optimizations
+to get good performance.&quot;&lt;/em&gt; - Yichao Yu &lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;In other words, Julia is a bit of a double edged sword. Written properly
+it can be as fast as statically typed languages with its compilation
+process. Written in a manner without keeping in mind the few general
+guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://dl.acm.org/doi/10.1145/857076.857077&quot;&gt;A Brief History of Just-in-Time&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://discourse.julialang.org/t/notes-on-the-julia-compiler-jit-vs-static/4275/2&quot;&gt;Notes On The Julia Compier JIT VS Static&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html">A look at how Julia works in the background.</summary></entry><entry><title type="html">New Year With LaTeX Support &amp;amp; Comment Changes</title><link href="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes" rel="alternate" type="text/html" title="New Year With LaTeX Support &amp; Comment Changes" /><published>2020-01-07T00:00:00+05:30</published><updated>2020-01-07T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes</id><content type="html" xml:base="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes">&lt;p&gt;It’s a new year!&lt;br /&gt;
 Which means another go at this blog.&lt;br /&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;\forall posts \in blog&lt;/script&gt;, enable LaTeX.&lt;/p&gt;
 
@@ -234,11 +489,4 @@ However, I can’t deny that the experience was lovely. Every single part of it,
 
 &lt;p&gt;Just no Docker again, please.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">Another very late post, I know.</summary></entry><entry><title type="html">BattleCode 2018 Announced!</title><link href="http://localhost:4000/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!" rel="alternate" type="text/html" title="BattleCode 2018 Announced!" /><published>2017-12-09T00:00:00+05:30</published><updated>2017-12-09T00:00:00+05:30</updated><id>http://localhost:4000/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!</id><content type="html" xml:base="http://localhost:4000/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!">&lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
 
-&lt;p&gt;Do participate if you can, it’s gonna be one heck of a ride.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their main site, since it will do a better job than me of explaining what BattleCode is.</summary></entry><entry><title type="html">RSS Feed &amp;amp; FeedReader Bot</title><link href="http://localhost:4000/blog/2017/12/09/RSS-Feed-And-FeedReaderBot" rel="alternate" type="text/html" title="RSS Feed &amp; FeedReader Bot" /><published>2017-12-09T00:00:00+05:30</published><updated>2017-12-09T00:00:00+05:30</updated><id>http://localhost:4000/blog/2017/12/09/RSS-Feed-And-FeedReaderBot</id><content type="html" xml:base="http://localhost:4000/blog/2017/12/09/RSS-Feed-And-FeedReaderBot">&lt;p&gt;&lt;a href=&quot;https://testsubjector.github.io/feed.xml&quot;&gt;RSS Feed(s)&lt;/a&gt; is/(are?) now enabled (if they weren’t already automatically done by Github Pages).&lt;/p&gt;
-
-&lt;p&gt;This is a good opportunity to talk about a bot, &lt;a href=&quot;https://storebot.me/bot/thefeedreaderbot&quot;&gt;Feed Reader Bot&lt;/a&gt;* for the popular messaging app &lt;a href=&quot;https://web.telegram.org&quot;&gt;Telegram&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;What this gives you is a separate chat room for all the interesting feeds you want to go through in one place. So essentially you get notifications when your favourite podcasts, news or game website or even a comic strip site has a new post.&lt;br /&gt;
-And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant View&lt;/a&gt; feature of Telegram, you get go through a very light-weight no-nonsense view of the stuff that you want to see. A good way to keep track of the thing you want to see.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;*The author is in no way affiliated with the Bot, except being a happy user of its free version.&lt;/em&gt;&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">RSS Feed(s) is/(are?) now enabled (if they weren’t already automatically done by Github Pages).</summary></entry></feed>
+&lt;p&gt;Do participate if you can, it’s gonna be one heck of a ride.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their main site, since it will do a better job than me of explaining what BattleCode is.</summary></entry></feed>
