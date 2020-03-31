@@ -101,8 +101,8 @@ zero in the same type (integer/float etc) as that of input x.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">julia</span><span class="o">&gt;</span> <span class="n">pos</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">zero</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">?</span> <span class="n">zero</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">:</span> <span class="n">x</span>
     <span class="n">pos</span> <span class="x">(</span><span class="n">generic</span> <span class="k">function</span><span class="nf"> with</span> <span class="mi">1</span> <span class="n">method</span><span class="x">)</span>
 </code></pre></div></div>
-
-<p>The first step is the construction of the lowered code form, which is
+<p><br><br>
+The first step is the construction of the lowered code form, which is
 used by the further type inference and code generation processes. In the
 lowered form there are fewer types of nodes, all macros are expanded,
 and all control flow is converted to explicit branches and sequences of
@@ -120,8 +120,8 @@ smaller set of common primitives (for example gotos).</p>
         <span class="mi">3</span> <span class="n">_</span>      <span class="k">return</span> <span class="n">x</span>
     <span class="x">)</span>
 </code></pre></div></div>
-
-<p>The typed inferred incarnation of the code is similar to the lowered
+<p><br><br>
+The typed inferred incarnation of the code is similar to the lowered
 form, but with expressions annotated with type information and some
 generic function calls replaced with their implementations. The
 code_typed macro presents a method implementation for a particular set
@@ -135,8 +135,8 @@ of argument types after type inference and inlining. More on this later.</p>
         <span class="mi">3</span> <span class="n">_</span>      <span class="k">return</span> <span class="n">x</span>
     <span class="x">)</span> <span class="o">=&gt;</span> <span class="kt">Int64</span>
 </code></pre></div></div>
-
-<p>Julia uses the LLVM compiler framework to generate machine code. LLVM
+<p><br><br>
+Julia uses the LLVM compiler framework to generate machine code. LLVM
 defines an assembly-like language which it uses as a shared intermediate
 representation (IR) between different compiler optimization passes and
 other tools in the framework. Julia uses LLVM’s C++ API to construct the
@@ -154,8 +154,8 @@ and some high-level optimizations of the method.</p>
       <span class="n">ret</span> <span class="n">i64</span> <span class="o">%</span><span class="n">spec</span><span class="o">.</span><span class="n">select</span>
     <span class="x">}</span>
 </code></pre></div></div>
-
-<p>Since Julia executes native code, the last form a method implementation
+<p><br><br>
+Since Julia executes native code, the last form a method implementation
 takes is what the machine actually executes. This is just binary code in
 memory, which is rather hard to read. The "assembly language" form of
 the method represents the instructions and registers with names and some
@@ -174,8 +174,8 @@ code into machine code.</p>
         <span class="n">nopl</span>    <span class="x">(</span><span class="o">%</span><span class="n">rax</span><span class="x">)</span>
     <span class="x">;</span> <span class="n">_</span>
 </code></pre></div></div>
-
-<p>We mentioned that in the type inferred step, the compiler presents a
+<p><br><br>
+We mentioned that in the type inferred step, the compiler presents a
 method implementation for a particular set of argument. Let us take an
 example to highlight this. The entire process starts when the function
 <em>pos(x)</em> is called with say, an integer argument x = 1. The JIT compiler
@@ -213,15 +213,14 @@ in other languages but here the operation happens at runtime.</p>
 </code></pre></div></div>
 
 <h2 id="type-instability">Type Instability</h2>
-
 <p>Let us declare a modified test method <em>pos1(x)</em> which will return the
 value zero in integer type rather than in the type of x in the original
 function, given that its return condition is fulfilled.</p>
 
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">julia</span><span class="o">&gt;</span> <span class="n">pos1</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">x</span>
 </code></pre></div></div>
-
-<p>We can see that for an integer input x, the typed form of code is
+<p><br><br>
+We can see that for an integer input x, the typed form of code is
 exactly the same. However, the code complexity steeply increases for a
 input x which is of floating value type.</p>
 
@@ -260,8 +259,8 @@ generated code with that of the code generated by pos(x)).</p>
         <span class="mi">3</span> <span class="n">─</span>      <span class="k">return</span> <span class="n">x</span>
         <span class="x">)</span> <span class="o">=&gt;</span> <span class="kt">Union</span><span class="x">{</span><span class="kt">Float64</span><span class="x">,</span> <span class="kt">Int64</span><span class="x">}</span>
 </code></pre></div></div>
-
-<p>One may ask that why doesn’t Julia enforce type-stability. Among the
+<p><br><br>
+One may ask that why doesn’t Julia enforce type-stability. Among the
 multiple reasons, one strikingly important one is that Julia is not a
 statically typed language. These type-stability issues exist in some
 measure in all dynamic languages. Not enforcing type-stability also
@@ -285,6 +284,8 @@ to get good performance."</em> - Yichao Yu <sup id="fnref:2"><a href="#fn:2" cla
 it can be as fast as statically typed languages with its compilation
 process. Written in a manner without keeping in mind the few general
 guidelines to the language, it can be deceptively slow to work with.</p>
+
+<p><strong>References:</strong></p>
 
 <div class="footnotes">
   <ol>
