@@ -3,7 +3,7 @@ layout: post
 title: "Whiskquilibrium The Game"
 date: 2018-10-16
 ---
-
+----------------
 On 29th and 30th September, I had the chance to participate in the [Megathon Hackathon at IIIT Hyderabad](https://megathon.in/).
 Hackathons I feel, are a bit of a strange thing. The novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.
 

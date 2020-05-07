@@ -4,10 +4,12 @@ title: "The Julia Compilation Process"
 date: 2020-03-26
 mathjax: true
 ---
-
+----------------
 A look at how Julia works in the background.
 
-### JIT Compilation
+----------------
+##### JIT Compilation
+----------------
 
 Julia has a just-in-time (JIT) compilation. This means that the code is
 dynamically compiled during the execution of the program, also known as
@@ -32,7 +34,9 @@ to run or be unobtainable prior to run-time. Additionally, gathering
 some types of information about a program before it runs may involve
 algorithms which are undecidable using static analysis. [^1]
 
-### Warmup delay
+----------------
+##### Warmup delay
+----------------
 
 Due to the time taken by the JIT compiler to initially load the code and
 compile it for the first time during an execution, there is an initial
@@ -52,8 +56,9 @@ which transforms the source code directly to native machine code. This
 adds to the compilation complexity, but in return helps Julia gain it's
 much vaunted speed.
 
-### Julia's Four Level Disassembly Compilation
-
+----------------
+##### Julia's Four Level Disassembly Compilation
+----------------
 We introduce the various stages of Julia compilation, their purpose and
 a small insight into how to utilise the information given by them. Each
 stage of Julia compilation has its own lowered form, an intermediate
@@ -184,7 +189,8 @@ in other languages but here the operation happens at runtime.
         ) => Float64
 ```
 
-Type Instability
+----------------
+##### Type Instability
 ----------------
 Let us declare a modified test method *pos1(x)* which will return the
 value zero in integer type rather than in the type of x in the original

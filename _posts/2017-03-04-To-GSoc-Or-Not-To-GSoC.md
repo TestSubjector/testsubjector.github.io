@@ -3,7 +3,7 @@ layout: post
 title: "To GSoc Or Not To GSoC"
 date: 2017-03-04
 ---
-
+----------------
 Well, it's madness season again.
 
 When people who you never thought would give a damn about programming, will start acting if that has been there lifelong ambition.

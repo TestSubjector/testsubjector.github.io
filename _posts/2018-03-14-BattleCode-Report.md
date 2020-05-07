@@ -3,7 +3,7 @@ layout: post
 title: "BattleCode Report"
 date: 2018-03-14
 ---
-
+----------------
 Another very late post, I know.
 
 So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.
@@ -20,4 +20,4 @@ Very honestly, it was the last point that hurt the most. The "International" tea
 Sigh, quotas are a sticky, volatile and frustrating point for many people in my country, including me, in general(*puns*).
 However, I can't deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and Discord; the strategies and plans hatched and abandoned. It's something I'll definitely want to do again next year too.
 
-  Just no Docker again, please.
+Just no Docker again, please.

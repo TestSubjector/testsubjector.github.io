@@ -3,7 +3,7 @@ layout: post
 title: "RSS Feed & FeedReader Bot"
 date: 2017-12-09
 ---
-
+----------------
 [RSS Feed(s)](https://testsubjector.github.io/feed.xml) is/(are?) now enabled (if they weren't already automatically done by Github Pages).  
 
 This is a good opportunity to talk about a bot, [Feed Reader Bot](https://storebot.me/bot/thefeedreaderbot)* for the popular messaging app [Telegram](https://web.telegram.org).  

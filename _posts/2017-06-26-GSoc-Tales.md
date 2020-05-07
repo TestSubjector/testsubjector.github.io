@@ -3,7 +3,7 @@ layout: post
 title: "GSoc Tales"
 date: 2017-06-26
 ---
-
+----------------
 One month of the coding period is already up. You can read about my experiences till now at my official GSoC blog on Medium.
 Links -
 

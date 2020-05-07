@@ -3,7 +3,7 @@ layout: post
 title: "GSoCer? Yeap!"
 date: 2017-05-11
 ---
-
+----------------
 So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.
 
 My [project](https://summerofcode.withgoogle.com/projects/#5088075618189312) got selected for OpenAstronomy, Google Summer of Code 2017!

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Rise Of Nations Taunt Telegram Bot</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/poetry">Poetry</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<post class="container">
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+<h1>The Rise Of Nations Taunt Telegram Bot</h1>
+<p class="meta">08 May 2020</p>
+
+
+<!-- Begin Article
+================================================== -->
+
+
+<post class="post">
+  <hr />
+<p>My adventures with bots in the Telegram app continues.</p>
+
+<p>I have a group chat on Telegram with my college wingmates, folks that have lived adjacent to
+for almost four years of my undergraduate hostel life. A few days back, one of said wingmates went and
+sent forth on the group the message <em>Taunt 3</em> in response to some discussion.</p>
+
+<p>Now for a bit of a background, this message in question is a command found in the video game <a href="https://en.wikipedia.org/wiki/Rise_of_Nations">Rise of Nations</a> or
+RoN, by Microsoft.
+It is one of the many taunt commands that essentially plays a short voice clip in game when used. Examples of 
+such voice lines include <em>Taunt 8 - (I need Oil)</em> or <em>Taunt 60 - (Random! Random!)</em> <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. <em>Taunt 3 was for (Maybe)</em>, and while the actual voice clip did not play in the chat, everyone understood what that specific friend wanted to convey through.</p>
+
+<p>It was at that point that I questioned myself that what was stopping us from having the actual voice clips play, when a message matching the RoN taunt command was sent to the group.
+And what better way to do that then to use a Telegram bot to accomplish this task.</p>
+
+<p>Now I’ve used the <a href="https://github.com/python-telegram-bot">Python Telegram library</a> for this specific bot. The reason being that it has a much better developed API interface and is a much more mature library compared to any other library out there. The bot is persistent and in every execution cycle it parses every message that is passed in a group it is a part of. To allow a Telegram bot to have this access
+to the messages of a group, you have to change the default privacy mode of the newly created bot using the <a href="https://core.telegram.org/bots#6-botfather">BotFather</a>.</p>
+
+<p>The bot will discard any message greater than a specific to avoid too much parsing of the message and decrease the burden on the bot.
+The bot will essentially try to match the given message to a <em>Taunt X</em> type format. The word taunt followed by a integer ranging from one to hundred, which encompasses all the default taunts in RoN.</p>
+
+<p>The most time consuming section of making this bot was the part where every Taunt had to be matched to a specific audio file. These matches were found via
+creating a dictionary that matches every number to its specific audio file. And sadly, this had to be done manually as the audio file names did not correspond with their numbers. By this I mean that for say <em>Taunt 35</em>, the relevant audio file is not called something like <em>taunt35.wav</em> but instead <em>ships_ahoy-3.wav</em>.</p>
+
+<p>Please <a href="https://github.com/TestSubjector/RONTauntTelegramBot">click here</a> to go to the Github repository with the actual code of the bot<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p>A friend of mine, <a href="https://github.com/Nischay-Pro">Nischay Ram</a> improved the bot code by adding queues for <a href="https://github.com/python-telegram-bot/python-telegram-bot/wiki/Avoiding-flood-limits">flood prevention</a>, created the ability for multi-taunts in one single message like <em>Taunt 33 84 1</em> to be possible and even added the Age Of Empires’s (another videogame) taunt lines to the bots dictionary.</p>
+
+<p>In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group. At least for some time, and then complaints against the spamming of the bot and of the barrage of large number of notifications meant that it is used much more sparingly now.</p>
+
+<p><strong>References:</strong></p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="https://steamcommunity.com/app/287450/discussions/0/540744474731911106/">Rise of Nation Taunt List</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p><a href="https://github.com/TestSubjector/RONTauntTelegramBot">Github Repository</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</post>
+
+<div class="container">
+	<div class="row">
+
+			
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+
+            <br></br>
+            
+            <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process"> Previous Post &laquo;  The Julia Compilation Process </a>
+            
+            <br></br>
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+            <script src="https://utteranc.es/client.js"
+                repo="TestSubjector/testsubjector.github.io"
+                issue-term="pathname"
+                label="comments"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+            <!-- Begin Comments
+            ================================================== -->
+            <!-- <div class="just-comments"
+            data-allowguests="true"
+            data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+            </div> -->
+            <!--End Comments
+            ================================================== -->
+	</div>
+	<!-- End Post -->
+
+</div>
+<!-- End Article
+================================================== -->
+
+
+</post>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>

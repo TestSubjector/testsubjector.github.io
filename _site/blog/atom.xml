@@ -23,7 +23,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2020-03-31T16:05:23+05:30</updated>
+ <updated>2020-05-08T01:40:05+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -32,13 +32,66 @@
 
  
  <entry>
+   <title>The Rise Of Nations Taunt Telegram Bot</title>
+   <link href="http://testsubjector.github.io/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"/>
+   <updated>2020-05-08T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id>
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;My adventures with bots in the Telegram app continues.&lt;/p&gt;
+
+&lt;p&gt;I have a group chat on Telegram with my college wingmates, folks that have lived adjacent to
+for almost four years of my undergraduate hostel life. A few days back, one of said wingmates went and
+sent forth on the group the message &lt;em&gt;Taunt 3&lt;/em&gt; in response to some discussion.&lt;/p&gt;
+
+&lt;p&gt;Now for a bit of a background, this message in question is a command found in the video game &lt;a href=&quot;https://en.wikipedia.org/wiki/Rise_of_Nations&quot;&gt;Rise of Nations&lt;/a&gt; or
+RoN, by Microsoft.
+It is one of the many taunt commands that essentially plays a short voice clip in game when used. Examples of 
+such voice lines include &lt;em&gt;Taunt 8 - (I need Oil)&lt;/em&gt; or &lt;em&gt;Taunt 60 - (Random! Random!)&lt;/em&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. &lt;em&gt;Taunt 3 was for (Maybe)&lt;/em&gt;, and while the actual voice clip did not play in the chat, everyone understood what that specific friend wanted to convey through.&lt;/p&gt;
+
+&lt;p&gt;It was at that point that I questioned myself that what was stopping us from having the actual voice clips play, when a message matching the RoN taunt command was sent to the group.
+And what better way to do that then to use a Telegram bot to accomplish this task.&lt;/p&gt;
+
+&lt;p&gt;Now I’ve used the &lt;a href=&quot;https://github.com/python-telegram-bot&quot;&gt;Python Telegram library&lt;/a&gt; for this specific bot. The reason being that it has a much better developed API interface and is a much more mature library compared to any other library out there. The bot is persistent and in every execution cycle it parses every message that is passed in a group it is a part of. To allow a Telegram bot to have this access
+to the messages of a group, you have to change the default privacy mode of the newly created bot using the &lt;a href=&quot;https://core.telegram.org/bots#6-botfather&quot;&gt;BotFather&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The bot will discard any message greater than a specific to avoid too much parsing of the message and decrease the burden on the bot.
+The bot will essentially try to match the given message to a &lt;em&gt;Taunt X&lt;/em&gt; type format. The word taunt followed by a integer ranging from one to hundred, which encompasses all the default taunts in RoN.&lt;/p&gt;
+
+&lt;p&gt;The most time consuming section of making this bot was the part where every Taunt had to be matched to a specific audio file. These matches were found via
+creating a dictionary that matches every number to its specific audio file. And sadly, this had to be done manually as the audio file names did not correspond with their numbers. By this I mean that for say &lt;em&gt;Taunt 35&lt;/em&gt;, the relevant audio file is not called something like &lt;em&gt;taunt35.wav&lt;/em&gt; but instead &lt;em&gt;ships_ahoy-3.wav&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please &lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;click here&lt;/a&gt; to go to the Github repository with the actual code of the bot&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;A friend of mine, &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; improved the bot code by adding queues for &lt;a href=&quot;https://github.com/python-telegram-bot/python-telegram-bot/wiki/Avoiding-flood-limits&quot;&gt;flood prevention&lt;/a&gt;, created the ability for multi-taunts in one single message like &lt;em&gt;Taunt 33 84 1&lt;/em&gt; to be possible and even added the Age Of Empires’s (another videogame) taunt lines to the bots dictionary.&lt;/p&gt;
+
+&lt;p&gt;In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group. At least for some time, and then complaints against the spamming of the bot and of the barrage of large number of notifications meant that it is used much more sparingly now.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://steamcommunity.com/app/287450/discussions/0/540744474731911106/&quot;&gt;Rise of Nation Taunt List&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;Github Repository&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>The Julia Compilation Process</title>
    <link href="http://testsubjector.github.io/blog/2020/03/26/The-Julia-Compilation-Process"/>
    <updated>2020-03-26T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2020/03/26/The-Julia-Compilation-Process</id>
-   <content type="html">&lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
 
-&lt;h3 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h5 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h5&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;Julia has a just-in-time (JIT) compilation. This means that the code is
 dynamically compiled during the execution of the program, also known as
@@ -63,7 +116,9 @@ to run or be unobtainable prior to run-time. Additionally, gathering
 some types of information about a program before it runs may involve
 algorithms which are undecidable using static analysis. &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h5 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h5&gt;
+&lt;hr /&gt;
 
 &lt;p&gt;Due to the time taken by the JIT compiler to initially load the code and
 compile it for the first time during an execution, there is an initial
@@ -83,8 +138,9 @@ which transforms the source code directly to native machine code. This
 adds to the compilation complexity, but in return helps Julia gain it’s
 much vaunted speed.&lt;/p&gt;
 
-&lt;h3 id=&quot;julias-four-level-disassembly-compilation&quot;&gt;Julia’s Four Level Disassembly Compilation&lt;/h3&gt;
-
+&lt;hr /&gt;
+&lt;h5 id=&quot;julias-four-level-disassembly-compilation&quot;&gt;Julia’s Four Level Disassembly Compilation&lt;/h5&gt;
+&lt;hr /&gt;
 &lt;p&gt;We introduce the various stages of Julia compilation, their purpose and
 a small insight into how to utilise the information given by them. Each
 stage of Julia compilation has its own lowered form, an intermediate
@@ -208,7 +264,9 @@ in other languages but here the operation happens at runtime.&lt;/p&gt;
         &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;type-instability&quot;&gt;Type Instability&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h5 id=&quot;type-instability&quot;&gt;Type Instability&lt;/h5&gt;
+&lt;hr /&gt;
 &lt;p&gt;Let us declare a modified test method &lt;em&gt;pos1(x)&lt;/em&gt; which will return the
 value zero in integer type rather than in the type of x in the original
 function, given that its return condition is fulfilled.&lt;/p&gt;
@@ -301,7 +359,8 @@ guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes"/>
    <updated>2020-01-07T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes</id>
-   <content type="html">&lt;p&gt;It’s a new year!&lt;br /&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;It’s a new year!&lt;br /&gt;
 Which means another go at this blog.&lt;br /&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;\forall posts \in blog&lt;/script&gt;, enable LaTeX.&lt;/p&gt;
 
@@ -314,7 +373,8 @@ For &lt;script type=&quot;math/tex&quot;&gt;\forall posts \in blog&lt;/script&gt
    <link href="http://testsubjector.github.io/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia"/>
    <updated>2019-03-17T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia</id>
-   <content type="html">&lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
 And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? &lt;br /&gt;
 &lt;br /&gt;
 Therefore, here I’ll be doing a quick run-through on how a simple bot called WikiRandom bot was made for Telegram. The purpose of the bot is very simple and concise i.e a user will ask the bot for a link to any random article on Wikipedia and the bot will respond with such a link.&lt;br /&gt;&lt;/p&gt;
@@ -438,7 +498,8 @@ As of this moment(when the post appears online), the WikiRandom bot works - http
    <link href="http://testsubjector.github.io/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"/>
    <updated>2019-03-14T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id>
-   <content type="html">&lt;p&gt;Well, there’s not much of a Pi day celebration (or even mention) on our side of the world.&lt;br /&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;Well, there’s not much of a Pi day celebration (or even mention) on our side of the world.&lt;br /&gt;
 That’s simply because we go for a DD/MM format rather than peculiar MM/DD format for dates.&lt;br /&gt;
 So we usually refer to this day as 14/03 rather than 03/14, which is…more bland yes.&lt;br /&gt;
 There’s a small irony here, in the sense, that the dates for these posts (you can see it below the title of this post) require a YYYY-MM-DD format.&lt;br /&gt;
@@ -452,7 +513,8 @@ Additionally, I’ve caved into giving an option for comments on all my posts (&
    <link href="http://testsubjector.github.io/blog/2018/12/11/Future-Plans"/>
    <updated>2018-12-11T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/12/11/Future-Plans</id>
-   <content type="html">&lt;p&gt;The movie trailer for Kingdom Hearts 3 just came out. Saying it with brevity, it is such a beautiful capstone to the monument of memories the series has been, to so many people. Find it &lt;a href=&quot;https://www.youtube.com/watch?v=16N6IkhxprE&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;The movie trailer for Kingdom Hearts 3 just came out. Saying it with brevity, it is such a beautiful capstone to the monument of memories the series has been, to so many people. Find it &lt;a href=&quot;https://www.youtube.com/watch?v=16N6IkhxprE&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;This post is kinda of an important marker-type post, so please bear with the different pacing.&lt;/strong&gt;&lt;/p&gt;
 
@@ -487,7 +549,8 @@ It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2018/10/21/Julia-Context-Free-Grammar"/>
    <updated>2018-10-21T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/10/21/Julia-Context-Free-Grammar</id>
-   <content type="html">&lt;p&gt;Gists in Github Pages, lovely.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;Gists in Github Pages, lovely.&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/TestSubjector/6a407f9a4ba5996a1692c9b9f6c0eb84.js&quot;&gt;&lt;/script&gt;
 
@@ -499,7 +562,8 @@ It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2018/10/16/Whiskquilibrium-The-Game"/>
    <updated>2018-10-16T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/10/16/Whiskquilibrium-The-Game</id>
-   <content type="html">&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.
 Hackathons I feel, are a bit of a strange thing. The novelty of cooking something up in a day or two versus the knowledge that most of what will be churned out in such events will be empty air in mere hours.&lt;/p&gt;
 
 &lt;p&gt;Still, it’s a good thing to try out at least once, especially if you’re in a coding slump.&lt;/p&gt;
@@ -556,7 +620,8 @@ You want to add visual indicators? Make sure that they -&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes"/>
    <updated>2018-09-13T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1--Naive Bayes</id>
-   <content type="html">&lt;p&gt;In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a &lt;strong&gt;Disaster Zone&lt;/strong&gt;, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.&lt;br /&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a &lt;strong&gt;Disaster Zone&lt;/strong&gt;, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.&lt;br /&gt;
 That, and I’m now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world.&lt;/p&gt;
 
 &lt;p&gt;Now, AI was something I wanted to get into as kid(and seeing everyone else suddenly get hyped about the same, in these last few years has been damn frustrating (The competition!)). 
@@ -583,7 +648,8 @@ Maybe I’ll also put up some summary notes here in the future? Let’s try with
    <link href="http://testsubjector.github.io/blog/2018/03/14/BattleCode-Report"/>
    <updated>2018-03-14T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2018/03/14/BattleCode-Report</id>
-   <content type="html">&lt;p&gt;Another very late post, I know.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;Another very late post, I know.&lt;/p&gt;
 
 &lt;p&gt;So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.
 We had a really good chance of getting a place in the Finals (&amp;amp; a trip to MIT!), if not for some of these reasons -&lt;/p&gt;
@@ -609,7 +675,8 @@ However, I can’t deny that the experience was lovely. Every single part of it,
    <link href="http://testsubjector.github.io/blog/2017/12/09/RSS-Feed-And-FeedReaderBot"/>
    <updated>2017-12-09T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/12/09/RSS-Feed-And-FeedReaderBot</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;https://testsubjector.github.io/feed.xml&quot;&gt;RSS Feed(s)&lt;/a&gt; is/(are?) now enabled (if they weren’t already automatically done by Github Pages).&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;&lt;a href=&quot;https://testsubjector.github.io/feed.xml&quot;&gt;RSS Feed(s)&lt;/a&gt; is/(are?) now enabled (if they weren’t already automatically done by Github Pages).&lt;/p&gt;
 
 &lt;p&gt;This is a good opportunity to talk about a bot, &lt;a href=&quot;https://storebot.me/bot/thefeedreaderbot&quot;&gt;Feed Reader Bot&lt;/a&gt;* for the popular messaging app &lt;a href=&quot;https://web.telegram.org&quot;&gt;Telegram&lt;/a&gt;.&lt;/p&gt;
 
@@ -625,7 +692,8 @@ And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant
    <link href="http://testsubjector.github.io/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!"/>
    <updated>2017-12-09T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/12/09/BattleCode-2018-Has-Been-Announced!</id>
-   <content type="html">&lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
 
 &lt;p&gt;Do participate if you can, it’s gonna be one heck of a ride.&lt;/p&gt;
 </content>
@@ -636,7 +704,8 @@ And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant
    <link href="http://testsubjector.github.io/blog/2017/11/12/Setting-Up-TensorFlow-On-Julia"/>
    <updated>2017-11-12T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/11/12/Setting-Up-TensorFlow-On-Julia</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;Note&lt;/em&gt; - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt; - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.&lt;/p&gt;
 
 &lt;p&gt;First, a few definitions.&lt;/p&gt;
 
@@ -707,7 +776,8 @@ The actual coding now awaits.&lt;/li&gt;
    <link href="http://testsubjector.github.io/blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended"/>
    <updated>2017-11-08T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended</id>
-   <content type="html">&lt;p&gt;Whelp, this Github_page-blog-website chimera completely (or conveniently) 
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;Whelp, this Github_page-blog-website chimera completely (or conveniently) 
 slipped from my mind. However, now that I’m delving properly into the fields
 of Computer Science that I’ve dreamed about as a kid (stay tuned!); this seems like the perfect place to record those experiences*.&lt;/p&gt;
 
@@ -725,7 +795,8 @@ of Computer Science that I’ve dreamed about as a kid (stay tuned!); this seems
    <link href="http://testsubjector.github.io/blog/2017/06/26/GSoc-Tales"/>
    <updated>2017-06-26T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/06/26/GSoc-Tales</id>
-   <content type="html">&lt;p&gt;One month of the coding period is already up. You can read about my experiences till now at my official GSoC blog on Medium.
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;One month of the coding period is already up. You can read about my experiences till now at my official GSoC blog on Medium.
 Links -&lt;/p&gt;
 
 &lt;ul&gt;
@@ -744,7 +815,8 @@ Links -&lt;/p&gt;
    <link href="http://testsubjector.github.io/blog/2017/05/11/GSoCer-Yeap!"/>
    <updated>2017-05-11T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/05/11/GSoCer?-Yeap!</id>
-   <content type="html">&lt;p&gt;So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.&lt;/p&gt;
 
 &lt;p&gt;My &lt;a href=&quot;https://summerofcode.withgoogle.com/projects/#5088075618189312&quot;&gt;project&lt;/a&gt; got selected for OpenAstronomy, Google Summer of Code 2017!
 The effort put in the previous two months paid off. Really glad for that.&lt;/p&gt;
@@ -767,7 +839,8 @@ I’ll be still posting content(hopefully) not directly related to my project he
    <link href="http://testsubjector.github.io/blog/2017/03/16/AstroLib.jl-It-Is"/>
    <updated>2017-03-16T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/03/16/AstroLib.jl-It-Is</id>
-   <content type="html">&lt;p&gt;So, it’s been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;So, it’s been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
 
 &lt;p&gt;While I still very much want to contribute to Chapel as a part of GSoC, the large knowledge barrier became very apparent as I went deeper through the codebase.
 It became very obvious that I had to reconsider, when I realised that all of my shortlisted projects (except perhaps the idea of porting my image processing project) didn’t really require much use of the Chapel language itself.
@@ -815,7 +888,8 @@ He has guided me through the common pitfalls a Julia newbie stumbles on, and has
    <link href="http://testsubjector.github.io/blog/2017/03/04/To-GSoc-Or-Not-To-GSoC"/>
    <updated>2017-03-04T00:00:00+05:30</updated>
    <id>http://testsubjector.github.io//blog/2017/03/04/To-GSoc-Or-Not-To-GSoC</id>
-   <content type="html">&lt;p&gt;Well, it’s madness season again.&lt;/p&gt;
+   <content type="html">&lt;hr /&gt;
+&lt;p&gt;Well, it’s madness season again.&lt;/p&gt;
 
 &lt;p&gt;When people who you never thought would give a damn about programming, will start acting if that has been there lifelong ambition.&lt;/p&gt;
 

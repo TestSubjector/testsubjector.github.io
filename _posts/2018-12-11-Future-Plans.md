@@ -3,7 +3,7 @@ layout: post
 title: "Future Plans"
 date: 2018-12-11
 ---
-
+----------------
 The movie trailer for Kingdom Hearts 3 just came out. Saying it with brevity, it is such a beautiful capstone to the monument of memories the series has been, to so many people. Find it [here](https://www.youtube.com/watch?v=16N6IkhxprE).
 
 **This post is kinda of an important marker-type post, so please bear with the different pacing.**

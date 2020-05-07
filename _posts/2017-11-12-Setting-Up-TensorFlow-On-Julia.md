@@ -3,7 +3,7 @@ layout: post
 title: "Setting Up TensorFlow On Julia"
 date: 2017-11-12
 ---
-
+----------------
 *Note* - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.  
   
 First, a few definitions.  

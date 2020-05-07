@@ -3,7 +3,7 @@ layout: post
 title: "Starting With Intro To Maching Learning Course 1- Naive Bayes"
 date: 2018-09-13
 ---
-
+----------------
 In essence, now that I'm in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a **Disaster Zone**, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.  
 That, and I'm now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world.
   

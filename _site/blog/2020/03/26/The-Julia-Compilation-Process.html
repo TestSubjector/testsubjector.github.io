@@ -40,9 +40,12 @@
 
 
 <post class="post">
-  <p>A look at how Julia works in the background.</p>
+  <hr>
+<p>A look at how Julia works in the background.</p>
 
-<h3 id="jit-compilation">JIT Compilation</h3>
+<hr>
+<h5 id="jit-compilation">JIT Compilation</h5>
+<hr>
 
 <p>Julia has a just-in-time (JIT) compilation. This means that the code is
 dynamically compiled during the execution of the program, also known as
@@ -67,7 +70,9 @@ to run or be unobtainable prior to run-time. Additionally, gathering
 some types of information about a program before it runs may involve
 algorithms which are undecidable using static analysis. <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></p>
 
-<h3 id="warmup-delay">Warmup delay</h3>
+<hr>
+<h5 id="warmup-delay">Warmup delay</h5>
+<hr>
 
 <p>Due to the time taken by the JIT compiler to initially load the code and
 compile it for the first time during an execution, there is an initial
@@ -87,8 +92,9 @@ which transforms the source code directly to native machine code. This
 adds to the compilation complexity, but in return helps Julia gain it’s
 much vaunted speed.</p>
 
-<h3 id="julias-four-level-disassembly-compilation">Julia’s Four Level Disassembly Compilation</h3>
-
+<hr>
+<h5 id="julias-four-level-disassembly-compilation">Julia’s Four Level Disassembly Compilation</h5>
+<hr>
 <p>We introduce the various stages of Julia compilation, their purpose and
 a small insight into how to utilise the information given by them. Each
 stage of Julia compilation has its own lowered form, an intermediate
@@ -212,7 +218,9 @@ in other languages but here the operation happens at runtime.</p>
         <span class="x">)</span> <span class="o">=&gt;</span> <span class="kt">Float64</span>
 </code></pre></div></div>
 
-<h2 id="type-instability">Type Instability</h2>
+<hr>
+<h5 id="type-instability">Type Instability</h5>
+<hr>
 <p>Let us declare a modified test method <em>pos1(x)</em> which will return the
 value zero in integer type rather than in the type of x in the original
 function, given that its return condition is fulfilled.</p>
@@ -313,6 +321,8 @@ guidelines to the language, it can be deceptively slow to work with.</p>
             <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes"> Previous Post «  New Year With LaTeX Support &amp; Comment Changes </a>
             
             <br>
+            
+            <a class="next d-block col-md-6 text-lg-right" href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"> The Rise Of Nations Taunt Telegram Bot » Next Post </a>
             
             <div class="clearfix"></div>
             </div>

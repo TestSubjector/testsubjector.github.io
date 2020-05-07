@@ -3,7 +3,7 @@ layout: post
 title: "Making A Simple Telegram Bot In Julia"
 date: 2019-03-17
 ---
-
+----------------
 So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. <br/>
 And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? <br/>
 <br/>
