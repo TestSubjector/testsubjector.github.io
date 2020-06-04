@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Somedays The World Blackens"
+title: "Somedays The World Blackens (Poetry)"
 date: 2018-08-04
 ---
 Somedays...  

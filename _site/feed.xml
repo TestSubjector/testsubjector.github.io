@@ -1,32 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-05-08T01:40:05+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">The Rise Of Nations Taunt Telegram Bot</title><link href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot" rel="alternate" type="text/html" title="The Rise Of Nations Taunt Telegram Bot" /><published>2020-05-08T00:00:00+05:30</published><updated>2020-05-08T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id><content type="html" xml:base="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot">&lt;hr /&gt;
-&lt;p&gt;My adventures with bots in the Telegram app continues.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-04T17:03:59+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">The Rise Of Nations Taunt Telegram Bot</title><link href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot" rel="alternate" type="text/html" title="The Rise Of Nations Taunt Telegram Bot" /><published>2020-05-08T00:00:00+05:30</published><updated>2020-05-08T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id><content type="html" xml:base="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot">&lt;hr /&gt;
+&lt;p&gt;My adventures with bots in the Telegram app continues in this blog post.&lt;/p&gt;
 
-&lt;p&gt;I have a group chat on Telegram with my college wingmates, folks that have lived adjacent to
-for almost four years of my undergraduate hostel life. A few days back, one of said wingmates went and
-sent forth on the group the message &lt;em&gt;Taunt 3&lt;/em&gt; in response to some discussion.&lt;/p&gt;
+&lt;p&gt;I have a group chat on Telegram that includes my college wingmates. A place to stay connected with the folks that have lived adjacent to me
+for almost four years of my undergrad hostel life. A few days ago in the chat group, one of said wingmates went and
+sent forth the message &lt;em&gt;Taunt 3&lt;/em&gt;, in response to some discussion.&lt;/p&gt;
 
-&lt;p&gt;Now for a bit of a background, this message in question is a command found in the video game &lt;a href=&quot;https://en.wikipedia.org/wiki/Rise_of_Nations&quot;&gt;Rise of Nations&lt;/a&gt; or
-RoN, by Microsoft.
-It is one of the many taunt commands that essentially plays a short voice clip in game when used. Examples of 
-such voice lines include &lt;em&gt;Taunt 8 - (I need Oil)&lt;/em&gt; or &lt;em&gt;Taunt 60 - (Random! Random!)&lt;/em&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. &lt;em&gt;Taunt 3 was for (Maybe)&lt;/em&gt;, and while the actual voice clip did not play in the chat, everyone understood what that specific friend wanted to convey through.&lt;/p&gt;
+&lt;p&gt;Now for a bit of a background. This message’s content is a command found in the video game &lt;a href=&quot;https://en.wikipedia.org/wiki/Rise_of_Nations&quot;&gt;Rise of Nations&lt;/a&gt; or RoN, by Microsoft.
+It is one of the many taunt commands found in the game that essentially play a short audio file, when used in game. Some examples of 
+such voice lines include &lt;em&gt;Taunt 8 - (I need Oil)&lt;/em&gt; or &lt;em&gt;Taunt 60 - (Random! Random!)&lt;/em&gt; &lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. &lt;em&gt;Taunt 3 was for (Maybe)&lt;/em&gt;. While the actual audio file did not play in the chat, everyone understood what that specific friend wanted to convey through the message (that he was saying maybe).&lt;/p&gt;
 
-&lt;p&gt;It was at that point that I questioned myself that what was stopping us from having the actual voice clips play, when a message matching the RoN taunt command was sent to the group.
-And what better way to do that then to use a Telegram bot to accomplish this task.&lt;/p&gt;
+&lt;p&gt;It was at that point, when seeing the message, that I asked myself. What was stopping us from having the actual audio files play? When a message matching the RoN taunt command was sent to the group, the relevant audio file could be sent to the group chat. And what better way to do this, than to use a Telegram bot for such an endeavour?&lt;/p&gt;
 
-&lt;p&gt;Now I’ve used the &lt;a href=&quot;https://github.com/python-telegram-bot&quot;&gt;Python Telegram library&lt;/a&gt; for this specific bot. The reason being that it has a much better developed API interface and is a much more mature library compared to any other library out there. The bot is persistent and in every execution cycle it parses every message that is passed in a group it is a part of. To allow a Telegram bot to have this access
-to the messages of a group, you have to change the default privacy mode of the newly created bot using the &lt;a href=&quot;https://core.telegram.org/bots#6-botfather&quot;&gt;BotFather&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Do note that I’ve used the &lt;a href=&quot;https://github.com/python-telegram-bot&quot;&gt;Python Telegram library&lt;/a&gt; for this specific bot. The reasoning behind this being that it has a better developed API interface and in general, is a much more mature library compared to any other similar library out there. The bot, in every execution cycle. parses every message that is passed in a group of which it is a part. To allow a Telegram bot to have this level of unrestricted access
+to the messages of a group, you have to change the default privacy mode of any such bot using the options given by the &lt;a href=&quot;https://core.telegram.org/bots#6-botfather&quot;&gt;BotFather&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The bot will discard any message greater than a specific to avoid too much parsing of the message and decrease the burden on the bot.
-The bot will essentially try to match the given message to a &lt;em&gt;Taunt X&lt;/em&gt; type format. The word taunt followed by a integer ranging from one to hundred, which encompasses all the default taunts in RoN.&lt;/p&gt;
+&lt;p&gt;Continuing on, the bot will discard any message greater than a specific length to avoid too much parsing of the message. This also decreases the burden on the bot. The primary task of the bot is to match every valid message format of &lt;em&gt;Taunt X&lt;/em&gt;, X is an integer ranging from one to hundred. This encompasses all the default taunts in RoN.&lt;/p&gt;
 
-&lt;p&gt;The most time consuming section of making this bot was the part where every Taunt had to be matched to a specific audio file. These matches were found via
-creating a dictionary that matches every number to its specific audio file. And sadly, this had to be done manually as the audio file names did not correspond with their numbers. By this I mean that for say &lt;em&gt;Taunt 35&lt;/em&gt;, the relevant audio file is not called something like &lt;em&gt;taunt35.wav&lt;/em&gt; but instead &lt;em&gt;ships_ahoy-3.wav&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The most time-consuming portion while making this bot was when every Taunt had to be matched to a specific audio file. These matches were found by
+creating a dictionary that matches every number to its specific audio file. This was done so that the bot could match the given command to the correct audio file quickly which had to be done manually as the audio file names did not correspond to their numbers. By this I mean that for say &lt;em&gt;Taunt 35&lt;/em&gt;, the relevant audio file is not called something like &lt;em&gt;taunt35.wav&lt;/em&gt; but instead is called &lt;em&gt;ships_ahoy-3.wav&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;With all these features in place, the bot is now complete and can be deployed.&lt;/p&gt;
 
 &lt;p&gt;Please &lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;click here&lt;/a&gt; to go to the Github repository with the actual code of the bot&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
-&lt;p&gt;A friend of mine, &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; improved the bot code by adding queues for &lt;a href=&quot;https://github.com/python-telegram-bot/python-telegram-bot/wiki/Avoiding-flood-limits&quot;&gt;flood prevention&lt;/a&gt;, created the ability for multi-taunts in one single message like &lt;em&gt;Taunt 33 84 1&lt;/em&gt; to be possible and even added the Age Of Empires’s (another videogame) taunt lines to the bots dictionary.&lt;/p&gt;
+&lt;p&gt;A friend of mine, &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; improved the bot code by adding queues for &lt;a href=&quot;https://github.com/python-telegram-bot/python-telegram-bot/wiki/Avoiding-flood-limits&quot;&gt;flood prevention&lt;/a&gt;. He created the ability for multi-taunts in one single message like &lt;em&gt;Taunt 33 84 1&lt;/em&gt; to be possible and even added the Age Of Empires’ (another videogame) taunt lines to the bots dictionary.&lt;/p&gt;
 
-&lt;p&gt;In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group. At least for some time, and then complaints against the spamming of the bot and of the barrage of large number of notifications meant that it is used much more sparingly now.&lt;/p&gt;
+&lt;p&gt;In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group chat. At least for some time. Then the complaints against the spamming of the bot and the barrage of notifications it brought meant that it is now used much more sparingly.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
 
@@ -39,7 +38,7 @@ creating a dictionary that matches every number to its specific audio file. And 
       &lt;p&gt;&lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;Github Repository&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html">My adventures with bots in the Telegram app continues.</summary></entry><entry><title type="html">The Julia Compilation Process</title><link href="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process" rel="alternate" type="text/html" title="The Julia Compilation Process" /><published>2020-03-26T00:00:00+05:30</published><updated>2020-03-26T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process</id><content type="html" xml:base="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process">&lt;hr /&gt;
+&lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html">My adventures with bots in the Telegram app continues in this blog post.</summary></entry><entry><title type="html">The Julia Compilation Process</title><link href="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process" rel="alternate" type="text/html" title="The Julia Compilation Process" /><published>2020-03-26T00:00:00+05:30</published><updated>2020-03-26T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process</id><content type="html" xml:base="http://localhost:4000/blog/2020/03/26/The-Julia-Compilation-Process">&lt;hr /&gt;
 &lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -181,7 +180,7 @@ code into machine code.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 We mentioned that in the type inferred step, the compiler presents a
-method implementation for a particular set of argument. Let us take an
+method implementation for a particular set of arguments. Let us take an
 example to highlight this. The entire process starts when the function
 &lt;em&gt;pos(x)&lt;/em&gt; is called with say, an integer argument x = 1. The JIT compiler
 now knows the type of x (which will be inferred in the &lt;em&gt;typed inferring
@@ -235,7 +234,7 @@ input x which is of floating value type.&lt;/p&gt;
 and x might be of any type. Thus depending one the value of x, this
 modified method might return a value of either type, highlighted by
 &lt;em&gt;UnionFloat64, Int64&lt;/em&gt; in the generated code. This is one example of
-type-instability, which can lead to slowdown of code execution. One of
+type-instability, which can lead to slow down of code execution. One of
 the reasons being that the compiler has to execute more number of
 instructions to complete the same task (compare this typed pos1(x)
 generated code with that of the code generated by pos(x)).&lt;/p&gt;
@@ -267,7 +266,7 @@ generated code with that of the code generated by pos(x)).&lt;/p&gt;
         &lt;span class=&quot;x&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Union&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Float64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int64&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-One may ask that why doesn’t Julia enforce type-stability. Among the
+One may ask why Julia enforce type-stability. Among the
 multiple reasons, one strikingly important one is that Julia is not a
 statically typed language. These type-stability issues exist in some
 measure in all dynamic languages. Not enforcing type-stability also
@@ -300,7 +299,7 @@ guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://dl.acm.org/doi/10.1145/857076.857077&quot;&gt;A Brief History of Just-in-Time&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://discourse.julialang.org/t/notes-on-the-julia-compiler-jit-vs-static/4275/2&quot;&gt;Notes On The Julia Compier JIT VS Static&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;https://discourse.julialang.org/t/notes-on-the-julia-compiler-jit-vs-static/4275/2&quot;&gt;Notes On The Julia Compiler JIT VS Static&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html">A look at how Julia works in the background.</summary></entry><entry><title type="html">New Year With LaTeX Support &amp;amp; Comment Changes</title><link href="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes" rel="alternate" type="text/html" title="New Year With LaTeX Support &amp; Comment Changes" /><published>2020-01-07T00:00:00+05:30</published><updated>2020-01-07T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes</id><content type="html" xml:base="http://localhost:4000/blog/2020/01/07/New-Year-With-LaTeX-Support-&amp;-Comment-Changes">&lt;hr /&gt;

@@ -51,38 +51,40 @@ nav ul, footer ul {
 
 nav ul li, footer ul li {
     font-size: 130%; display: inline; margin-right: 30px;
-  }
+}
 
-footer { border-top: 1px solid #818181; font-size: 1em; }
+footer { 
+    border-top: 1px solid #818181; font-size: 1em; 
+}
 
 /* Blog */
 posts {
-list-style-type: none;
-margin-bottom: 2em;
+    list-style-type: none;
+    margin-bottom: 2em;
 }
 
 .posts li {
- line-height: 1.3em;
+    line-height: 1.3em;
 }
 
 .posts span {
-color: #1a1a1a;
-font-family: Monaco, "Courier New", monospace;
-font-size: 100%;
+    color: #1a1a1a;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 100%;
 }
 
 /*Poetry*/
-ul.poetry {
-list-style-type: none;
-margin-bottom: 2em;
+ul.misc {
+    list-style-type: none;
+    margin-bottom: 2em;
 }
 
-ul.poetry li {
- line-height: 1.3em;
+ul.misc li {
+    line-height: 1.3em;
 }
 
-ul.poetry span {
-color: #1a1a1a;
-font-family: Monaco, "Courier New", monospace;
-font-size: 100%;
+ul.misc span {
+    color: #1a1a1a;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 100%;
 }
