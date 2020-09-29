@@ -126,3 +126,5 @@ As of this moment(when the post appears online), the WikiRandom bot works - http
 <br><br/>
 
 Thank you for reading this roughly made article.
+
+----------------

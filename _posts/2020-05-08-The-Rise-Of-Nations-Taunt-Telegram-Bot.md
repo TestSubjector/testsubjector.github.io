@@ -33,6 +33,7 @@ A friend of mine, [Nischay Ram](https://github.com/Nischay-Pro) improved the bot
 
 In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group chat. At least for some time. Then the complaints against the spamming of the bot and the barrage of notifications it brought meant that it is now used much more sparingly.
 
+----------------
 **References:**
 
 [^1]: [Rise of Nation Taunt List](https://steamcommunity.com/app/287450/discussions/0/540744474731911106/)

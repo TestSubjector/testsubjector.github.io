@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Primer On HDF5 File-Reading In Fortran 90</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+  </head>
+
+  <body>
+    <nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/misc">Misc</a></li>
+<li><a href="/about">About Me</a></li>
+<li><a href="/feed.xml">RSS</a></li>
+</ul>
+    </nav>
+<post class="container">
+
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+<h1>A Primer On HDF5 File-Reading In Fortran 90</h1>
+<p class="meta">28 Sep 2020</p>
+
+
+<!-- Begin Article
+================================================== -->
+
+
+<post class="post">
+  <hr />
+
+<p>Recently, I had to learn how to read HDF5 format files in Fortran and implement the same in one of my research group’s projects.</p>
+
+<p>The experience was not what I’ll call stellar, I was unhappy for much of the duration of the process as I wasn’t enjoying the work.
+This was primarily because of the opaqueness of the HDF5 official documentation <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> I was working with.</p>
+
+<p>However, I was lucky to stumble onto the DOAS group<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, who had created a package(module) which simplified HDF5 file reading. 
+The package itself was too cumbersome for my needs (they had sacrificed performance for accessibility). However the source code they provided gave me the clarity and insight I needed to understand the working of HDF5 file reading.</p>
+
+<p>Below, I’ve just put into examples, some of the concepts I’ve learned. Note that this covers the basics (hence the <em>Primer</em> in the title of this post) and is aimed at assisting in getting started with HDF5.</p>
+
+<hr />
+<h5 id="prerequisites">Prerequisites</h5>
+<hr />
+<ul>
+  <li>FORTRAN 90</li>
+  <li>HDF5 Module for FORTRAN</li>
+  <li>A PGI/GCC/iFORT Compiler</li>
+  <li>An HDF5 file and knowledge of how information is stored in it</li>
+</ul>
+
+<hr />
+<h5 id="hdf5-file-structure">HDF5 File Structure</h5>
+<hr />
+<script src="https://gist.github.com/TestSubjector/d2ff68b68bf38fb2fdc012dff535fffb.js"></script>
+
+<hr />
+<h5 id="fortran-hdf5-file-reading">Fortran HDF5 File Reading</h5>
+<hr />
+
+<p>Now lets come to the main part. We will use the sample file structure given in the <code class="language-plaintext highlighter-rouge">HDF5.js</code> example above as the targeted file. 
+Additionally, I’ll also be listing the variables required by the subroutines(functions) in their respective code blocks.
+In actual Fortran code, all of those variables mentioned have to be declared before any subroutine call can occur.</p>
+
+<ul>
+  <li>First, before anything else we need to initialize the HDF5 library routines -</li>
+</ul>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">INTEGER</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="w"> </span><span class="c1">! Output variable</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5open_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error initialising HDF routines"</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>Now, we need to open the targeted HDF5 file -</li>
+</ul>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">Character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">part_grid</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">file_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
+
+    </span><span class="n">part_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'point.h5'</span><span class="w"> </span><span class="c1">! Refer to line 5 of HDF5.js file above, which gives the filename</span><span class="w">
+    
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fopen_f</span><span class="p">(</span><span class="n">part_grid</span><span class="p">,</span><span class="w"> </span><span class="n">H5F_ACC_RDONLY_F</span><span class="p">,</span><span class="w"> </span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening HDF file"</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>Then, we need to open the root GROUP “/” present in line 6 of <code class="language-plaintext highlighter-rouge">HDF5.js</code>, which encloses all other data -</li>
+</ul>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="p">::</span><span class="w"> </span><span class="n">rootname</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">      </span><span class="p">::</span><span class="w"> </span><span class="n">root_id</span><span class="w">  </span><span class="c1">! Output variable</span><span class="w">
+
+    </span><span class="n">rootname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/"</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">rootname</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening root group"</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">file_id</code> is the same variable identifier initialized by the <code class="language-plaintext highlighter-rouge">h5open_f()</code> subroutine. This gives the HDF5 library the link between the file and requested group to be opened.</p>
+
+<p>With the preliminaries over with, let’s try to read some data. Suppose we want to read the data in ATTRIBUTE “total”.</p>
+
+<p>Looking at the <code class="language-plaintext highlighter-rouge">HDF5Hierarchy.md</code>, we can see that the specific ATTRIBUTE is enclosed by GROUP “1” which is itself enclosed by the GROUP “/” we just opened.</p>
+
+<ul>
+  <li>Therefore, we need to open GROUP “1” using the variable identifier <code class="language-plaintext highlighter-rouge">root_id</code> we received from opening the root GROUP “/” -</li>
+</ul>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">main_group</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">group_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
+
+    </span><span class="n">main_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/'</span><span class="p">//</span><span class="s1">'1'</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">main_group</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening Group 1"</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>Then use that newly initialized identifer <code class="language-plaintext highlighter-rouge">group_id</code> to open ATTRIBUTE “total” -</li>
+</ul>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">total_attribute</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">a_id</span><span class="w">            </span><span class="c1">! Output variable</span><span class="w">
+    
+    </span><span class="n">total_attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'total'</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aopen_name_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">total_attribute</span><span class="p">,</span><span class="w"> </span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+    
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening total attribute "</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it.<br />
+Looking at the contents, we see that the datatype is of <code class="language-plaintext highlighter-rouge">H5T_STD_I32LE</code>, which is essentially an integer<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.<br />
+Similarly, it stores only one element. With this information we can read the information from the attribute.</p>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">hsize_t</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">dims</span><span class="w">          </span><span class="c1">! Input variable</span><span class="w">
+    </span><span class="kt">INTEGER</span><span class="w">                        </span><span class="p">::</span><span class="w"> </span><span class="n">total_points</span><span class="w">  </span><span class="c1">! Output variable</span><span class="w">
+
+    </span><span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="w">                                          </span><span class="c1">! Total number of elements</span><span class="w">
+    
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aread_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">H5T_NATIVE_INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">total_points</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">  
+
+    </span><span class="c1">! H5T_NATIVE_INTEGER is a part of some mental gymnastics related to making sure your integers </span><span class="w">
+    </span><span class="c1">! are the same as the file's integers. It's a datatypes/compiler thing and more info can be found </span><span class="w">
+    </span><span class="c1">! for the curious in the References section at the end of this blog, under HDF5 Predefined Datatypes.</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The required data to be read, which is given at line 12 in <code class="language-plaintext highlighter-rouge">HDF5.js</code> is <code class="language-plaintext highlighter-rouge">9600</code>. This will now be stored in the <code class="language-plaintext highlighter-rouge">total_points</code> variable.</p>
+
+<p>Finally, once everything is read, it’s in good spirits to close all the opened structures.</p>
+
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aclose_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+    
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fclose_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+    
+    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5close_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error closing HDF routines"</span><span class="w">
+        </span><span class="k">return</span><span class="w">
+    </span><span class="k">ENDIF</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This concept can then be expanded to read datasets, multiple dimensional chunks of data. Then there’s helper subroutines like <code class="language-plaintext highlighter-rouge">h5aget_space_f()</code> to determine dataspace (data stored in an ATTRIBUTE or DATASET) and dataspace dimensionality, at the time of execution rather than the approach of setting <code class="language-plaintext highlighter-rouge">dims=1</code> which I have used here.</p>
+
+<p>However, this is just supposed to be a small beginner friendly introduction to the topic. Maybe sometime later I’ll add a Part 2 to this for more advanced operations, but no plans as of now.</p>
+
+<p>For reference, you can find more extensive usage of the HDF5 code here <sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup>.</p>
+
+<hr />
+<p><strong>References:</strong></p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://portal.hdfgroup.org/display/HDF5/HDF5">HDF5 Official Documentation</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="http://uv-vis.aeronomie.be/software/tools/hdf5read.php">The DOAS Group HDF5 module</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://support.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 Predefined Datatypes</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="https://github.com/Nischay-Pro/mfcfd/blob/hdf5-sec-order/src_mpi_serial/point_preprocessor.F90#L177">Github Repository with HDF5 usage</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</post>
+
+<div class="container">
+	<div class="row">
+
+			
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+
+            <br></br>
+
+            
+            <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"> Previous Post &laquo;  The Rise Of Nations Taunt Telegram Bot </a>
+            
+            <br></br>
+            
+
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+            <script src="https://utteranc.es/client.js"
+                repo="TestSubjector/testsubjector.github.io"
+                issue-term="pathname"
+                label="comments"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+            <!-- Begin Comments
+            ================================================== -->
+            <!-- <div class="just-comments"
+            data-allowguests="true"
+            data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+            </div> -->
+            <!--End Comments
+            ================================================== -->
+	</div>
+	<!-- End Post -->
+
+</div>
+<!-- End Article
+================================================== -->
+
+
+</post>
+
+  <footer>
+   <ul>
+   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+   </ul>
+  </footer>
+  </body>
+
+</html>

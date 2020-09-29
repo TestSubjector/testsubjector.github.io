@@ -267,6 +267,7 @@ it can be as fast as statically typed languages with its compilation
 process. Written in a manner without keeping in mind the few general
 guidelines to the language, it can be deceptively slow to work with.
 
+----------------
 **References:**
 
 [^1]: [A Brief History of Just-in-Time](https://dl.acm.org/doi/10.1145/857076.857077)

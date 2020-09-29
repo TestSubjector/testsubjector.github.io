@@ -1,4 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-26T20:00:47+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">The Rise Of Nations Taunt Telegram Bot</title><link href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot" rel="alternate" type="text/html" title="The Rise Of Nations Taunt Telegram Bot" /><published>2020-05-08T00:00:00+05:30</published><updated>2020-05-08T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id><content type="html" xml:base="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-30T00:33:13+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">A Primer On HDF5 File-Reading In Fortran 90</title><link href="http://localhost:4000/blog/2020/09/28/A-Primer-On-HDF5-File-Reading-In-Fortran-90" rel="alternate" type="text/html" title="A Primer On HDF5 File-Reading In Fortran 90" /><published>2020-09-28T00:00:00+05:30</published><updated>2020-09-28T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/09/28/A-Primer-On-HDF5-File-Reading-In-Fortran-90</id><content type="html" xml:base="http://localhost:4000/blog/2020/09/28/A-Primer-On-HDF5-File-Reading-In-Fortran-90">&lt;hr /&gt;
+
+&lt;p&gt;Recently, I had to learn how to read HDF5 format files in Fortran and implement the same in one of my research group’s projects.&lt;/p&gt;
+
+&lt;p&gt;The experience was not what I’ll call stellar, I was unhappy for much of the duration of the process as I wasn’t enjoying the work.
+This was primarily because of the opaqueness of the HDF5 official documentation &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; I was working with.&lt;/p&gt;
+
+&lt;p&gt;However, I was lucky to stumble onto the DOAS group&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, who had created a package(module) which simplified HDF5 file reading. 
+The package itself was too cumbersome for my needs (they had sacrificed performance for accessibility). However the source code they provided gave me the clarity and insight I needed to understand the working of HDF5 file reading.&lt;/p&gt;
+
+&lt;p&gt;Below, I’ve just put into examples, some of the concepts I’ve learned. Note that this covers the basics (hence the &lt;em&gt;Primer&lt;/em&gt; in the title of this post) and is aimed at assisting in getting started with HDF5.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h5 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h5&gt;
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;FORTRAN 90&lt;/li&gt;
+  &lt;li&gt;HDF5 Module for FORTRAN&lt;/li&gt;
+  &lt;li&gt;A PGI/GCC/iFORT Compiler&lt;/li&gt;
+  &lt;li&gt;An HDF5 file and knowledge of how information is stored in it&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h5 id=&quot;hdf5-file-structure&quot;&gt;HDF5 File Structure&lt;/h5&gt;
+&lt;hr /&gt;
+&lt;script src=&quot;https://gist.github.com/TestSubjector/d2ff68b68bf38fb2fdc012dff535fffb.js&quot;&gt;&lt;/script&gt;
+
+&lt;hr /&gt;
+&lt;h5 id=&quot;fortran-hdf5-file-reading&quot;&gt;Fortran HDF5 File Reading&lt;/h5&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;Now lets come to the main part. We will use the sample file structure given in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HDF5.js&lt;/code&gt; example above as the targeted file. 
+Additionally, I’ll also be listing the variables required by the subroutines(functions) in their respective code blocks.
+In actual Fortran code, all of those variables mentioned have to be declared before any subroutine call can occur.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First, before anything else we need to initialize the HDF5 library routines -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5open_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error initialising HDF routines&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Now, we need to open the targeted HDF5 file -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Character&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;part_grid&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Input variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HID_T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;part_grid&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'point.h5'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Refer to line 5 of HDF5.js file above, which gives the filename&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5fopen_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;part_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;H5F_ACC_RDONLY_F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error opening HDF file&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Then, we need to open the root GROUP “/” present in line 6 of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HDF5.js&lt;/code&gt;, which encloses all other data -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CHARACTER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;LEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootname&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Input variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HID_T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootname&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5gopen_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error opening root group&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file_id&lt;/code&gt; is the same variable identifier initialized by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h5open_f()&lt;/code&gt; subroutine. This gives the HDF5 library the link between the file and requested group to be opened.&lt;/p&gt;
+
+&lt;p&gt;With the preliminaries over with, let’s try to read some data. Suppose we want to read the data in ATTRIBUTE “total”.&lt;/p&gt;
+
+&lt;p&gt;Looking at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HDF5Hierarchy.md&lt;/code&gt;, we can see that the specific ATTRIBUTE is enclosed by GROUP “1” which is itself enclosed by the GROUP “/” we just opened.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Therefore, we need to open GROUP “1” using the variable identifier &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root_id&lt;/code&gt; we received from opening the root GROUP “/” -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;character&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main_group&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Input variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HID_T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;   &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main_group&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5gopen_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main_group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error opening Group 1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Then use that newly initialized identifer &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;group_id&lt;/code&gt; to open ATTRIBUTE “total” -&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;character&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_attribute&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Input variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HID_T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_attribute&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'total'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5aopen_name_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error opening total attribute &quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it.&lt;br /&gt;
+Looking at the contents, we see that the datatype is of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;H5T_STD_I32LE&lt;/code&gt;, which is essentially an integer&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;br /&gt;
+Similarly, it stores only one element. With this information we can read the information from the attribute.&lt;/p&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hsize_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;DIMENSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dims&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;          &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Input variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;                        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_points&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Output variable&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dims&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;                                          &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! Total number of elements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5aread_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;H5T_NATIVE_INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dims&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;  
+
+    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! H5T_NATIVE_INTEGER is a part of some mental gymnastics related to making sure your integers &lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! are the same as the file's integers. It's a datatypes/compiler thing and more info can be found &lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;! for the curious in the References section at the end of this blog, under HDF5 Predefined Datatypes.&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The required data to be read, which is given at line 12 in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HDF5.js&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;9600&lt;/code&gt;. This will now be stored in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total_points&lt;/code&gt; variable.&lt;/p&gt;
+
+&lt;p&gt;Finally, once everything is read, it’s in good spirits to close all the opened structures.&lt;/p&gt;
+
+&lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5aclose_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5gclose_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;group_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5gclose_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5fclose_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;CALL&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h5close_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;IF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorFlag&lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;.lt.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;THEN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; *** Error closing HDF routines&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ENDIF&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This concept can then be expanded to read datasets, multiple dimensional chunks of data. Then there’s helper subroutines like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;h5aget_space_f()&lt;/code&gt; to determine dataspace (data stored in an ATTRIBUTE or DATASET) and dataspace dimensionality, at the time of execution rather than the approach of setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dims=1&lt;/code&gt; which I have used here.&lt;/p&gt;
+
+&lt;p&gt;However, this is just supposed to be a small beginner friendly introduction to the topic. Maybe sometime later I’ll add a Part 2 to this for more advanced operations, but no plans as of now.&lt;/p&gt;
+
+&lt;p&gt;For reference, you can find more extensive usage of the HDF5 code here &lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://portal.hdfgroup.org/display/HDF5/HDF5&quot;&gt;HDF5 Official Documentation&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://uv-vis.aeronomie.be/software/tools/hdf5read.php&quot;&gt;The DOAS Group HDF5 module&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://support.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html&quot;&gt;HDF5 Predefined Datatypes&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/Nischay-Pro/mfcfd/blob/hdf5-sec-order/src_mpi_serial/point_preprocessor.F90#L177&quot;&gt;Github Repository with HDF5 usage&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html"></summary></entry><entry><title type="html">The Rise Of Nations Taunt Telegram Bot</title><link href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot" rel="alternate" type="text/html" title="The Rise Of Nations Taunt Telegram Bot" /><published>2020-05-08T00:00:00+05:30</published><updated>2020-05-08T00:00:00+05:30</updated><id>http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id><content type="html" xml:base="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot">&lt;hr /&gt;
 &lt;p&gt;My adventures with bots in the Telegram app continues in this blog post.&lt;/p&gt;
 
 &lt;p&gt;I have a group chat on Telegram that includes my college wingmates. A place to stay connected with the folks that have lived adjacent to me
@@ -27,6 +211,7 @@ creating a dictionary that matches every number to its specific audio file. This
 
 &lt;p&gt;In conclusion, I would like to inform the reader that the bot was a roaring success in our Telegram group chat. At least for some time. Then the complaints against the spamming of the bot and the barrage of notifications it brought meant that it is now used much more sparingly.&lt;/p&gt;
 
+&lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
@@ -291,6 +476,7 @@ it can be as fast as statically typed languages with its compilation
 process. Written in a manner without keeping in mind the few general
 guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
 
+&lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
@@ -307,7 +493,9 @@ guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
 Which means another go at this blog.&lt;br /&gt;
 For \(\forall posts \in blog\), enable LaTeX.&lt;/p&gt;
 
-&lt;p&gt;Additionally, I’ve shifted from &lt;em&gt;just-comments&lt;/em&gt; to the &lt;em&gt;&lt;a href=&quot;https://utteranc.es/&quot;&gt;utterances.es&lt;/a&gt;&lt;/em&gt; widget. For a cleaner and less spam-ish comment interface.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">It’s a new year! Which means another go at this blog. For \(\forall posts \in blog\), enable LaTeX. Additionally, I’ve shifted from just-comments to the utterances.es widget. For a cleaner and less spam-ish comment interface.</summary></entry><entry><title type="html">Making A Simple Telegram Bot In Julia</title><link href="http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia" rel="alternate" type="text/html" title="Making A Simple Telegram Bot In Julia" /><published>2019-03-17T00:00:00+05:30</published><updated>2019-03-17T00:00:00+05:30</updated><id>http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia</id><content type="html" xml:base="http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia">&lt;hr /&gt;
+&lt;p&gt;Additionally, I’ve shifted from &lt;em&gt;just-comments&lt;/em&gt; to the &lt;em&gt;&lt;a href=&quot;https://utteranc.es/&quot;&gt;utterances.es&lt;/a&gt;&lt;/em&gt; widget. For a cleaner and less spam-ish comment interface.&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name>TestSubjector</name></author><summary type="html">It’s a new year! Which means another go at this blog. For \(\forall posts \in blog\), enable LaTeX. Additionally, I’ve shifted from just-comments to the utterances.es widget. For a cleaner and less spam-ish comment interface.</summary></entry><entry><title type="html">Making A Simple Telegram Bot In Julia</title><link href="http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia" rel="alternate" type="text/html" title="Making A Simple Telegram Bot In Julia" /><published>2019-03-17T00:00:00+05:30</published><updated>2019-03-17T00:00:00+05:30</updated><id>http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia</id><content type="html" xml:base="http://localhost:4000/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia">&lt;hr /&gt;
 &lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
 And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? &lt;br /&gt;
 &lt;br /&gt;
@@ -423,7 +611,9 @@ As of this moment(when the post appears online), the WikiRandom bot works - http
 &amp;lt;img src=”http://localhost:4000/images/telegrambots/allstart.png” margin: auto alt = “Perfection”&amp;gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Thank you for reading this roughly made article.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? Therefore, here I’ll be doing a quick run-through on how a simple bot called WikiRandom bot was made for Telegram. The purpose of the bot is very simple and concise i.e a user will ask the bot for a link to any random article on Wikipedia and the bot will respond with such a link.</summary></entry><entry><title type="html">Comments Now Work On Pi Day</title><link href="http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day" rel="alternate" type="text/html" title="Comments Now Work On Pi Day" /><published>2019-03-14T00:00:00+05:30</published><updated>2019-03-14T00:00:00+05:30</updated><id>http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id><content type="html" xml:base="http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day">&lt;hr /&gt;
+&lt;p&gt;Thank you for reading this roughly made article.&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name>TestSubjector</name></author><summary type="html">So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. And well, what better language to use than Julia? Yes, Python may have a much more developed series of libraries for making Telegram bots, but where is the fun in using that? Therefore, here I’ll be doing a quick run-through on how a simple bot called WikiRandom bot was made for Telegram. The purpose of the bot is very simple and concise i.e a user will ask the bot for a link to any random article on Wikipedia and the bot will respond with such a link.</summary></entry><entry><title type="html">Comments Now Work On Pi Day</title><link href="http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day" rel="alternate" type="text/html" title="Comments Now Work On Pi Day" /><published>2019-03-14T00:00:00+05:30</published><updated>2019-03-14T00:00:00+05:30</updated><id>http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id><content type="html" xml:base="http://localhost:4000/blog/2019/03/14/Comments-Now-Work-On-Pi-Day">&lt;hr /&gt;
 &lt;p&gt;Well, there’s not much of a Pi day celebration (or even mention) on our side of the world.&lt;br /&gt;
 That’s simply because we go for a DD/MM format rather than peculiar MM/DD format for dates.&lt;br /&gt;
 So we usually refer to this day as 14/03 rather than 03/14, which is…more bland yes.&lt;br /&gt;
@@ -527,22 +717,4 @@ Maybe I’ll also put up some summary notes here in the future? Let’s try with
 &lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;features_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Shoutout to my &lt;a href=&quot;http://arnavdhamija.com/&quot;&gt;friend&lt;/a&gt; for prodding me to &lt;em&gt;attempt&lt;/em&gt; to blog again.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a Disaster Zone, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future. That, and I’m now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world. Now, AI was something I wanted to get into as kid(and seeing everyone else suddenly get hyped about the same, in these last few years has been damn frustrating (The competition!)). Anyway, I can rant a lot about this to be sure; but let’s get on with the main topic. I’ve started with the basic of the basics, the Udacity course Introduction To Machine Learning. I’ll try to put up updates about this course as I go deeper into it. Maybe I’ll also put up some summary notes here in the future? Let’s try with a brief one. The first main topic, Naive Bayes can be (on the code side) be summed up by the following few lines -</summary></entry><entry><title type="html">BattleCode Report</title><link href="http://localhost:4000/blog/2018/03/14/BattleCode-Report" rel="alternate" type="text/html" title="BattleCode Report" /><published>2018-03-14T00:00:00+05:30</published><updated>2018-03-14T00:00:00+05:30</updated><id>http://localhost:4000/blog/2018/03/14/BattleCode-Report</id><content type="html" xml:base="http://localhost:4000/blog/2018/03/14/BattleCode-Report">&lt;hr /&gt;
-&lt;p&gt;Another very late post, I know.&lt;/p&gt;
-
-&lt;p&gt;So, Team #369 - Markov Chain Gang, secured a position in the top 8-12th bracket of the International Qualifying bracket of BattleCode 2018.
-We had a really good chance of getting a place in the Finals (&amp;amp; a trip to MIT!), if not for some of these reasons -&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Two (out of 4) of our team members got bogged down with other college related activities. So it ended with me and @legobridge
-carrying the team.&lt;/li&gt;
-  &lt;li&gt;Docker problems plagued me throughout the tournament. I lost 3-4 days cumulative in patching, updating, clearing, removing, re-installing docker to run the BattleCode scaffold.&lt;/li&gt;
-  &lt;li&gt;A quota of max 4 International teams for the finals (out of the total 16 spots) was implemented for this year.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Very honestly, it was the last point that hurt the most. The “International” teams were as a whole way more competitive; most of the top positions in the daily scrimmage rankings were captured by these teams. I understand the reason why it was done (last year had almost nil local presence) but I can’t help feel a bit salty. Mainly due to the fact that despite the other problems, we had a good chance of getting into the Finals, if not for the quota.&lt;/p&gt;
-
-&lt;p&gt;Sigh, quotas are a sticky, volatile and frustrating point for many people in my country, including me, in general(&lt;em&gt;puns&lt;/em&gt;).
-However, I can’t deny that the experience was lovely. Every single part of it, from regularly coding upto 20 hours at a stretch, the fun discussions on Twitch and Discord; the strategies and plans hatched and abandoned. It’s something I’ll definitely want to do again next year too.&lt;/p&gt;
-
-&lt;p&gt;Just no Docker again, please.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">Another very late post, I know.</summary></entry></feed>
+&lt;p&gt;Shoutout to my &lt;a href=&quot;http://arnavdhamija.com/&quot;&gt;friend&lt;/a&gt; for prodding me to &lt;em&gt;attempt&lt;/em&gt; to blog again.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html">In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a Disaster Zone, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future. That, and I’m now really tired(read envious) of seeing other people achieve stuff and play games and have fun without a care in the world. Now, AI was something I wanted to get into as kid(and seeing everyone else suddenly get hyped about the same, in these last few years has been damn frustrating (The competition!)). Anyway, I can rant a lot about this to be sure; but let’s get on with the main topic. I’ve started with the basic of the basics, the Udacity course Introduction To Machine Learning. I’ll try to put up updates about this course as I go deeper into it. Maybe I’ll also put up some summary notes here in the future? Let’s try with a brief one. The first main topic, Naive Bayes can be (on the code side) be summed up by the following few lines -</summary></entry></feed>
