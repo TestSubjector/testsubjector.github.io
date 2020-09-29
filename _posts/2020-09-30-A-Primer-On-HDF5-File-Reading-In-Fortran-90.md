@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Primer On HDF5 File-Reading In Fortran 90"
-date: 2020-09-28
+date: 2020-09-30
 mathjax: true
 ---
 ----------------
