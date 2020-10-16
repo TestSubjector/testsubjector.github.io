@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New Year With LaTeX Support & Comment Changes"
+title: "New Year With LaTeX Support Plus Comment Changes"
 date: 2020-01-07
 mathjax: true
 ---

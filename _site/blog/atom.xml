@@ -24,7 +24,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2020-09-30T00:33:13+05:30</updated>
+ <updated>2020-10-16T19:52:05+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -34,9 +34,9 @@
  
  <entry>
    <title>A Primer On HDF5 File-Reading In Fortran 90</title>
-   <link href="http://testsubjector.github.io/blog/2020/09/28/A-Primer-On-HDF5-File-Reading-In-Fortran-90"/>
-   <updated>2020-09-28T00:00:00+05:30</updated>
-   <id>http://testsubjector.github.io//blog/2020/09/28/A-Primer-On-HDF5-File-Reading-In-Fortran-90</id>
+   <link href="http://testsubjector.github.io/blog/2020/09/30/A-Primer-On-HDF5-File-Reading-In-Fortran-90"/>
+   <updated>2020-09-30T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2020/09/30/A-Primer-On-HDF5-File-Reading-In-Fortran-90</id>
    <content type="html">&lt;hr /&gt;
 
 &lt;p&gt;Recently, I had to learn how to read HDF5 format files in Fortran and implement the same in one of my research group’s projects.&lt;/p&gt;
@@ -550,10 +550,10 @@ guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
  </entry>
  
  <entry>
-   <title>New Year With LaTeX Support & Comment Changes</title>
-   <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes"/>
+   <title>New Year With LaTeX Support Plus Comment Changes</title>
+   <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support-Plus-Comment-Changes"/>
    <updated>2020-01-07T00:00:00+05:30</updated>
-   <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support-&-Comment-Changes</id>
+   <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support-Plus-Comment-Changes</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;It’s a new year!&lt;br /&gt;
 Which means another go at this blog.&lt;br /&gt;
