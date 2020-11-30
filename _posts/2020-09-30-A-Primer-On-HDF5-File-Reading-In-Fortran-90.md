@@ -134,9 +134,12 @@ Similarly, it stores only one element. With this information we can read the inf
     
     CALL h5aread_f(a_id, H5T_NATIVE_INTEGER, total_points, dims, ErrorFlag)  
 
-    ! H5T_NATIVE_INTEGER is a part of some mental gymnastics related to making sure your integers 
-    ! are the same as the file's integers. It's a datatypes/compiler thing and more info can be found 
-    ! for the curious in the References section at the end of this blog, under HDF5 Predefined Datatypes.
+    ! H5T_NATIVE_INTEGER is a part of some mental gymnastics 
+    ! related to making sure your integers 
+    ! are the same as the file's integers. It's a datatypes/compiler 
+    ! thing and more info can be found for the curious in the 
+    ! References section at the end of this blog, under the 
+    ! HDF5 Predefined Datatypes.
 ```
 
 The required data to be read, which is given at line 12 in `HDF5.js` is `9600`. This will now be stored in the `total_points` variable.
