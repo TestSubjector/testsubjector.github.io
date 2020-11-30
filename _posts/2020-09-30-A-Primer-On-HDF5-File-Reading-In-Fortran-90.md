@@ -56,7 +56,8 @@ In actual Fortran code, all of those variables mentioned have to be declared bef
     Character(len=65) :: part_grid ! Input variable
     INTEGER(HID_T)    :: file_id   ! Output variable
 
-    part_grid = 'point.h5' ! Refer to line 5 of HDF5.js file above, which gives the filename
+    part_grid = 'point.h5' ! Refer to line 5 of HDF5.js file above,
+    ! which gives the filename
     
     CALL h5fopen_f(part_grid, H5F_ACC_RDONLY_F, file_id, ErrorFlag)
 
