@@ -2,17 +2,21 @@
 layout: default
 title: Antithetical Parallels
 ---
-		<div class="blurb">
-			<h1>Salutations</h1>
-			<p> I'm using Github Pages to blog about my projects, poetry and whatnot. Unfortunately, experience has told me it takes me just too
-				much time to be able to write a proper post. So expect large periods of silence or even complete abandonment at any point of time.
-				<br></br>
-				Don't be confused by the simple layout. It's a feature.
-			</p>
-		</div>
-
-    <h5 class="page__title">Recent Posts</h5>
-    {% for post in site.posts limit: 5 %}
-      <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> &raquo; <span>{{ post.date | date_to_string }}</span></li>
-		{% endfor %}
+<div class="blurb">
+	<h5>Salutations</h5>
+	<p> I'm using Github Pages to blog about my projects, poetry and whatnot. Unfortunately, experience has told me it takes me just too
+		much time to be able to write a proper post. So expect large periods of silence or even complete abandonment at any point of time.
 		<br></br>
+		Don't be confused by the simple layout. It's a feature.
+	</p>
+</div>
+
+<h5 class="page_title">
+    Recent Posts
+</h5>
+<ul class="post_list">
+    {% for post in site.posts limit: 5 %}
+        <li><span>{{ post.date | date_to_string }}</span> &raquo; 
+        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>

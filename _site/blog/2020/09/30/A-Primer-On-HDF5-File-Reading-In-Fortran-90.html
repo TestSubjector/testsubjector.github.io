@@ -8,17 +8,16 @@
 
   <body>
     <nav>
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/blog">Blog</a></li>
-<li><a href="/misc">Misc</a></li>
-<li><a href="/about">About Me</a></li>
-<li><a href="/feed.xml">RSS</a></li>
-</ul>
-    </nav>
-<post class="container">
-
-  
+    <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/misc">Misc</a></li>
+    <li><a href="/about">About Me</a></li>
+    <li><a href="/feed.xml">RSS</a></li>
+    </ul>
+        </nav>
+    <post class="container">
+      
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -40,14 +39,10 @@
 >
 </script>
 
-<h1>A Primer On HDF5 File-Reading In Fortran 90</h1>
+<h5>A Primer On HDF5 File-Reading In Fortran 90</h5>
 <p class="meta">30 Sep 2020</p>
-
-
 <!-- Begin Article
 ================================================== -->
-
-
 <post class="post">
   <hr />
 
@@ -105,7 +100,8 @@ In actual Fortran code, all of those variables mentioned have to be declared bef
 <div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">Character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">part_grid</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
     </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">file_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
 
-    </span><span class="n">part_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'point.h5'</span><span class="w"> </span><span class="c1">! Refer to line 5 of HDF5.js file above, which gives the filename</span><span class="w">
+    </span><span class="n">part_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'point.h5'</span><span class="w"> </span><span class="c1">! Refer to line 5 of HDF5.js file above,</span><span class="w">
+    </span><span class="c1">! which gives the filename</span><span class="w">
     
     </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fopen_f</span><span class="p">(</span><span class="n">part_grid</span><span class="p">,</span><span class="w"> </span><span class="n">H5F_ACC_RDONLY_F</span><span class="p">,</span><span class="w"> </span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
@@ -185,9 +181,12 @@ Similarly, it stores only one element. With this information we can read the inf
     
     </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aread_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">H5T_NATIVE_INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">total_points</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">  
 
-    </span><span class="c1">! H5T_NATIVE_INTEGER is a part of some mental gymnastics related to making sure your integers </span><span class="w">
-    </span><span class="c1">! are the same as the file's integers. It's a datatypes/compiler thing and more info can be found </span><span class="w">
-    </span><span class="c1">! for the curious in the References section at the end of this blog, under HDF5 Predefined Datatypes.</span><span class="w">
+    </span><span class="c1">! H5T_NATIVE_INTEGER is a part of some mental gymnastics </span><span class="w">
+    </span><span class="c1">! related to making sure your integers </span><span class="w">
+    </span><span class="c1">! are the same as the file's integers. It's a datatypes/compiler </span><span class="w">
+    </span><span class="c1">! thing and more info can be found for the curious in the </span><span class="w">
+    </span><span class="c1">! References section at the end of this blog, under the </span><span class="w">
+    </span><span class="c1">! HDF5 Predefined Datatypes.</span><span class="w">
 </span></code></pre></div></div>
 
 <p>The required data to be read, which is given at line 12 in <code class="language-plaintext highlighter-rouge">HDF5.js</code> is <code class="language-plaintext highlighter-rouge">9600</code>. This will now be stored in the <code class="language-plaintext highlighter-rouge">total_points</code> variable.</p>
@@ -236,58 +235,58 @@ Similarly, it stores only one element. With this information we can read the inf
 </div>
 
 </post>
-
+<footer>
 <div class="container">
 	<div class="row">
-
 			
 
             <!-- Prev/Next -->
             <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-
-            <br></br>
-
-            
-            <a class="prev d-block col-md-6" href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"> Previous Post &laquo;  The Rise Of Nations Taunt Telegram Bot </a>
-            
-            <br></br>
-            
-
-            <div class="clearfix"></div>
+                <br>
             </div>
-            <!-- End Categories -->
-            <script src="https://utteranc.es/client.js"
-                repo="TestSubjector/testsubjector.github.io"
-                issue-term="pathname"
-                label="comments"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-            </script>
-            <!-- Begin Comments
-            ================================================== -->
-            <!-- <div class="just-comments"
-            data-allowguests="true"
-            data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
-            </div> -->
-            <!--End Comments
-            ================================================== -->
+    </div>
+    <div class="row">
+        <div class="col">
+            
+            <a href="http://localhost:4000/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"> Previous Post &laquo;  The Rise Of Nations Taunt Telegram Bot </a>
+            
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="clearfix"></div>
+        <!-- End Categories -->
+        <script src="https://utteranc.es/client.js"
+            repo="TestSubjector/testsubjector.github.io"
+            issue-term="pathname"
+            label="comments"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+        <!-- Begin Comments
+        ================================================== -->
+        <!-- <div class="just-comments"
+        data-allowguests="true"
+        data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+        </div> -->
+        <!--End Comments
+        ================================================== -->
 	</div>
 	<!-- End Post -->
-
 </div>
+</footer>
 <!-- End Article
 ================================================== -->
 
-
-</post>
-
-  <footer>
-   <ul>
-   <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
-   <li><a href="https://github.com/TestSubjector">GitHub</a></li>
-   </ul>
-  </footer>
+    </post>
+    <footer>
+       <ul>
+       <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+       <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+       </ul>
+    </footer>
   </body>
-
 </html>

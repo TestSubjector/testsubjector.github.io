@@ -10,8 +10,7 @@ And well, what better language to use than Julia? Yes, Python may have a much mo
 Therefore, here I'll be doing a quick run-through on how a simple bot called WikiRandom bot was made for Telegram. The purpose of the bot is very simple and concise i.e a user will ask the bot for a link to any random article on Wikipedia and the bot will respond with such a link.<br/>
 
 Here is an example of the bot in action - <br/>
-<img src="{{site.url}}/images/telegrambots/workinglist.png" margin: auto alt = "It's Alive!">
-
+<img src="{{site.url}}/images/telegrambots/workinglist.png" alt = "It's Alive!">
 
 Firstly, let's start with a quick primer for those not familiar with the topic in hand.<br/>
 
@@ -30,7 +29,7 @@ Now, we start looking into the actual approach to build our bot.
 
 Before anything else, we need to have a bot to call our own. Bots in Telegram *are special accounts that do not require an additional phone number to set up* and to make these special accounts Telegram provides an ... in-built bot(!) called the [BotFather](https://telegram.me/botfather). Once you have it running, it is pretty self explanatory in the way it is supposed to be used.
 <br><br/>
-<img src="{{site.url}}/images/telegrambots/botfather1.png" margin: auto alt = "The Botfather">
+<img src="{{site.url}}/images/telegrambots/botfather1.png" alt = "The Botfather">
 <br><br/>
 **Communicating with your bot**
 
@@ -58,7 +57,7 @@ function main()
 end
 ```
 Now the inner workings of the code will be understood by going through the docs but essentially the *txtCmnds* are the text commands that will be given as input to the bot and in return the bot gives the expected response. The startBot method make sures that everything is running in a neat, tight loop. For example of a text command, here is the /*repeatmessage* command in action.<br><br/>
-<img src="{{site.url}}/images/telegrambots/repeatmessage.png" margin: auto alt = "Repeat Message">
+<img src="{{site.url}}/images/telegrambots/repeatmessage.png" alt = "Repeat Message">
 <br><br/>
 **Bot Commands - Minor**
 
@@ -74,7 +73,7 @@ function echo(incoming::AbstractString)
 end
 ```
 It's time to digress a bit. There was an issue originally that could easily lead to using the welcomeMessage command (or some other command) to pretty quickly fill your console with warning messages - <br><br/>
-<img src="{{site.url}}/images/telegrambots/allstringstarterror.png" margin: auto alt = "Warnings everywhere">
+<img src="{{site.url}}/images/telegrambots/allstringstarterror.png" alt = "Warnings everywhere">
 <br><br/>
 The details can be learned about in this [issue](https://github.com/Moelf/Telegrambot.jl/issues/5). In brief, the way the wrapper code was set up required all commands to have a message(parameter) when sent to the bot (*/bot_command* non_empty_message). Moelf fixed the issue by himself, adding other improvements to the code (even though I said I'll do it, mid-semester exams made it impossible for me to quickly work on this). So this is a non-issue now.
 <br><br/>
@@ -122,9 +121,7 @@ Perfect, now all you need to do is keep your system running 24/7 with the code e
 Shift all the necessary code to the instance and a simple *nohup /path/to/julia/executable your_script_to_run_the_code.jl &* command later, you have bot that you can access from Telegram anytime and share it with your friends and just feel happy seeing it in action. Until of course the free one-year Google subscription ends or till someone makes a half-hearted attempt at breaking the bot. <br><br/>
 As of this moment(when the post appears online), the WikiRandom bot works - http://t.me/WikiRandomBot. Please have a go at using it (without trying to break it preferably). I may come back to this and improve the commands and response from the bots if I use it enough in the future. Or I could just revert the code back to when the bot was in its utopian form (shown below).
 <br><br/>
-<img src="{{site.url}}/images/telegrambots/allstart.png" margin: auto alt = "Perfection">
+<img src="{{site.url}}/images/telegrambots/allstart.png" alt = "Perfection">
 <br><br/>
 
 Thank you for reading this roughly made article.
-
-----------------

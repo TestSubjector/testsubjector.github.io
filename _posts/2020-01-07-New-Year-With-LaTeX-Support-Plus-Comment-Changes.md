@@ -10,5 +10,3 @@ Which means another go at this blog.
 For $$\forall posts \in blog$$, enable LaTeX.  
   
 Additionally, I've shifted from *just-comments* to the *[utterances.es](https://utteranc.es/)* widget. For a cleaner and less spam-ish comment interface.
-
-----------------
