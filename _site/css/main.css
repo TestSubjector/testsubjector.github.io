@@ -1,15 +1,34 @@
 @import url(vs.css);
-body {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0px auto;
-  border: #00a2ff 0px solid;
-  width: 40%;
-  white-space: normal;
-  overflow-wrap: break-word;
-  background: #f3f0f0;
-  border-radius: 5px;
-  text-align: justify;
+
+@media screen and (max-width: 768px) {
+    /* For mobile phones: */
+    body {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0px auto;
+        border: #00a2ff 0px solid;
+        width: 80%;
+        white-space: normal;
+        overflow-wrap: break-word;
+        background: #f3f0f0;
+        border-radius: 5px;
+        text-align: justify;
+      }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0px auto;
+        border: #00a2ff 0px solid;
+        width: 40%;
+        white-space: normal;
+        overflow-wrap: break-word;
+        background: #f3f0f0;
+        border-radius: 5px;
+        text-align: justify;
+      }
 }
 
 a {
@@ -58,15 +77,14 @@ nav ul, footer ul {
   font-weight: bold;
   position: relative;
   background: #f3f0f0;
-  line-height: 0px;
+  white-space: normal;
 }
 
 nav ul li, footer ul li {
     font-size: 100%; 
     display: inline; 
     margin-right: 30px;
-    /* line-height: 0px; */
-    /* margin-bottom: 0px; */
+    white-space: normal;
 }
 
 footer { 
@@ -107,5 +125,6 @@ ul.misc span {
 }
 
 pre {
-    white-space: pre-wrap;
-}
+    /* white-space: pre-line; */
+    overflow-x:scroll;
+}    
