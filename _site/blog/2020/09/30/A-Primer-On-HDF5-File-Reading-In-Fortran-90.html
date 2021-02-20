@@ -5,17 +5,16 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
   </head>
-
   <body>
     <nav>
-    <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/misc">Misc</a></li>
-    <li><a href="/about">About Me</a></li>
-    <li><a href="/feed.xml">RSS</a></li>
-    </ul>
-        </nav>
+        <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/misc">Misc</a></li>
+        <li><a href="/about">About Me</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        </ul>
+    </nav>
     <post class="container">
       
 <script type="text/x-mathjax-config">
@@ -79,133 +78,117 @@ The package itself was too cumbersome for my needs (they had sacrificed performa
 Additionally, I’ll also be listing the variables required by the subroutines(functions) in their respective code blocks.
 In actual Fortran code, all of those variables mentioned have to be declared before any subroutine call can occur.</p>
 
-<ul>
-  <li>First, before anything else we need to initialize the HDF5 library routines -</li>
-</ul>
+<p>First, before anything else we need to initialize the HDF5 library routines -</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">INTEGER</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="w"> </span><span class="c1">! Output variable</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">INTEGER</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="w"> </span><span class="c1">! Output variable</span><span class="w">
 
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5open_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5open_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error initialising HDF routines"</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error initialising HDF routines"</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
-<ul>
-  <li>Now, we need to open the targeted HDF5 file -</li>
-</ul>
+<p>Now, we need to open the targeted HDF5 file -</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">Character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">part_grid</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
-    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">file_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">Character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">65</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">part_grid</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+</span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">file_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
 
-    </span><span class="n">part_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'point.h5'</span><span class="w"> </span><span class="c1">! Refer to line 5 of HDF5.js file above,</span><span class="w">
-    </span><span class="c1">! which gives the filename</span><span class="w">
+</span><span class="n">part_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'point.h5'</span><span class="w"> </span><span class="c1">! Refer to line 5 of HDF5.js </span><span class="w">
+</span><span class="c1">! which gives the filename</span><span class="w">
     
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fopen_f</span><span class="p">(</span><span class="n">part_grid</span><span class="p">,</span><span class="w"> </span><span class="n">H5F_ACC_RDONLY_F</span><span class="p">,</span><span class="w"> </span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fopen_f</span><span class="p">(</span><span class="n">part_grid</span><span class="p">,</span><span class="w"> </span><span class="n">H5F_ACC_RDONLY_F</span><span class="p">,</span><span class="w"> </span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening HDF file"</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening HDF file"</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
-<ul>
-  <li>Then, we need to open the root GROUP “/” present in line 6 of <code class="language-plaintext highlighter-rouge">HDF5.js</code>, which encloses all other data -</li>
-</ul>
+<p>Then, we need to open the root GROUP “/” present in line 6 of <code class="language-plaintext highlighter-rouge">HDF5.js</code>, which encloses all other data -</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="p">::</span><span class="w"> </span><span class="n">rootname</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
-    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">      </span><span class="p">::</span><span class="w"> </span><span class="n">root_id</span><span class="w">  </span><span class="c1">! Output variable</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">CHARACTER</span><span class="p">(</span><span class="nb">LEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="p">::</span><span class="w"> </span><span class="n">rootname</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+</span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">      </span><span class="p">::</span><span class="w"> </span><span class="n">root_id</span><span class="w">  </span><span class="c1">! Output variable</span><span class="w">
 
-    </span><span class="n">rootname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/"</span><span class="w">
+</span><span class="n">rootname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/"</span><span class="w">
 
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">rootname</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">rootname</span><span class="p">,</span><span class="w"> </span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening root group"</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening root group"</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Here, <code class="language-plaintext highlighter-rouge">file_id</code> is the same variable identifier initialized by the <code class="language-plaintext highlighter-rouge">h5open_f()</code> subroutine. This gives the HDF5 library the link between the file and requested group to be opened.</p>
+<p>Here, <code class="language-plaintext highlighter-rouge">file_id</code> is the same variable identifier initialized by the <code class="language-plaintext highlighter-rouge">h5open_f()</code> subroutine. This gives the HDF5 library the link between the file and requested group to be opened. With the preliminaries over with, let’s try to read some data.</p>
 
-<p>With the preliminaries over with, let’s try to read some data. Suppose we want to read the data in ATTRIBUTE “total”.</p>
+<p>Suppose we want to read the data in ATTRIBUTE “total”. Looking at the <code class="language-plaintext highlighter-rouge">HDF5Hierarchy.md</code>, we can see that the specific ATTRIBUTE is enclosed by GROUP “1” which is itself enclosed by the GROUP “/” we just opened.</p>
 
-<p>Looking at the <code class="language-plaintext highlighter-rouge">HDF5Hierarchy.md</code>, we can see that the specific ATTRIBUTE is enclosed by GROUP “1” which is itself enclosed by the GROUP “/” we just opened.</p>
+<p>Therefore, we need to open GROUP “1” using the variable identifier <code class="language-plaintext highlighter-rouge">root_id</code> we received from opening the root GROUP “/” -</p>
 
-<ul>
-  <li>Therefore, we need to open GROUP “1” using the variable identifier <code class="language-plaintext highlighter-rouge">root_id</code> we received from opening the root GROUP “/” -</li>
-</ul>
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">main_group</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+</span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">group_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">main_group</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
-    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">group_id</span><span class="w">   </span><span class="c1">! Output variable</span><span class="w">
+</span><span class="n">main_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/'</span><span class="p">//</span><span class="s1">'1'</span><span class="w">
 
-    </span><span class="n">main_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/'</span><span class="p">//</span><span class="s1">'1'</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">main_group</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gopen_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="w"> </span><span class="n">main_group</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
-
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening Group 1"</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening Group 1"</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
-<ul>
-  <li>Then use that newly initialized identifer <code class="language-plaintext highlighter-rouge">group_id</code> to open ATTRIBUTE “total” -</li>
-</ul>
+<p>Then use that newly initialized identifer <code class="language-plaintext highlighter-rouge">group_id</code> to open ATTRIBUTE “total” -</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">total_attribute</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
-    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">a_id</span><span class="w">            </span><span class="c1">! Output variable</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">total_attribute</span><span class="w"> </span><span class="c1">! Input variable</span><span class="w">
+</span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">HID_T</span><span class="p">)</span><span class="w">    </span><span class="p">::</span><span class="w"> </span><span class="n">a_id</span><span class="w">            </span><span class="c1">! Output variable</span><span class="w">
     
-    </span><span class="n">total_attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'total'</span><span class="w">
+</span><span class="n">total_attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'total'</span><span class="w">
 
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aopen_name_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">total_attribute</span><span class="p">,</span><span class="w"> </span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aopen_name_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">total_attribute</span><span class="p">,</span><span class="w"> </span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
     
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening total attribute "</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error opening total attribute "</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
-<p>Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it.<br />
-Looking at the contents, we see that the datatype is of <code class="language-plaintext highlighter-rouge">H5T_STD_I32LE</code>, which is essentially an integer<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.<br />
+<p>Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it. 
+Looking at the contents, we see that the datatype is of <code class="language-plaintext highlighter-rouge">H5T_STD_I32LE</code>, which is essentially an integer<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.
 Similarly, it stores only one element. With this information we can read the information from the attribute.</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="kt">INTEGER</span><span class="p">(</span><span class="n">hsize_t</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">dims</span><span class="w">          </span><span class="c1">! Input variable</span><span class="w">
-    </span><span class="kt">INTEGER</span><span class="w">                        </span><span class="p">::</span><span class="w"> </span><span class="n">total_points</span><span class="w">  </span><span class="c1">! Output variable</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">INTEGER</span><span class="p">(</span><span class="n">hsize_t</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">dims</span><span class="w">          
+</span><span class="kt">INTEGER</span><span class="w">                        </span><span class="p">::</span><span class="w"> </span><span class="n">total_points</span><span class="w">  
 
-    </span><span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="w">                                          </span><span class="c1">! Total number of elements</span><span class="w">
+</span><span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="w">                                          
     
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aread_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">H5T_NATIVE_INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">total_points</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">  
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aread_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">H5T_NATIVE_INTEGER</span><span class="p">,</span><span class="w"> </span><span class="n">total_points</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,&amp;</span><span class="w"> 
+</span><span class="p">&amp;</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">  
 
-    </span><span class="c1">! H5T_NATIVE_INTEGER is a part of some mental gymnastics </span><span class="w">
-    </span><span class="c1">! related to making sure your integers </span><span class="w">
-    </span><span class="c1">! are the same as the file's integers. It's a datatypes/compiler </span><span class="w">
-    </span><span class="c1">! thing and more info can be found for the curious in the </span><span class="w">
-    </span><span class="c1">! References section at the end of this blog, under the </span><span class="w">
-    </span><span class="c1">! HDF5 Predefined Datatypes.</span><span class="w">
+</span><span class="c1">! H5T_NATIVE_INTEGER is a part of some mental gymnastics </span><span class="w">
+</span><span class="c1">! related to making sure your integers </span><span class="w">
+</span><span class="c1">! are the same as the file's integers. It's a datatypes/compiler </span><span class="w">
+</span><span class="c1">! thing and more info can be found for the curious in the </span><span class="w">
+</span><span class="c1">! References section at the end of this blog, under the </span><span class="w">
+</span><span class="c1">! HDF5 Predefined Datatypes.</span><span class="w">
 </span></code></pre></div></div>
 
 <p>The required data to be read, which is given at line 12 in <code class="language-plaintext highlighter-rouge">HDF5.js</code> is <code class="language-plaintext highlighter-rouge">9600</code>. This will now be stored in the <code class="language-plaintext highlighter-rouge">total_points</code> variable.</p>
 
 <p>Finally, once everything is read, it’s in good spirits to close all the opened structures.</p>
 
-<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5aclose_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+<div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CALL</span><span class="w"> </span><span class="n">h5aclose_f</span><span class="p">(</span><span class="n">a_id</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fclose_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
+</span><span class="k">CALL</span><span class="w"> </span><span class="n">h5close_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
 
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">group_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
-    
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5gclose_f</span><span class="p">(</span><span class="n">root_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
-
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5fclose_f</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
-    
-    </span><span class="k">CALL</span><span class="w"> </span><span class="n">h5close_f</span><span class="p">(</span><span class="n">ErrorFlag</span><span class="p">)</span><span class="w">
-    </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
-        </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error closing HDF routines"</span><span class="w">
-        </span><span class="k">return</span><span class="w">
-    </span><span class="k">ENDIF</span><span class="w">
+</span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">ErrorFlag</span><span class="ow">.lt.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">
+    </span><span class="n">ErrorMessage</span><span class="o">=</span><span class="s2">" *** Error closing HDF routines"</span><span class="w">
+    </span><span class="k">return</span><span class="w">
+</span><span class="k">ENDIF</span><span class="w">
 </span></code></pre></div></div>
 
 <p>This concept can then be expanded to read datasets, multiple dimensional chunks of data. Then there’s helper subroutines like <code class="language-plaintext highlighter-rouge">h5aget_space_f()</code> to determine dataspace (data stored in an ATTRIBUTE or DATASET) and dataspace dimensionality, at the time of execution rather than the approach of setting <code class="language-plaintext highlighter-rouge">dims=1</code> which I have used here.</p>

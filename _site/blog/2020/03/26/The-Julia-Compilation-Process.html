@@ -5,17 +5,16 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
   </head>
-
   <body>
     <nav>
-    <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/misc">Misc</a></li>
-    <li><a href="/about">About Me</a></li>
-    <li><a href="/feed.xml">RSS</a></li>
-    </ul>
-        </nav>
+        <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/misc">Misc</a></li>
+        <li><a href="/about">About Me</a></li>
+        <li><a href="/feed.xml">RSS</a></li>
+        </ul>
+    </nav>
     <post class="container">
       
 <script type="text/x-mathjax-config">
@@ -103,8 +102,8 @@ zero in the same type (integer/float etc) as that of input x.</p>
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">julia</span><span class="o">&gt;</span> <span class="n">pos</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">zero</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">?</span> <span class="n">zero</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">:</span> <span class="n">x</span>
     <span class="n">pos</span> <span class="x">(</span><span class="n">generic</span> <span class="k">function</span><span class="nf"> with</span> <span class="mi">1</span> <span class="n">method</span><span class="x">)</span>
 </code></pre></div></div>
-<p><br><br>
-The first step is the construction of the lowered code form, which is
+
+<p>The first step is the construction of the lowered code form, which is
 used by the further type inference and code generation processes. In the
 lowered form there are fewer types of nodes, all macros are expanded,
 and all control flow is converted to explicit branches and sequences of
@@ -122,8 +121,8 @@ smaller set of common primitives (for example gotos).</p>
         <span class="mi">3</span> <span class="n">_</span>      <span class="k">return</span> <span class="n">x</span>
     <span class="x">)</span>
 </code></pre></div></div>
-<p><br><br>
-The typed inferred incarnation of the code is similar to the lowered
+
+<p>The typed inferred incarnation of the code is similar to the lowered
 form, but with expressions annotated with type information and some
 generic function calls replaced with their implementations. The
 code_typed macro presents a method implementation for a particular set
@@ -137,8 +136,8 @@ of argument types after type inference and inlining. More on this later.</p>
         <span class="mi">3</span> <span class="n">_</span>      <span class="k">return</span> <span class="n">x</span>
     <span class="x">)</span> <span class="o">=&gt;</span> <span class="kt">Int64</span>
 </code></pre></div></div>
-<p><br><br>
-Julia uses the LLVM compiler framework to generate machine code. LLVM
+
+<p>Julia uses the LLVM compiler framework to generate machine code. LLVM
 defines an assembly-like language which it uses as a shared intermediate
 representation (IR) between different compiler optimization passes and
 other tools in the framework. Julia uses LLVM’s C++ API to construct the
@@ -156,8 +155,8 @@ and some high-level optimizations of the method.</p>
       <span class="n">ret</span> <span class="n">i64</span> <span class="o">%</span><span class="n">spec</span><span class="o">.</span><span class="n">select</span>
     <span class="x">}</span>
 </code></pre></div></div>
-<p><br><br>
-Since Julia executes native code, the last form a method implementation
+
+<p>Since Julia executes native code, the last form a method implementation
 takes is what the machine actually executes. This is just binary code in
 memory, which is rather hard to read. The "assembly language" form of
 the method represents the instructions and registers with names and some
@@ -176,8 +175,8 @@ code into machine code.</p>
         <span class="n">nopl</span>    <span class="x">(</span><span class="o">%</span><span class="n">rax</span><span class="x">)</span>
     <span class="x">;</span> <span class="n">_</span>
 </code></pre></div></div>
-<p><br><br>
-We mentioned that in the type inferred step, the compiler presents a
+
+<p>We mentioned that in the type inferred step, the compiler presents a
 method implementation for a particular set of arguments. Let us take an
 example to highlight this. The entire process starts when the function
 <em>pos(x)</em> is called with say, an integer argument x = 1. The JIT compiler
@@ -223,8 +222,8 @@ function, given that its return condition is fulfilled.</p>
 
 <div class="language-julia highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">julia</span><span class="o">&gt;</span> <span class="n">pos1</span><span class="x">(</span><span class="n">x</span><span class="x">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">x</span>
 </code></pre></div></div>
-<p><br><br>
-We can see that for an integer input x, the typed form of code is
+
+<p>We can see that for an integer input x, the typed form of code is
 exactly the same. However, the code complexity steeply increases for a
 input x which is of floating value type.</p>
 
@@ -263,8 +262,8 @@ generated code with that of the code generated by pos(x)).</p>
         <span class="mi">3</span> <span class="n">─</span>      <span class="k">return</span> <span class="n">x</span>
         <span class="x">)</span> <span class="o">=&gt;</span> <span class="kt">Union</span><span class="x">{</span><span class="kt">Float64</span><span class="x">,</span> <span class="kt">Int64</span><span class="x">}</span>
 </code></pre></div></div>
-<p><br><br>
-One may ask why Julia enforce type-stability. Among the
+
+<p>One may ask why Julia enforce type-stability. Among the
 multiple reasons, one strikingly important one is that Julia is not a
 statically typed language. These type-stability issues exist in some
 measure in all dynamic languages. Not enforcing type-stability also

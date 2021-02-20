@@ -4,11 +4,12 @@ body {
   box-sizing: border-box;
   margin: 0px auto;
   border: #00a2ff 0px solid;
-  width: 90%;
+  width: 40%;
   white-space: normal;
-  overflow: auto;
+  overflow-wrap: break-word;
   background: #f3f0f0;
   border-radius: 5px;
+  text-align: justify;
 }
 
 a {
@@ -28,13 +29,13 @@ c {
 }
 
 p {
-  font-size: 1.2em; line-height: 1; color:rgba(0,0,0,.8);
+  font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
   font-family: 'Oxygen';
 }
 
 ul {
-  font-size: 1.2em; line-height: 1; color:rgba(0,0,0,.8);
+  font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
   display:inline-block;
   font-family: 'Oxygen';
@@ -42,9 +43,11 @@ ul {
 
 h1, h2, h3, h4 { font-size: 2em; font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; }
 h5 { 
-    font-size: 1.5em; 
+    font-size: 1.5em;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; 
-    line-height: 0px;
+    margin-bottom: 0px;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 nav ul, footer ul {
@@ -55,14 +58,20 @@ nav ul, footer ul {
   font-weight: bold;
   position: relative;
   background: #f3f0f0;
+  line-height: 0px;
 }
 
 nav ul li, footer ul li {
-    font-size: 100%; display: inline; margin-right: 30px;
+    font-size: 100%; 
+    display: inline; 
+    margin-right: 30px;
+    /* line-height: 0px; */
+    /* margin-bottom: 0px; */
 }
 
 footer { 
-    border-top: 2px solid #818181; font-size: 1em; 
+    border-top: 2px solid #818181; 
+    font-size: 1em; 
 }
 
 /* Blog */
@@ -95,4 +104,8 @@ ul.misc span {
     color: #1a1a1a;
     font-family: Monaco, "Courier New", monospace;
     font-size: 100%;
+}
+
+pre {
+    white-space: pre-wrap;
 }
