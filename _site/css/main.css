@@ -1,6 +1,6 @@
 @import url(vs.css);
 
-@media screen and (max-width: 768px) {
+@media only screen and (max-device-width: 768px) {
     /* For mobile phones: */
     body {
         -moz-box-sizing: border-box;
@@ -16,7 +16,9 @@
       }
 }
 
-@media screen and (min-width: 768px) {
+@media screen 
+and (min-device-width : 768px)  {
+	/* Styles */
     body {
         -moz-box-sizing: border-box;
         box-sizing: border-box;
