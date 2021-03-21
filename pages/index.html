@@ -1,9 +1,16 @@
 ---
 layout: default
-title: "Miscellaneous Corner"
+title: "Miscellaneous Mire: Minor Posts, Musings & More"
 permalink: /misc/
-subtitle: Poetry. Old poetry. New poetry. DoTA poetry. Let us see.
+subtitle: Let us see.
 ---
+<h5>A Compilation of Different Things</h5>
+<ul class="misc">
+    {% for post in site.link %}
+    <li> &raquo;
+          <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
 <h5>{{ page.title }}</h5>
 <ul class="misc">
   {% for post in site.misc %}
