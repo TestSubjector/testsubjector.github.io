@@ -48,9 +48,9 @@
 <p>Recently, I had to learn how to read HDF5 format files in Fortran and implement the same in one of my research group’s projects.</p>
 
 <p>The experience was not what I’ll call stellar, I was unhappy for much of the duration of the process as I wasn’t enjoying the work.
-This was primarily because of the opaqueness of the HDF5 official documentation <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup> I was working with.</p>
+This was primarily because of the opaqueness of the HDF5 official documentation <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> I was working with.</p>
 
-<p>However, I was lucky to stumble onto the DOAS group<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>, who had created a package(module) which simplified HDF5 file reading. 
+<p>However, I was lucky to stumble onto the DOAS group<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>, who had created a package(module) which simplified HDF5 file reading. 
 The package itself was too cumbersome for my needs (they had sacrificed performance for accessibility). However the source code they provided gave me the clarity and insight I needed to understand the working of HDF5 file reading.</p>
 
 <p>Below, I’ve just put into examples, some of the concepts I’ve learned. Note that this covers the basics (hence the <em>Primer</em> in the title of this post) and is aimed at assisting in getting started with HDF5.</p>
@@ -156,7 +156,7 @@ In actual Fortran code, all of those variables mentioned have to be declared bef
 </span></code></pre></div></div>
 
 <p>Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it. 
-Looking at the contents, we see that the datatype is of <code class="language-plaintext highlighter-rouge">H5T_STD_I32LE</code>, which is essentially an integer<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.
+Looking at the contents, we see that the datatype is of <code class="language-plaintext highlighter-rouge">H5T_STD_I32LE</code>, which is essentially an integer<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.
 Similarly, it stores only one element. With this information we can read the information from the attribute.</p>
 
 <div class="language-fortran highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">INTEGER</span><span class="p">(</span><span class="n">hsize_t</span><span class="p">),</span><span class="w"> </span><span class="k">DIMENSION</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">dims</span><span class="w">          
@@ -195,7 +195,7 @@ Similarly, it stores only one element. With this information we can read the inf
 
 <p>However, this is just supposed to be a small beginner friendly introduction to the topic. Maybe sometime later I’ll add a Part 2 to this for more advanced operations, but no plans as of now.</p>
 
-<p>For reference, you can find more extensive usage of the HDF5 code here <sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup>.</p>
+<p>For reference, you can find more extensive usage of the HDF5 code here <sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>.</p>
 
 <hr />
 <p><strong>References:</strong></p>
@@ -235,6 +235,8 @@ Similarly, it stores only one element. With this information we can read the inf
             
         </div>
         <div class="col">
+            
+            <a href="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation"> Next Post &raquo; GTC 2021 Presentation </a>
             
         </div>
     </div>

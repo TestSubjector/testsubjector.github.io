@@ -22,13 +22,31 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2021-03-21T19:31:40+05:30</updated>
+ <updated>2021-04-01T17:11:05+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
    <email>prasunk3@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>GTC 2021 Presentation</title>
+   <link href="http://testsubjector.github.io/blog/2021/04/01/GTC-2021-Presentation"/>
+   <updated>2021-04-01T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2021/04/01/GTC-2021-Presentation</id>
+   <content type="html">&lt;hr /&gt;
+
+&lt;p&gt;I’ll start by clearly stating that this is not an April Fools post, despite the day it’s being posted on.&lt;/p&gt;
+
+&lt;p&gt;Our work in collaboration with &lt;a href=&quot;https://scholar.google.co.in/citations?user=AUM8IXYAAAAJ&amp;amp;hl=en&quot;&gt;Prof. S.M. Deshpande&lt;/a&gt; and NVIDIA has been accepted for a talk at NVIDIA’s GTC 2021 conference, being held from 12-16th April.&lt;/p&gt;
+
+&lt;p&gt;The title of the talk is “On the Performance of GPU-Accelerated Meshfree Solvers in Fortran, C++, Python, and Julia”. It will be recorded video-on-demand (VOD) talk 
+and everyone can register for free, for the conference and view the talk &lt;a href=&quot;https://gtc21.event.nvidia.com/media/On+the+Performance+of+GPU-Accelerated+Meshfree+Solvers+in+Fortran%2C+C%2B%2B%2C+Python%2C+and+Julia+%5BS31311%5D/1_35ytczbi&quot;&gt;linked here&lt;/a&gt; on 12th April, 10 AM (UTC-7).&lt;/p&gt;
+
+&lt;p&gt;In summary, it will be regarding benchmarks performed to assess and compare the computational efficiency and the relative performance of meshfree solvers based on the Least Squares Kinetic Upwind Method for inviscid compressible flows. The GPU solvers being benchmarked have been written in Fortran 90, C++, Python and the Julia programming languages.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>A Primer On HDF5 File-Reading In Fortran 90</title>
@@ -40,9 +58,9 @@
 &lt;p&gt;Recently, I had to learn how to read HDF5 format files in Fortran and implement the same in one of my research group’s projects.&lt;/p&gt;
 
 &lt;p&gt;The experience was not what I’ll call stellar, I was unhappy for much of the duration of the process as I wasn’t enjoying the work.
-This was primarily because of the opaqueness of the HDF5 official documentation &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; I was working with.&lt;/p&gt;
+This was primarily because of the opaqueness of the HDF5 official documentation &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; I was working with.&lt;/p&gt;
 
-&lt;p&gt;However, I was lucky to stumble onto the DOAS group&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, who had created a package(module) which simplified HDF5 file reading. 
+&lt;p&gt;However, I was lucky to stumble onto the DOAS group&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, who had created a package(module) which simplified HDF5 file reading. 
 The package itself was too cumbersome for my needs (they had sacrificed performance for accessibility). However the source code they provided gave me the clarity and insight I needed to understand the working of HDF5 file reading.&lt;/p&gt;
 
 &lt;p&gt;Below, I’ve just put into examples, some of the concepts I’ve learned. Note that this covers the basics (hence the &lt;em&gt;Primer&lt;/em&gt; in the title of this post) and is aimed at assisting in getting started with HDF5.&lt;/p&gt;
@@ -148,7 +166,7 @@ In actual Fortran code, all of those variables mentioned have to be declared bef
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Finally, now that we have access to the ATTRIBUTE we want, we need to extract the data from it. 
-Looking at the contents, we see that the datatype is of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;H5T_STD_I32LE&lt;/code&gt;, which is essentially an integer&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.
+Looking at the contents, we see that the datatype is of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;H5T_STD_I32LE&lt;/code&gt;, which is essentially an integer&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.
 Similarly, it stores only one element. With this information we can read the information from the attribute.&lt;/p&gt;
 
 &lt;div class=&quot;language-fortran highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hsize_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;DIMENSION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dims&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;          
@@ -187,7 +205,7 @@ Similarly, it stores only one element. With this information we can read the inf
 
 &lt;p&gt;However, this is just supposed to be a small beginner friendly introduction to the topic. Maybe sometime later I’ll add a Part 2 to this for more advanced operations, but no plans as of now.&lt;/p&gt;
 
-&lt;p&gt;For reference, you can find more extensive usage of the HDF5 code here &lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;For reference, you can find more extensive usage of the HDF5 code here &lt;sup id=&quot;fnref:4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
@@ -225,7 +243,7 @@ sent forth the message &lt;em&gt;Taunt 3&lt;/em&gt;, in response to some discuss
 
 &lt;p&gt;Now for a bit of a background. This message’s content is a command found in the video game &lt;a href=&quot;https://en.wikipedia.org/wiki/Rise_of_Nations&quot;&gt;Rise of Nations&lt;/a&gt; or RoN, by Microsoft.
 It is one of the many taunt commands found in the game that essentially play a short audio file, when used in game. Some examples of 
-such voice lines include &lt;em&gt;Taunt 8 - (I need Oil)&lt;/em&gt; or &lt;em&gt;Taunt 60 - (Random! Random!)&lt;/em&gt; &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. &lt;em&gt;Taunt 3 was for (Maybe)&lt;/em&gt;. While the actual audio file did not play in the chat, everyone understood what that specific friend wanted to convey through the message (that he was saying maybe).&lt;/p&gt;
+such voice lines include &lt;em&gt;Taunt 8 - (I need Oil)&lt;/em&gt; or &lt;em&gt;Taunt 60 - (Random! Random!)&lt;/em&gt; &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. &lt;em&gt;Taunt 3 was for (Maybe)&lt;/em&gt;. While the actual audio file did not play in the chat, everyone understood what that specific friend wanted to convey through the message (that he was saying maybe).&lt;/p&gt;
 
 &lt;p&gt;It was at that point, when seeing the message, that I asked myself. What was stopping us from having the actual audio files play? When a message matching the RoN taunt command was sent to the group, the relevant audio file could be sent to the group chat. And what better way to do this, than to use a Telegram bot for such an endeavour?&lt;/p&gt;
 
@@ -239,7 +257,7 @@ creating a dictionary that matches every number to its specific audio file. This
 
 &lt;p&gt;With all these features in place, the bot is now complete and can be deployed.&lt;/p&gt;
 
-&lt;p&gt;Please &lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;click here&lt;/a&gt; to go to the Github repository with the actual code of the bot&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Please &lt;a href=&quot;https://github.com/TestSubjector/RONTauntTelegramBot&quot;&gt;click here&lt;/a&gt; to go to the Github repository with the actual code of the bot&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;A friend of mine, &lt;a href=&quot;https://github.com/Nischay-Pro&quot;&gt;Nischay Ram&lt;/a&gt; improved the bot code by adding queues for &lt;a href=&quot;https://github.com/python-telegram-bot/python-telegram-bot/wiki/Avoiding-flood-limits&quot;&gt;flood prevention&lt;/a&gt;. He created the ability for multi-taunts in one single message like &lt;em&gt;Taunt 33 84 1&lt;/em&gt; to be possible and even added the Age Of Empires’ (another videogame) taunt lines to the bots dictionary.&lt;/p&gt;
 
@@ -294,7 +312,7 @@ program executes.&lt;/p&gt;
 flow, and target machine specifics. This information may change from run
 to run or be unobtainable prior to run-time. Additionally, gathering
 some types of information about a program before it runs may involve
-algorithms which are undecidable using static analysis. &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+algorithms which are undecidable using static analysis. &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 &lt;h5 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h5&gt;
@@ -512,7 +530,7 @@ you fail to do that, or write in a pattern that’s frequently seen in
 R/python/JS, the performance will be much slower compare to other JIT
 out there since the JIT for those languages has to deal with these code
 so they implements a lot of speculative or profiling based optimizations
-to get good performance.&quot;&lt;/em&gt; - Yichao Yu &lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+to get good performance.&quot;&lt;/em&gt; - Yichao Yu &lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;In other words, Julia is a bit of a double edged sword. Written properly
 it can be as fast as statically typed languages with its compilation
