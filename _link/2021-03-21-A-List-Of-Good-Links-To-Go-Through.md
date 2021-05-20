@@ -6,11 +6,21 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**May 2021**
+- [The Chemistry of Game Design](https://lostgarden.home.blog/2021/03/13/the-chemistry-of-game-design-2/)
+- [A Teenager's Guide to Avoiding Actual Work](https://madned.substack.com/p/a-teenagers-guide-to-avoiding-actual)
+- [The 60-Year-Old Scientific Screwup That Helped Covid Kill](https://www.wired.com/story/the-teeny-tiny-scientific-screwup-that-helped-covid-kill/)
+- [How Discord Stores Billions of Messages](https://blog.discord.com/how-discord-stores-billions-of-messages-7fa6ec7ee4c7#.dzqq7q4o7)
+- [The Instagram ads Facebook won't show you](https://signal.org/blog/the-instagram-ads-you-will-never-see/)
+- [Neural Networks and the Backpropagation Algorithm](https://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/)
+
 **April 2021**
 - [The Last Prank Before PR Ruined Everything](https://www.microsoftcoffee.org/)
 - [How Runescape catches botters, and why they didn't catch me](https://secret.club/2021/04/03/runescape-heuristics.html)
 - [The Computational Expressiveness of a Model Train Set: A Paperlet](https://www.scottaaronson.com/blog/?p=5402)
 - [This man thought opening a TXT file is fine, he thought wrong. macOS CVE-2019-8761](https://www.paulosyibelo.com/2021/04/this-man-thought-opening-txt-file-is.html?m=1)
+- [TeX Diagram Collections](https://texample.net/tikz/examples/)
+- [Make Generative Pixel Art in Less than 100 Lines of Code](https://www.megacolorboy.com/writings/posts/make-your-own-generative-pixel-art-in-less-than-100-lines-of-code/)
 
 **March 2021**
 - [Understanding Quake’s Fast Inverse Square Root](https://betterexplained.com/articles/understanding-quakes-fast-inverse-square-root/)
