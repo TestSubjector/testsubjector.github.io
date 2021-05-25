@@ -39,7 +39,7 @@ Tag the required branch directed for future deletion.
 git tag archive/<branchname> <branchname>
 ```
 
-Delete the old, decrypt branch
+Delete the old, decrepit branch
 ```bash
  git branch -D <branchname>
 ```
