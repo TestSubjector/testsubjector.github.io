@@ -6,6 +6,11 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**June 2021**
+- [Please fix the AWS Free Tier before somebody gets hurt](https://cloudirregular.substack.com/p/please-fix-the-aws-free-tier-before)
+- [Testing in the Twenties](https://www.tbray.org/ongoing/When/202x/2021/05/15/Testing-in-2021)
+- [Classic Postmortem: Firaxis' Civilization V](https://www.gamasutra.com/view/news/306040/Classic_Postmortem_Firaxis_Civilization_V.php)
+
 **May 2021**
 - [The Chemistry of Game Design](https://lostgarden.home.blog/2021/03/13/the-chemistry-of-game-design-2/)
 - [A Teenager's Guide to Avoiding Actual Work](https://madned.substack.com/p/a-teenagers-guide-to-avoiding-actual)

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<html>
+  <head>
+    <title>Cleaning Up Old Github Repo Branches</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Antithetical Parallels" />
+  </head>
+  <body>
+    <nav>
+        <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/misc">Misc</a></li>
+        <li><a href="/about">About Me</a></li>
+        </ul>
+    </nav>
+    <post class="container">
+      
+<h5>Cleaning Up Old Github Repo Branches</h5>
+<p class="meta">07 Apr 2021</p>
+<!-- Begin Article
+================================================== -->
+<post class="post">
+  <hr />
+
+<p>A while back I was searching for a specific branch in one of my Github repositories.
+While scrolling through the branch list, it occurred to me that there were just too many branches to go through now (around 30 or so).
+Many of these branches were from the initial stages of the project, debugging branches, branches made for backups and branches which just
+had straight up wrong code. It was time for a clean-up.</p>
+
+<p>Now, one could simply delete all those stale branches. But I would caution against it. When you have spent some time in the
+research business you realise that the universe is just waiting for you to commit such an action. Like deleting your old code
+without any backups. It will watch with glee as your professors, co-workers, paper reviewers and random people on the internet 
+suddenly come out of the woodwork and start requesting you for the exact same code that you just deleted. Deleted because no one was using it!</p>
+
+<p>So we will tag these branches before deleting them. <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">Git</a> provides this feature and we will create a lightweight tag per branch. These lightweight tags are simply pointers to a specific commit, hence the term “lightweight”.
+Tagging will keep the code in these stale branches in your repository (…for posterity or close enough) but at least away from sight 
+and from your branch list.</p>
+
+<p>Full confession, most of the commands given below this sentence you’re reading is from <a href="https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches">this Stackoverflow query</a>, so make sure to check it out.</p>
+
+<p>First get a fresh clean clone of the desired repository to be pruned.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone YOUR_REPOSITORY.git
+</code></pre></div></div>
+
+<p>Now a simple clone command will just clone the master (or as the young kids call it these days, the main branch). We want all the branches.
+Hence inside the newly cloned directory, we track all the branches</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>remote <span class="k">in</span> <span class="sb">`</span>git branch <span class="nt">-r</span><span class="sb">`</span><span class="p">;</span> <span class="k">do </span>git branch <span class="nt">--track</span> <span class="k">${</span><span class="nv">remote</span><span class="p">#origin/</span><span class="k">}</span> <span class="nv">$remote</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div></div>
+
+<p>Tag the required branch directed for future deletion.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag archive/&lt;branchname&gt; &lt;branchname&gt;
+</code></pre></div></div>
+
+<p>Delete the old, decrepit branch</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git branch <span class="nt">-D</span> &lt;branchname&gt;
+</code></pre></div></div>
+
+<p>Delete the old, decrypt branch…from your remote (i.e the Github repository)</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> <span class="nt">-r</span> origin/&lt;branchname&gt;
+</code></pre></div></div>
+
+<p>Push the tags to the remote</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">--tags</span>
+</code></pre></div></div>
+
+<p>Push changes to remote</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin :&lt;branchname&gt;
+</code></pre></div></div>
+
+<p>And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.</p>
+
+<p>PS - To get a branch back from a tag</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> &lt;branchname&gt; archive/&lt;branchname&gt;
+</code></pre></div></div>
+
+</post>
+<footer>
+<div class="container">
+	<div class="row">
+			
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                <br>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+            <a href="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation"> Previous Post &laquo;  GTC 2021 Presentation </a>
+            
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="clearfix"></div>
+        <!-- End Categories -->
+        <script src="https://utteranc.es/client.js"
+            repo="TestSubjector/testsubjector.github.io"
+            issue-term="pathname"
+            label="comments"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+        </script>
+        <!-- Begin Comments
+        ================================================== -->
+        <!-- <div class="just-comments"
+        data-allowguests="true"
+        data-apikey="9fe825ce-9df7-4d9d-9e08-9981e8951128">
+        </div> -->
+        <!--End Comments
+        ================================================== -->
+	</div>
+	<!-- End Post -->
+</div>
+</footer>
+<!-- End Article
+================================================== -->
+
+    </post>
+    <footer>
+       <ul>
+       <li><a href="mailto:prasunk3@gmail.com">Mail</a></li>
+       <li><a href="https://github.com/TestSubjector">GitHub</a></li>
+       <li><a href="/feed.xml">RSS</a></li>
+       </ul>
+    </footer>
+  </body>
+</html>

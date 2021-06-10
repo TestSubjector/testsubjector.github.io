@@ -22,13 +22,74 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2021-04-01T17:11:05+05:30</updated>
+ <updated>2021-06-10T09:51:54+05:30</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
    <email>prasunk3@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Cleaning Up Old Github Repo Branches</title>
+   <link href="http://testsubjector.github.io/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches"/>
+   <updated>2021-04-07T00:00:00+05:30</updated>
+   <id>http://testsubjector.github.io//blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id>
+   <content type="html">&lt;hr /&gt;
+
+&lt;p&gt;A while back I was searching for a specific branch in one of my Github repositories.
+While scrolling through the branch list, it occurred to me that there were just too many branches to go through now (around 30 or so).
+Many of these branches were from the initial stages of the project, debugging branches, branches made for backups and branches which just
+had straight up wrong code. It was time for a clean-up.&lt;/p&gt;
+
+&lt;p&gt;Now, one could simply delete all those stale branches. But I would caution against it. When you have spent some time in the
+research business you realise that the universe is just waiting for you to commit such an action. Like deleting your old code
+without any backups. It will watch with glee as your professors, co-workers, paper reviewers and random people on the internet 
+suddenly come out of the woodwork and start requesting you for the exact same code that you just deleted. Deleted because no one was using it!&lt;/p&gt;
+
+&lt;p&gt;So we will tag these branches before deleting them. &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Tagging&quot;&gt;Git&lt;/a&gt; provides this feature and we will create a lightweight tag per branch. These lightweight tags are simply pointers to a specific commit, hence the term “lightweight”.
+Tagging will keep the code in these stale branches in your repository (…for posterity or close enough) but at least away from sight 
+and from your branch list.&lt;/p&gt;
+
+&lt;p&gt;Full confession, most of the commands given below this sentence you’re reading is from &lt;a href=&quot;https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches&quot;&gt;this Stackoverflow query&lt;/a&gt;, so make sure to check it out.&lt;/p&gt;
+
+&lt;p&gt;First get a fresh clean clone of the desired repository to be pruned.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone YOUR_REPOSITORY.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now a simple clone command will just clone the master (or as the young kids call it these days, the main branch). We want all the branches.
+Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;remote &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;--track&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;#origin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Tag the required branch directed for future deletion.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git tag archive/&amp;lt;branchname&amp;gt; &amp;lt;branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Delete the old, decrepit branch&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Delete the old, decrypt branch…from your remote (i.e the Github repository)&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; origin/&amp;lt;branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Push the tags to the remote&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push &lt;span class=&quot;nt&quot;&gt;--tags&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Push changes to remote&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin :&amp;lt;branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.&lt;/p&gt;
+
+&lt;p&gt;PS - To get a branch back from a tag&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;branchname&amp;gt; archive/&amp;lt;branchname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
  
  <entry>
    <title>GTC 2021 Presentation</title>
