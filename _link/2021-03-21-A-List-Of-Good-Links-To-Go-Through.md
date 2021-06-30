@@ -7,6 +7,10 @@ date: 2021-03-21
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
 **June 2021**
+- [Your CPU May Have Slowed Down on Wednesday](https://travisdowns.github.io/blog/2021/06/17/rip-zero-opt.html)
+- [Introduction to Machine Learning Interviews Book](https://huyenchip.com/ml-interviews-book/)
+- [Godot Roguelike Tutorial](https://github.com/Bozar/GodotRoguelikeTutorial/wiki)
+- [A 23-Year Perfectionist Journey to Localize the Obscure 'Bahamut Lagoon'](https://www.vice.com/en/article/bvxezw/a-23-year-perfectionist-journey-to-localize-the-obscure-bahamut-lagoon)
 - [Computer Search Settles 90-Year-Old Math Problem](https://www.quantamagazine.org/computer-search-settles-90-year-old-math-problem-20200819/)
 - [Privacy analysis of FLoC](https://blog.mozilla.org/en/mozilla/privacy-analysis-of-floc/)
 - [Privilege escalation with polkit: How to get root on Linux with a seven-year-old bug](https://github.blog/2021-06-10-privilege-escalation-polkit-root-on-linux-with-bug/)
