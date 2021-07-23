@@ -17,7 +17,7 @@ The package itself was too cumbersome for my needs (they had sacrificed performa
 Below, I've just put into examples, some of the concepts I've learned. Note that this covers the basics (hence the *Primer* in the title of this post) and is aimed at assisting in getting started with HDF5.
 
 ----------------
-##### Prerequisites
+#### Prerequisites
 ----------------
 * FORTRAN 90
 * HDF5 Module for FORTRAN
@@ -25,12 +25,12 @@ Below, I've just put into examples, some of the concepts I've learned. Note that
 * An HDF5 file and knowledge of how information is stored in it
 
 ----------------
-##### HDF5 File Structure
+#### HDF5 File Structure
 ----------------
 <script src="https://gist.github.com/TestSubjector/d2ff68b68bf38fb2fdc012dff535fffb.js"></script>
 
 ----------------
-##### Fortran HDF5 File Reading
+#### Fortran HDF5 File Reading
 ----------------
 
 Now lets come to the main part. We will use the sample file structure given in the `HDF5.js` example above as the targeted file. 

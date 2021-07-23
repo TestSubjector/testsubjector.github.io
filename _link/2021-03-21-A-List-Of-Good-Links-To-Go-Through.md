@@ -6,6 +6,18 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**July 2021**
+- [How We Built r/Place](https://redditblog.com/2017/04/13/how-we-built-rplace/)
+- [A Brief Exposé of P-adics](https://tomrocksmaths.com/2021/07/02/a-brief-expose-of-p-adics/)
+- [Alien Dreams: An Emerging Art Scene](https://ml.berkeley.edu/blog/posts/clip-art/)
+- [Compiling Rust is NP-hard](https://niedzejkob.p4.team/rust-np/)
+- [Towards Inserting One Billion Rows in SQLite Under A Minute](https://avi.im/blag/2021/fast-sqlite-inserts/)
+- [Thinking About Glue](https://www.oreilly.com/radar/thinking-about-glue/)
+- [Why Isn't 1 a Prime Number?](https://blogs.scientificamerican.com/roots-of-unity/why-isnt-1-a-prime-number/)
+- [Mito is no longer in development](https://medium.com/@hellochar/mito-is-no-longer-in-development-4f57552e7221)
+- [How I accidentally took down GitHub Actions](https://blog.teddykatz.com/2019/11/12/github-actions-dos.html)
+- [Speeding Kills Bear](https://www.nps.gov/yose/blogs/speeding-kills-bear.htm)
+
 **June 2021**
 - [Your CPU May Have Slowed Down on Wednesday](https://travisdowns.github.io/blog/2021/06/17/rip-zero-opt.html)
 - [Introduction to Machine Learning Interviews Book](https://huyenchip.com/ml-interviews-book/)

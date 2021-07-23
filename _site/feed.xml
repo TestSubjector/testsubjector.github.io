@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-30T14:20:53+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Cleaning Up Old Github Repo Branches</title><link href="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches" rel="alternate" type="text/html" title="Cleaning Up Old Github Repo Branches" /><published>2021-04-07T00:00:00+05:30</published><updated>2021-04-07T00:00:00+05:30</updated><id>http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-07-23T23:52:46+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My Ramblings -</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Cleaning Up Old Github Repo Branches</title><link href="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches" rel="alternate" type="text/html" title="Cleaning Up Old Github Repo Branches" /><published>2021-04-07T00:00:00+05:30</published><updated>2021-04-07T00:00:00+05:30</updated><id>http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches">&lt;hr /&gt;
 
 &lt;p&gt;A while back I was searching for a specific branch in one of my Github repositories.
 While scrolling through the branch list, it occurred to me that there were just too many branches to go through now (around 30 or so).
@@ -72,7 +72,7 @@ The package itself was too cumbersome for my needs (they had sacrificed performa
 &lt;p&gt;Below, I’ve just put into examples, some of the concepts I’ve learned. Note that this covers the basics (hence the &lt;em&gt;Primer&lt;/em&gt; in the title of this post) and is aimed at assisting in getting started with HDF5.&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h5&gt;
+&lt;h4 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;ul&gt;
   &lt;li&gt;FORTRAN 90&lt;/li&gt;
@@ -82,12 +82,12 @@ The package itself was too cumbersome for my needs (they had sacrificed performa
 &lt;/ul&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;hdf5-file-structure&quot;&gt;HDF5 File Structure&lt;/h5&gt;
+&lt;h4 id=&quot;hdf5-file-structure&quot;&gt;HDF5 File Structure&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;script src=&quot;https://gist.github.com/TestSubjector/d2ff68b68bf38fb2fdc012dff535fffb.js&quot;&gt;&lt;/script&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;fortran-hdf5-file-reading&quot;&gt;Fortran HDF5 File Reading&lt;/h5&gt;
+&lt;h4 id=&quot;fortran-hdf5-file-reading&quot;&gt;Fortran HDF5 File Reading&lt;/h4&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Now lets come to the main part. We will use the sample file structure given in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HDF5.js&lt;/code&gt; example above as the targeted file. 
@@ -276,7 +276,7 @@ creating a dictionary that matches every number to its specific audio file. This
 &lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h5&gt;
+&lt;h4 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h4&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Julia has a just-in-time (JIT) compilation. This means that the code is
@@ -303,7 +303,7 @@ some types of information about a program before it runs may involve
 algorithms which are undecidable using static analysis. &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h5&gt;
+&lt;h4 id=&quot;warmup-delay&quot;&gt;Warmup delay&lt;/h4&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Due to the time taken by the JIT compiler to initially load the code and
@@ -325,7 +325,7 @@ adds to the compilation complexity, but in return helps Julia gain it’s
 much vaunted speed.&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;julias-four-level-disassembly-compilation&quot;&gt;Julia’s Four Level Disassembly Compilation&lt;/h5&gt;
+&lt;h4 id=&quot;julias-four-level-disassembly-compilation&quot;&gt;Julia’s Four Level Disassembly Compilation&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;p&gt;We introduce the various stages of Julia compilation, their purpose and
 a small insight into how to utilise the information given by them. Each
@@ -451,7 +451,7 @@ in other languages but here the operation happens at runtime.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;hr /&gt;
-&lt;h5 id=&quot;type-instability&quot;&gt;Type Instability&lt;/h5&gt;
+&lt;h4 id=&quot;type-instability&quot;&gt;Type Instability&lt;/h4&gt;
 &lt;hr /&gt;
 &lt;p&gt;Let us declare a modified test method &lt;em&gt;pos1(x)&lt;/em&gt; which will return the
 value zero in integer type rather than in the type of x in the original

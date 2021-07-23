@@ -52,20 +52,27 @@ c {
 p {
   font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
-  font-family: 'Oxygen';
+  font-family: 'Times New Roman';
 }
 
 ul {
   font-size: 1.2em; line-height: 1.3; color:rgba(0,0,0,.8);
   align-items:center;
   display:inline-block;
-  font-family: 'Oxygen';
+  font-family: 'Times New Roman';
 }
 
-h1, h2, h3, h4 { font-size: 2em; font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; }
+h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
+h4 { 
+    font-size: 1.3em; /* Heading */
+    font-family: 'Times New Roman'; 
+    margin-bottom: 0px;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
 h5 { 
-    font-size: 1.5em;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; 
+    font-size: 1.5em; /* Heading */
+    font-family: 'Times New Roman'; 
     margin-bottom: 0px;
     white-space: normal;
     overflow-wrap: break-word;
@@ -90,7 +97,7 @@ nav ul li, footer ul li {
 }
 
 footer { 
-    border-top: 2px solid #818181; 
+    border-top: 2px solid #1a1a1a; 
     font-size: 1em; 
 }
 
