@@ -6,6 +6,14 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**August 2021**
+- [Reddit Interview Problems: The Game of Life](https://alexgolec.dev/reddit-interview-problems-the-game-of-life/)
+- [It’s ten o’clock, do you know where your private keys are?](https://blog.sigstore.dev/its-ten-o-clock-do-you-know-where-your-private-keys-are-5c869cf53234)
+- [700,000 lines of code, 20 years, and one developer: How Dwarf Fortress is built](https://stackoverflow.blog/2021/07/28/700000-lines-of-code-20-years-and-one-developer-how-dwarf-fortress-is-built/)
+- [My favorite papers](https://ordep.dev/posts/my-favorite-papers)
+- [Most private insurers are no longer waiving cost-sharing for COVID-19 treatment](https://www.healthsystemtracker.org/brief/most-private-insurers-are-no-longer-waiving-cost-sharing-for-covid-19-treatment/)
+- [Machine Learning For Artists](https://ml4a.github.io/classes/itp-F18/#syllabus)
+
 **July 2021**
 - [How We Built r/Place](https://redditblog.com/2017/04/13/how-we-built-rplace/)
 - [A Brief Exposé of P-adics](https://tomrocksmaths.com/2021/07/02/a-brief-expose-of-p-adics/)
