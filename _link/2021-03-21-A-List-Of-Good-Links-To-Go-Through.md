@@ -6,6 +6,14 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**September 2021**
+- [How we built an auto-scalable Minecraft server for 1000+ players using WorldQL's spatial database](https://www.worldql.com/posts/2021-08-worldql-scalable-minecraft/)
+- [The Rise Of User-Hostile Software](https://den.dev/blog/user-hostile-software/)
+- [Hacker Claims Responsibility for T-Mobile Attack – Says: “Their Security is Awful”](https://www.vpnranks.com/blog/hacker-claims-responsibility-for-t-mobile-attack-says-their-security-is-awful/)
+- [Congratulations for reaching a million, Gordon Linoff!](https://meta.stackoverflow.com/questions/400506/congratulations-for-reaching-a-million-gordon-linoff)
+- [Executives Do Not Give A Flying Fuck About “Burnout”](https://blog.startupstash.com/executives-do-not-give-a-flying-fuck-about-burnout-9fd91b88b660)
+- [Managing Steam Bandwidth During COVID-19 Pandemic](https://steamcommunity.com/games/593110/announcements/detail/2074411495515541376)
+
 **August 2021**
 - [Reddit Interview Problems: The Game of Life](https://alexgolec.dev/reddit-interview-problems-the-game-of-life/)
 - [It’s ten o’clock, do you know where your private keys are?](https://blog.sigstore.dev/its-ten-o-clock-do-you-know-where-your-private-keys-are-5c869cf53234)

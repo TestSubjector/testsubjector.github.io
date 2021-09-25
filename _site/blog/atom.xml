@@ -22,7 +22,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2021-07-23T23:52:46+05:30</updated>
+ <updated>2021-09-25T16:55:28-04:00</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -33,7 +33,7 @@
  <entry>
    <title>Cleaning Up Old Github Repo Branches</title>
    <link href="http://testsubjector.github.io/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches"/>
-   <updated>2021-04-07T00:00:00+05:30</updated>
+   <updated>2021-04-07T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id>
    <content type="html">&lt;hr /&gt;
 
@@ -94,7 +94,7 @@ Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
  <entry>
    <title>GTC 2021 Presentation</title>
    <link href="http://testsubjector.github.io/blog/2021/04/01/GTC-2021-Presentation"/>
-   <updated>2021-04-01T00:00:00+05:30</updated>
+   <updated>2021-04-01T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2021/04/01/GTC-2021-Presentation</id>
    <content type="html">&lt;hr /&gt;
 
@@ -112,7 +112,7 @@ and everyone can register for free, for the conference and view the talk &lt;a h
  <entry>
    <title>A Primer On HDF5 File-Reading In Fortran 90</title>
    <link href="http://testsubjector.github.io/blog/2020/09/30/A-Primer-On-HDF5-File-Reading-In-Fortran-90"/>
-   <updated>2020-09-30T00:00:00+05:30</updated>
+   <updated>2020-09-30T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2020/09/30/A-Primer-On-HDF5-File-Reading-In-Fortran-90</id>
    <content type="html">&lt;hr /&gt;
 
@@ -293,7 +293,7 @@ Similarly, it stores only one element. With this information we can read the inf
  <entry>
    <title>The Rise Of Nations Taunt Telegram Bot</title>
    <link href="http://testsubjector.github.io/blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot"/>
-   <updated>2020-05-08T00:00:00+05:30</updated>
+   <updated>2020-05-08T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2020/05/08/The-Rise-Of-Nations-Taunt-Telegram-Bot</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;My adventures with bots in the Telegram app continues in this blog post.&lt;/p&gt;
@@ -343,7 +343,7 @@ creating a dictionary that matches every number to its specific audio file. This
  <entry>
    <title>The Julia Compilation Process</title>
    <link href="http://testsubjector.github.io/blog/2020/03/26/The-Julia-Compilation-Process"/>
-   <updated>2020-03-26T00:00:00+05:30</updated>
+   <updated>2020-03-26T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2020/03/26/The-Julia-Compilation-Process</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
@@ -617,7 +617,7 @@ guidelines to the language, it can be deceptively slow to work with.&lt;/p&gt;
  <entry>
    <title>New Year With LaTeX Support Plus Comment Changes</title>
    <link href="http://testsubjector.github.io/blog/2020/01/07/New-Year-With-LaTeX-Support-Plus-Comment-Changes"/>
-   <updated>2020-01-07T00:00:00+05:30</updated>
+   <updated>2020-01-07T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2020/01/07/New-Year-With-LaTeX-Support-Plus-Comment-Changes</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;It’s a new year!&lt;br /&gt;
@@ -631,7 +631,7 @@ For \(\forall posts \in blog\), enable LaTeX.&lt;/p&gt;
  <entry>
    <title>Making A Simple Telegram Bot In Julia</title>
    <link href="http://testsubjector.github.io/blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia"/>
-   <updated>2019-03-17T00:00:00+05:30</updated>
+   <updated>2019-03-17T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2019/03/17/Making-A-Simple-Telegram-Bot-In-Julia</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;So finding myself with some free time on hand and a persisting interest in Telegram bots due to my daily use of the FeedReaderBot (which I have talked about in a previous post), I decided to create a bot of my own. &lt;br /&gt;
@@ -757,7 +757,7 @@ As of this moment(when the post appears online), the WikiRandom bot works - http
  <entry>
    <title>Comments Now Work On Pi Day</title>
    <link href="http://testsubjector.github.io/blog/2019/03/14/Comments-Now-Work-On-Pi-Day"/>
-   <updated>2019-03-14T00:00:00+05:30</updated>
+   <updated>2019-03-14T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2019/03/14/Comments-Now-Work-On-Pi-Day</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;Well, there’s not much of a Pi day celebration (or even mention) on our side of the world.&lt;br /&gt;
@@ -772,7 +772,7 @@ Additionally, I’ve caved into giving an option for comments on all my posts (&
  <entry>
    <title>Future Plans</title>
    <link href="http://testsubjector.github.io/blog/2018/12/11/Future-Plans"/>
-   <updated>2018-12-11T00:00:00+05:30</updated>
+   <updated>2018-12-11T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2018/12/11/Future-Plans</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;The movie trailer for Kingdom Hearts 3 just came out. Saying it with brevity, it is such a beautiful capstone to the monument of memories the series has been, to so many people. Find it &lt;a href=&quot;https://www.youtube.com/watch?v=16N6IkhxprE&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -808,7 +808,7 @@ It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
  <entry>
    <title>Julia Context Free Grammar</title>
    <link href="http://testsubjector.github.io/blog/2018/10/21/Julia-Context-Free-Grammar"/>
-   <updated>2018-10-21T00:00:00+05:30</updated>
+   <updated>2018-10-21T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2018/10/21/Julia-Context-Free-Grammar</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;Gists in Github Pages, lovely.&lt;/p&gt;
@@ -821,7 +821,7 @@ It’s just that I don’t have much do otherwise now. So why not?&lt;/p&gt;
  <entry>
    <title>Whiskquilibrium The Game</title>
    <link href="http://testsubjector.github.io/blog/2018/10/16/Whiskquilibrium-The-Game"/>
-   <updated>2018-10-16T00:00:00+05:30</updated>
+   <updated>2018-10-16T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2018/10/16/Whiskquilibrium-The-Game</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;On 29th and 30th September, I had the chance to participate in the &lt;a href=&quot;https://megathon.in/&quot;&gt;Megathon Hackathon at IIIT Hyderabad&lt;/a&gt;.
@@ -879,7 +879,7 @@ You want to add visual indicators? Make sure that they -&lt;/p&gt;
  <entry>
    <title>Starting With Intro To Maching Learning Course 1- Naive Bayes</title>
    <link href="http://testsubjector.github.io/blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1-Naive-Bayes"/>
-   <updated>2018-09-13T00:00:00+05:30</updated>
+   <updated>2018-09-13T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2018/09/13/Starting-With-Intro-To-Maching-Learning-Course-1--Naive Bayes</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;In essence, now that I’m in my 4th year, I need to think about my future. Unfortunately, as my academics can be currently be very aptly termed as a &lt;strong&gt;Disaster Zone&lt;/strong&gt;, I have to finally pick up the slack all-around. This is to make me capable of being able to bring food to my table, in the near future.&lt;br /&gt;
@@ -907,7 +907,7 @@ Maybe I’ll also put up some summary notes here in the future? Let’s try with
  <entry>
    <title>BattleCode Report</title>
    <link href="http://testsubjector.github.io/blog/2018/03/14/BattleCode-Report"/>
-   <updated>2018-03-14T00:00:00+05:30</updated>
+   <updated>2018-03-14T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2018/03/14/BattleCode-Report</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;Another very late post, I know.&lt;/p&gt;
@@ -934,7 +934,7 @@ However, I can’t deny that the experience was lovely. Every single part of it,
  <entry>
    <title>RSS Feed & FeedReader Bot</title>
    <link href="http://testsubjector.github.io/blog/2017/12/09/RSS-Feed-And-FeedReaderBot"/>
-   <updated>2017-12-09T00:00:00+05:30</updated>
+   <updated>2017-12-09T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2017/12/09/RSS-Feed-And-FeedReaderBot</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;&lt;a href=&quot;https://testsubjector.github.io/feed.xml&quot;&gt;RSS Feed(s)&lt;/a&gt; is/(are?) now enabled (if they weren’t already automatically done by Github Pages).&lt;/p&gt;
@@ -951,7 +951,7 @@ And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant
  <entry>
    <title>BattleCode 2018 Announced!</title>
    <link href="http://testsubjector.github.io/blog/2017/12/09/BattleCode-2018-Has-Been-Announced!"/>
-   <updated>2017-12-09T00:00:00+05:30</updated>
+   <updated>2017-12-09T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2017/12/09/BattleCode-2018-Has-Been-Announced!</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;You heard it right folks, the greatest college-level AI competition will start its annual cycle in January 2018, hosted by MIT. I’ll be properly participating in it for the first time and I’m pretty hyped about it. Do have a look at their &lt;a href=&quot;https://www.battlecode.org&quot;&gt;main site&lt;/a&gt;, since it will do a better job than me of explaining what BattleCode is.&lt;/p&gt;
@@ -963,7 +963,7 @@ And with the &lt;a href=&quot;https://instantview.telegram.org/&quot;&gt;Instant
  <entry>
    <title>Setting Up TensorFlow On Julia</title>
    <link href="http://testsubjector.github.io/blog/2017/11/12/Setting-Up-TensorFlow-On-Julia"/>
-   <updated>2017-11-12T00:00:00+05:30</updated>
+   <updated>2017-11-12T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2017/11/12/Setting-Up-TensorFlow-On-Julia</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt; - The instructions are chiefly for Linux (Ubuntu) users. Apologies to others. Also, beware that the steps for a GPU enabled version of TensorFlow is fraught with risks, thanks to the breakage prone shenanigans of Nvidia drivers on Ubuntu/Linux.&lt;/p&gt;
@@ -1035,7 +1035,7 @@ The actual coding now awaits.&lt;/li&gt;
  <entry>
    <title>Oh, yes. I forgot about this blog. Also, GSoC ended.</title>
    <link href="http://testsubjector.github.io/blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended"/>
-   <updated>2017-11-08T00:00:00+05:30</updated>
+   <updated>2017-11-08T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2017/11/08/Oh,-yes.-I-forgot-about-this-blog.-Also,-GSoC-ended</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;Whelp, this Github_page-blog-website chimera completely (or conveniently) 
@@ -1054,7 +1054,7 @@ of Computer Science that I’ve dreamed about as a kid (stay tuned!); this seems
  <entry>
    <title>GSoc Tales</title>
    <link href="http://testsubjector.github.io/blog/2017/06/26/GSoc-Tales"/>
-   <updated>2017-06-26T00:00:00+05:30</updated>
+   <updated>2017-06-26T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2017/06/26/GSoc-Tales</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;One month of the coding period is already up. You can read about my experiences till now at my official GSoC blog on Medium.
@@ -1074,7 +1074,7 @@ Links -&lt;/p&gt;
  <entry>
    <title>GSoCer? Yeap!</title>
    <link href="http://testsubjector.github.io/blog/2017/05/11/GSoCer-Yeap!"/>
-   <updated>2017-05-11T00:00:00+05:30</updated>
+   <updated>2017-05-11T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2017/05/11/GSoCer?-Yeap!</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;So how are you doing? Great? I hope so, because everything is sunny and cheery for the author currently.&lt;/p&gt;
@@ -1098,7 +1098,7 @@ I’ll be still posting content(hopefully) not directly related to my project he
  <entry>
    <title>AstroLib.jl-It-Is</title>
    <link href="http://testsubjector.github.io/blog/2017/03/16/AstroLib.jl-It-Is"/>
-   <updated>2017-03-16T00:00:00+05:30</updated>
+   <updated>2017-03-16T00:00:00-04:00</updated>
    <id>http://testsubjector.github.io//blog/2017/03/16/AstroLib.jl-It-Is</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;So, it’s been a dozen days since my last post, and well, things have changed.&lt;/p&gt;
@@ -1147,7 +1147,7 @@ He has guided me through the common pitfalls a Julia newbie stumbles on, and has
  <entry>
    <title>To GSoc Or Not To GSoC</title>
    <link href="http://testsubjector.github.io/blog/2017/03/04/To-GSoc-Or-Not-To-GSoC"/>
-   <updated>2017-03-04T00:00:00+05:30</updated>
+   <updated>2017-03-04T00:00:00-05:00</updated>
    <id>http://testsubjector.github.io//blog/2017/03/04/To-GSoc-Or-Not-To-GSoC</id>
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;Well, it’s madness season again.&lt;/p&gt;
