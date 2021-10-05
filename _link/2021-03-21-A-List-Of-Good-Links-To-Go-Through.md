@@ -6,7 +6,15 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**October 2021**
+
+- [Understanding How Facebook Disappeared from the Internet](https://blog.cloudflare.com/october-2021-facebook-outage/)
+- [A Terminal Case of Linux](https://fasterthanli.me/articles/a-terminal-case-of-linux)
+- [Maybe the Spaghetti Code Conjecture is False](https://nickdrozd.github.io/2021/09/25/spaghetti-code-conjecture-false.html)
+- [Bracket pair colorization 10,000x faster](https://code.visualstudio.com/blogs/2021/09/29/bracket-pair-colorization)
+
 **September 2021**
+
 - [How we built an auto-scalable Minecraft server for 1000+ players using WorldQL's spatial database](https://www.worldql.com/posts/2021-08-worldql-scalable-minecraft/)
 - [The Rise Of User-Hostile Software](https://den.dev/blog/user-hostile-software/)
 - [Hacker Claims Responsibility for T-Mobile Attack – Says: “Their Security is Awful”](https://www.vpnranks.com/blog/hacker-claims-responsibility-for-t-mobile-attack-says-their-security-is-awful/)
@@ -15,6 +23,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Managing Steam Bandwidth During COVID-19 Pandemic](https://steamcommunity.com/games/593110/announcements/detail/2074411495515541376)
 
 **August 2021**
+
 - [Reddit Interview Problems: The Game of Life](https://alexgolec.dev/reddit-interview-problems-the-game-of-life/)
 - [It’s ten o’clock, do you know where your private keys are?](https://blog.sigstore.dev/its-ten-o-clock-do-you-know-where-your-private-keys-are-5c869cf53234)
 - [700,000 lines of code, 20 years, and one developer: How Dwarf Fortress is built](https://stackoverflow.blog/2021/07/28/700000-lines-of-code-20-years-and-one-developer-how-dwarf-fortress-is-built/)
@@ -23,6 +32,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Machine Learning For Artists](https://ml4a.github.io/classes/itp-F18/#syllabus)
 
 **July 2021**
+
 - [How We Built r/Place](https://redditblog.com/2017/04/13/how-we-built-rplace/)
 - [A Brief Exposé of P-adics](https://tomrocksmaths.com/2021/07/02/a-brief-expose-of-p-adics/)
 - [Alien Dreams: An Emerging Art Scene](https://ml.berkeley.edu/blog/posts/clip-art/)
@@ -35,6 +45,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Speeding Kills Bear](https://www.nps.gov/yose/blogs/speeding-kills-bear.htm)
 
 **June 2021**
+
 - [Your CPU May Have Slowed Down on Wednesday](https://travisdowns.github.io/blog/2021/06/17/rip-zero-opt.html)
 - [Introduction to Machine Learning Interviews Book](https://huyenchip.com/ml-interviews-book/)
 - [Godot Roguelike Tutorial](https://github.com/Bozar/GodotRoguelikeTutorial/wiki)
@@ -48,6 +59,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Classic Postmortem: Firaxis' Civilization V](https://www.gamasutra.com/view/news/306040/Classic_Postmortem_Firaxis_Civilization_V.php)
 
 **May 2021**
+
 - [The Chemistry of Game Design](https://lostgarden.home.blog/2021/03/13/the-chemistry-of-game-design-2/)
 - [A Teenager's Guide to Avoiding Actual Work](https://madned.substack.com/p/a-teenagers-guide-to-avoiding-actual)
 - [The 60-Year-Old Scientific Screwup That Helped Covid Kill](https://www.wired.com/story/the-teeny-tiny-scientific-screwup-that-helped-covid-kill/)
@@ -56,6 +68,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Neural Networks and the Backpropagation Algorithm](https://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/)
 
 **April 2021**
+
 - [The Last Prank Before PR Ruined Everything](https://www.microsoftcoffee.org/)
 - [How Runescape catches botters, and why they didn't catch me](https://secret.club/2021/04/03/runescape-heuristics.html)
 - [The Computational Expressiveness of a Model Train Set: A Paperlet](https://www.scottaaronson.com/blog/?p=5402)
@@ -64,6 +77,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Make Generative Pixel Art in Less than 100 Lines of Code](https://www.megacolorboy.com/writings/posts/make-your-own-generative-pixel-art-in-less-than-100-lines-of-code/)
 
 **March 2021**
+
 - [Understanding Quake’s Fast Inverse Square Root](https://betterexplained.com/articles/understanding-quakes-fast-inverse-square-root/)
 - [The Pizza Chain That Became an AI Front-Runner](https://towardsdatascience.com/the-pizza-chain-that-became-an-ai-front-runner-a0e297320cf6)
 - [How many paths of length k are there between a and b? : and I show you how deep the rabbit hole goes...](http://horace.io/walks.html)
