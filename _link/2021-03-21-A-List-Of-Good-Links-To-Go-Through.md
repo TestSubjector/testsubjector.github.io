@@ -8,6 +8,9 @@ I needed a place to store the interesting articles that one either finds or is s
 
 **October 2021**
 
+- [IoT Hacking and Rickrolling My High School District](https://whitehoodhacker.net/posts/2021-10-04-the-big-rick)
+- [A Time-Series Analysis of my Girlfriends Mood Swings](https://jabde.com/2021/05/23/girlfriends-mood-time-series-analysis/)
+- [A Facebook Sixth Sense](https://kirszenberg.com/facebook-sixth-sense)
 - [Understanding How Facebook Disappeared from the Internet](https://blog.cloudflare.com/october-2021-facebook-outage/)
 - [A Terminal Case of Linux](https://fasterthanli.me/articles/a-terminal-case-of-linux)
 - [Maybe the Spaghetti Code Conjecture is False](https://nickdrozd.github.io/2021/09/25/spaghetti-code-conjecture-false.html)
