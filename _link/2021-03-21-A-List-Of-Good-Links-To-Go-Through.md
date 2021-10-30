@@ -15,6 +15,12 @@ I needed a place to store the interesting articles that one either finds or is s
 - [A Terminal Case of Linux](https://fasterthanli.me/articles/a-terminal-case-of-linux)
 - [Maybe the Spaghetti Code Conjecture is False](https://nickdrozd.github.io/2021/09/25/spaghetti-code-conjecture-false.html)
 - [Bracket pair colorization 10,000x faster](https://code.visualstudio.com/blogs/2021/09/29/bracket-pair-colorization)
+- [Drive Failure Over Time: The Bathtub Curve Is Leaking](https://www.backblaze.com/blog/drive-failure-over-time-the-bathtub-curve-is-leaking/)
+- [High throughput Fizz Buzz](https://codegolf.stackexchange.com/questions/215216/high-throughput-fizz-buzz/236630#236630)
+- [Nim receives $100k in Bitcoin donations](https://nim-lang.org/blog/2021/10/25/nim-receives-100k-usd-bitcoin.html)
+- [Left Pad NPM](http://left-pad.io/)
+- [The Azimuth Project](https://www.azimuthproject.org/azimuth/show/HomePage)
+- [What we can learn from “_why”, the long lost open source developer](https://github.com/readme/featured/why-the-lucky-stiff)
 
 **September 2021**
 
