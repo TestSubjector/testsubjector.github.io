@@ -6,6 +6,17 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**November 2021**
+
+- [Highlights from Git 2.34](https://github.blog/2021-11-15-highlights-from-git-2-34/)
+- [The Invisible JavaScript Backdoor](https://certitude.consulting/blog/en/invisible-backdoor/)
+- [Twenty Sided (Game Blog)](https://www.shamusyoung.com/twentysidedtale/?cat=66)
+- [The reckless, infinite scope of web browsers](https://drewdevault.com/2020/03/18/Reckless-limitless-scope.html)
+- [A* Pathfinding for Beginners](https://gist.github.com/jcward/45afd22560939aaae5c75e68f1e57505)
+- [Python: Please stop screwing over Linux distros ](https://drewdevault.com/2021/11/16/Python-stop-screwing-distros-over.html)
+- [bbrunomoraes - Digital Artist](https://www.deviantart.com/bbrunomoraes)
+- [Replicating Minecraft World Generation in Python](https://towardsdatascience.com/replicating-minecraft-world-generation-in-python-1b491bc9b9a4)
+
 **October 2021**
 
 - [IoT Hacking and Rickrolling My High School District](https://whitehoodhacker.net/posts/2021-10-04-the-big-rick)
