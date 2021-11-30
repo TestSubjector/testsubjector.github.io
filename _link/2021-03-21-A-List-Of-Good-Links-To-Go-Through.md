@@ -13,9 +13,13 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Twenty Sided (Game Blog)](https://www.shamusyoung.com/twentysidedtale/?cat=66)
 - [The reckless, infinite scope of web browsers](https://drewdevault.com/2020/03/18/Reckless-limitless-scope.html)
 - [A* Pathfinding for Beginners](https://gist.github.com/jcward/45afd22560939aaae5c75e68f1e57505)
-- [Python: Please stop screwing over Linux distros ](https://drewdevault.com/2021/11/16/Python-stop-screwing-distros-over.html)
+- [Python: Please stop screwing over Linux distros](https://drewdevault.com/2021/11/16/Python-stop-screwing-distros-over.html)
 - [bbrunomoraes - Digital Artist](https://www.deviantart.com/bbrunomoraes)
 - [Replicating Minecraft World Generation in Python](https://towardsdatascience.com/replicating-minecraft-world-generation-in-python-1b491bc9b9a4)
+- [The Internet is Held Together With Spit & Baling Wire](https://krebsonsecurity.com/2021/11/the-internet-is-held-together-with-spit-baling-wire/)
+- [Learning Containers From The Bottom Up](https://iximiuz.com/en/posts/container-learning-path/)
+- [The Joy of Cryptography](https://joyofcryptography.com/)
+- [PHP Flexible function Naming](https://news-web.php.net/php.internals/70691)
 
 **October 2021**
 
