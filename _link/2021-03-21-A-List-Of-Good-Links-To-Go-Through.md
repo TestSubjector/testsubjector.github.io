@@ -6,6 +6,14 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**December 2021**
+
+- [An oral history of Bank Python](https://calpaterson.com/bank-python.html)
+- [Log4Shell: RCE 0-day exploit found in log4j 2, a popular Java logging package](https://www.lunasec.io/docs/blog/log4j-zero-day/)
+- [Leaving MySQL](https://blog.sesse.net/blog/tech/2021-12-05-16-41_leaving_mysql.html)
+- [This shouldn't have happened: A vulnerability postmortem](https://googleprojectzero.blogspot.com/2021/12/this-shouldnt-have-happened.html?m=1)
+- [Computer Networking Introduction - Ethernet and IP (Heavily Illustrated)](https://iximiuz.com/en/posts/computer-networking-101/)
+
 **November 2021**
 
 - [Highlights from Git 2.34](https://github.blog/2021-11-15-highlights-from-git-2-34/)
