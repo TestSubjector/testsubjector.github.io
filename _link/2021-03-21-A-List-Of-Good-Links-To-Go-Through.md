@@ -6,6 +6,15 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+**January 2021**
+
+- [The best Programming books. Compiling thousands of lists and recommendations, all in one place.](https://www.best-books.dev/)
+- [Print Quality Troubleshooting Guide](https://www.simplify3d.com/support/print-quality-troubleshooting/)
+- [The Web3 Fraud](https://www.usenix.org/publications/loginonline/web3-fraud)
+- [Java Code To ByteCode](https://blog.jamesdbloom.com/JavaCodeToByteCode_PartOne.html)
+- [Game Engines as an Art Form — My 8+ Years of Developing and Maintaining My Own Engine](https://medium.com/@hajimehoshi/game-engines-as-an-art-form-f66c835c0a92)
+- [Welcome to Spinning Up in Deep RL!](https://spinningup.openai.com/en/latest/)
+
 **December 2021**
 
 - [An oral history of Bank Python](https://calpaterson.com/bank-python.html)
