@@ -4,9 +4,9 @@ title: "A List Of Good Links To Go Through"
 date: 2021-03-21
 ---
 
-I needed a place to store the interesting articles that one either finds or is shared with, by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
+I needed a place to store the interesting articles that one either finds or is shared with by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
-**January 2021**
+**January 2022**
 
 - [The best Programming books. Compiling thousands of lists and recommendations, all in one place.](https://www.best-books.dev/)
 - [Print Quality Troubleshooting Guide](https://www.simplify3d.com/support/print-quality-troubleshooting/)

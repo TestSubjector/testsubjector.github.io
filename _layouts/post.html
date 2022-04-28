@@ -19,7 +19,7 @@ layout: default
                 <br>
             </div>
     </div>
-    <div class="row">
+    <h1 class="row">
         <div class="col">
             {% if page.previous.url %}
             <a href="{{page.previous.url | absolute_url}}"> Previous Post &laquo;  {{page.previous.title}} </a>
@@ -30,7 +30,8 @@ layout: default
             <a href="{{page.next.url | absolute_url}}"> Next Post &raquo; {{page.next.title}} </a>
             {% endif %}
         </div>
-    </div>
+    </h1>
+    <hr>
     <div class="row">
         <div class="clearfix"></div>
         <!-- End Categories -->

@@ -7,7 +7,6 @@ mathjax: true
 ----------------
 A look at how Julia works in the background.
 
-----------------
 #### JIT Compilation
 ----------------
 

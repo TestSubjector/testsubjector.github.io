@@ -31,7 +31,10 @@ Now a simple clone command will just clone the master (or as the young kids call
 Hence inside the newly cloned directory, we track all the branches
 
 ```bash
-for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done
+for remote in `git branch -r`; 
+do 
+    git branch --track ${remote#origin/} $remote; 
+done
 ```
 
 Tag the required branch directed for future deletion.

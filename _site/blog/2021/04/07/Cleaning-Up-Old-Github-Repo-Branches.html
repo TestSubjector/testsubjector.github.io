@@ -15,6 +15,7 @@
         <li><a href="/about">About Me</a></li>
         </ul>
     </nav>
+    <hr>
     <post class="container">
       
 <h5>Cleaning Up Old Github Repo Branches</h5>
@@ -47,7 +48,10 @@ and from your branch list.</p>
 <p>Now a simple clone command will just clone the master (or as the young kids call it these days, the main branch). We want all the branches.
 Hence inside the newly cloned directory, we track all the branches</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>remote <span class="k">in</span> <span class="sb">`</span>git branch <span class="nt">-r</span><span class="sb">`</span><span class="p">;</span> <span class="k">do </span>git branch <span class="nt">--track</span> <span class="k">${</span><span class="nv">remote</span><span class="p">#origin/</span><span class="k">}</span> <span class="nv">$remote</span><span class="p">;</span> <span class="k">done</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>remote <span class="k">in</span> <span class="sb">`</span>git branch <span class="nt">-r</span><span class="sb">`</span><span class="p">;</span> 
+<span class="k">do 
+    </span>git branch <span class="nt">--track</span> <span class="k">${</span><span class="nv">remote</span><span class="p">#origin/</span><span class="k">}</span> <span class="nv">$remote</span><span class="p">;</span> 
+<span class="k">done</span>
 </code></pre></div></div>
 
 <p>Tag the required branch directed for future deletion.</p>
@@ -87,7 +91,7 @@ Hence inside the newly cloned directory, we track all the branches</p>
                 <br>
             </div>
     </div>
-    <div class="row">
+    <h1 class="row">
         <div class="col">
             
             <a href="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation"> Previous Post &laquo;  GTC 2021 Presentation </a>
@@ -96,7 +100,8 @@ Hence inside the newly cloned directory, we track all the branches</p>
         <div class="col">
             
         </div>
-    </div>
+    </h1>
+    <hr>
     <div class="row">
         <div class="clearfix"></div>
         <!-- End Categories -->

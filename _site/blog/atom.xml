@@ -15,6 +15,7 @@
         <li><a href="/about">About Me</a></li>
         </ul>
     </nav>
+    <hr>
     <post class="container">
       <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -22,7 +23,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2022-04-04T16:00:44-04:00</updated>
+ <updated>2022-04-28T18:07:08-04:00</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -60,7 +61,10 @@ and from your branch list.&lt;/p&gt;
 &lt;p&gt;Now a simple clone command will just clone the master (or as the young kids call it these days, the main branch). We want all the branches.
 Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;remote &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;--track&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;#origin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;remote &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;do 
+    &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;--track&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;#origin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Tag the required branch directed for future deletion.&lt;/p&gt;
@@ -103,7 +107,7 @@ Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
 &lt;p&gt;Our work in collaboration with &lt;a href=&quot;https://scholar.google.co.in/citations?user=AUM8IXYAAAAJ&amp;amp;hl=en&quot;&gt;Prof. S.M. Deshpande&lt;/a&gt; and NVIDIA has been accepted for a talk at NVIDIA’s GTC 2021 conference, being held from 12-16th April.&lt;/p&gt;
 
 &lt;p&gt;The title of the talk is “On the Performance of GPU-Accelerated Meshfree Solvers in Fortran, C++, Python, and Julia”. It will be recorded video-on-demand (VOD) talk 
-and everyone can register for free, for the conference and view the talk &lt;a href=&quot;https://gtc21.event.nvidia.com/media/On+the+Performance+of+GPU-Accelerated+Meshfree+Solvers+in+Fortran%2C+C%2B%2B%2C+Python%2C+and+Julia+%5BS31311%5D/1_35ytczbi&quot;&gt;linked here&lt;/a&gt; on 12th April, 10 AM (UTC-7).&lt;/p&gt;
+and everyone can register for free, for the conference and view the talk &lt;a href=&quot;https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s31311/&quot;&gt;linked here&lt;/a&gt; on 12th April, 10 AM (UTC-7).&lt;/p&gt;
 
 &lt;p&gt;In summary, it will be regarding benchmarks performed to assess and compare the computational efficiency and the relative performance of meshfree solvers based on the Least Squares Kinetic Upwind Method for inviscid compressible flows. The GPU solvers being benchmarked have been written in Fortran 90, C++, Python and the Julia programming languages.&lt;/p&gt;
 </content>
@@ -348,7 +352,6 @@ creating a dictionary that matches every number to its specific audio file. This
    <content type="html">&lt;hr /&gt;
 &lt;p&gt;A look at how Julia works in the background.&lt;/p&gt;
 
-&lt;hr /&gt;
 &lt;h4 id=&quot;jit-compilation&quot;&gt;JIT Compilation&lt;/h4&gt;
 &lt;hr /&gt;
 

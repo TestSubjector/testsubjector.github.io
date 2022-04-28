@@ -12,9 +12,8 @@ title: Antithetical Parallels
 <h5 class="page_title">
     Recent Posts
 </h5>
-<ul class="post_list">
+<ul class="posts">
     {% for post in site.posts limit: 7 %}
-        <li><span>{{ post.date | date_to_string }}</span> &raquo; 
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+        <li> <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
     {% endfor %}
 </ul>
