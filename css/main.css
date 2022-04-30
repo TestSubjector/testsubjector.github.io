@@ -7,13 +7,68 @@
         box-sizing: border-box;
         margin: 0px auto;
         border: #00a2ff 0px solid;
-        width: 80%;
+        width: 85%;
         white-space: normal;
         overflow-wrap: break-word;
         background: #fafafa;
         border-radius: 5px;
-        text-align: justify;
+        text-align: start;
       }
+
+      nav ul, footer ul {
+        font-size: 1.2em;
+        font-family: 'Times New Roman', 'Helvetica', 'Arial', 'Sans-Serif';
+        padding: 0px;
+        list-style: none;
+        font-weight: bold;
+        position: relative;
+        background: #fafafa;
+        white-space: normal;
+      }
+
+      p {
+        font-size: 1em; line-height: 1; color:rgba(0,0,0,.8);
+        align-items:center;
+        font-family: 'Times New Roman';
+      }
+      
+      ul {
+        font-size: 1em; line-height: 1; color:rgba(0,0,0,.8);
+        align-items:center;
+        display:inline-block;
+        font-family: 'Times New Roman';
+      }
+      
+      h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
+      h4 { 
+          font-size: 1.2em; /* Heading */
+          font-family: 'Times New Roman'; 
+          margin-bottom: 0px;
+          white-space: normal;
+          overflow-wrap: break-word;
+      }
+      h5 { 
+          font-size: 1.2em; /* Heading */
+          font-family: 'Times New Roman'; 
+          margin-bottom: 0px;
+          white-space: normal;
+          overflow-wrap: break-word;
+      }
+
+      posts {
+        list-style-type: none;
+        margin-bottom: 1.2em;
+    }
+    
+    .posts li {
+        line-height: 1.2em;
+    }
+    
+    .posts span {
+        color: #593434;
+        font-family: Monaco, "Courier New", monospace;
+        font-size: 100%;
+    }
 }
 
 @media screen 
@@ -24,13 +79,68 @@ and (min-device-width : 768px)  {
         box-sizing: border-box;
         margin: 0px auto;
         border: #00a2ff 0px solid;
-        width: 40%;
+        width: 60%;
         white-space: normal;
         overflow-wrap: break-word;
         background: #fafafa;
         border-radius: 5px;
-        text-align: justify;
+        text-align: start;
       }
+    
+      nav ul, footer ul {
+        font-size: 2em;
+        font-family: 'Times New Roman', 'Helvetica', 'Arial', 'Sans-Serif';
+        padding: 0px;
+        list-style: none;
+        font-weight: bold;
+        position: relative;
+        background: #fafafa;
+        white-space: normal;
+      }
+
+      p {
+        font-size: 1.4em; line-height: 1; color:rgba(0,0,0,.8);
+        align-items:center;
+        font-family: 'Times New Roman';
+      }
+      
+      ul {
+        font-size: 1.4em; line-height: 1; color:rgba(0,0,0,.8);
+        align-items:center;
+        display:inline-block;
+        font-family: 'Times New Roman';
+      }
+      
+      h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
+      h4 { 
+          font-size: 1.5em; /* Heading */
+          font-family: 'Times New Roman'; 
+          margin-bottom: 0px;
+          white-space: normal;
+          overflow-wrap: break-word;
+      }
+      h5 { 
+          font-size: 1.7em; /* Heading */
+          font-family: 'Times New Roman'; 
+          margin-bottom: 0px;
+          white-space: normal;
+          overflow-wrap: break-word;
+      }
+
+      posts {
+        list-style-type: none;
+        margin-bottom: 1.2em;
+    }
+    
+    .posts li {
+        line-height: 1.2em;
+    }
+    
+    .posts span {
+        color: #593434;
+        font-family: Monaco, "Courier New", monospace;
+        font-size: 100%;
+    }
 }
 
 a {
@@ -49,36 +159,9 @@ c {
     /* transition: all 0.2s; */
 }
 
-p {
-  font-size: 1.4em; line-height: 1; color:rgba(0,0,0,.8);
-  align-items:center;
-  font-family: 'Times New Roman';
-}
 
-ul {
-  font-size: 1.4em; line-height: 1; color:rgba(0,0,0,.8);
-  align-items:center;
-  display:inline-block;
-  font-family: 'Times New Roman';
-}
 
-h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
-h4 { 
-    font-size: 1.5em; /* Heading */
-    font-family: 'Times New Roman'; 
-    margin-bottom: 0px;
-    white-space: normal;
-    overflow-wrap: break-word;
-}
-h5 { 
-    font-size: 1.7em; /* Heading */
-    font-family: 'Times New Roman'; 
-    margin-bottom: 0px;
-    white-space: normal;
-    overflow-wrap: break-word;
-}
-
-nav ul, footer ul {
+/* nav ul, footer ul {
   font-size: 2em;
   font-family: 'Times New Roman', 'Helvetica', 'Arial', 'Sans-Serif';
   padding: 0px;
@@ -87,7 +170,7 @@ nav ul, footer ul {
   position: relative;
   background: #fafafa;
   white-space: normal;
-}
+} */
 
 nav ul li, footer ul li {
     font-size: 100%; 
@@ -101,21 +184,6 @@ footer {
     font-size: 1em; 
 }
 
-/* Blog */
-posts {
-    list-style-type: none;
-    margin-bottom: 1.2em;
-}
-
-.posts li {
-    line-height: 1.2em;
-}
-
-.posts span {
-    color: #593434;
-    font-family: Monaco, "Courier New", monospace;
-    font-size: 100%;
-}
 
 /*Poetry*/
 ul.misc {
@@ -135,5 +203,7 @@ ul.misc span {
 
 pre {
     /* white-space: pre-line; */
+    border: solid 1px rgb(0, 0, 0);
+    padding: 5px;
     overflow-x:scroll;
 }    

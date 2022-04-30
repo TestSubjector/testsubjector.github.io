@@ -44,7 +44,7 @@ git tag archive/<branchname> <branchname>
 
 Delete the old, decrepit branch
 ```bash
- git branch -D <branchname>
+git branch -D <branchname>
 ```
 
 Delete the old, decrypt branch...from your remote (i.e the Github repository)
