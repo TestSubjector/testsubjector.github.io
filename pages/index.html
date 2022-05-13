@@ -4,13 +4,15 @@ title: "Miscellaneous Mire: Minor Posts, Musings & More"
 permalink: /misc/
 subtitle: Let us see.
 ---
+<!-- Misc Posts -->
 <h5>A Compilation of Different Things</h5>
 <ul class="misc">
     {% for post in site.link %}
-    <li> &raquo;
+    <li> <span>{{ post.date | date_to_string }}</span> &raquo; 
           <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
     {% endfor %}
 </ul>
+<hr>
 <h5>{{ page.title }}</h5>
 <ul class="misc">
   {% for post in site.misc %}

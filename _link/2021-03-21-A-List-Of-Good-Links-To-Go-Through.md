@@ -6,7 +6,15 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
-**January 2022**
+## May 2022
+
+- [Programming book list](https://danluu.com/programming-books/)
+- [Unity Focus: Making Ori and the Blind Forest](https://www.mcvuk.com/development-news/unity-focus-making-ori-and-the-blind-forest/)
+- [Web Browser Engineering](https://browser.engineering/)
+- [The Day Redditors Broke the Internet… Again](https://www.redditinc.com/blog/the-day-redditors-broke-the-internet-again)
+- [An Overview of C++ STL Containers](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)
+
+## January 2022
 
 - [The best Programming books. Compiling thousands of lists and recommendations, all in one place.](https://www.best-books.dev/)
 - [Print Quality Troubleshooting Guide](https://www.simplify3d.com/support/print-quality-troubleshooting/)
@@ -15,7 +23,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Game Engines as an Art Form — My 8+ Years of Developing and Maintaining My Own Engine](https://medium.com/@hajimehoshi/game-engines-as-an-art-form-f66c835c0a92)
 - [Welcome to Spinning Up in Deep RL!](https://spinningup.openai.com/en/latest/)
 
-**December 2021**
+## December 2021
 
 - [An oral history of Bank Python](https://calpaterson.com/bank-python.html)
 - [Log4Shell: RCE 0-day exploit found in log4j 2, a popular Java logging package](https://www.lunasec.io/docs/blog/log4j-zero-day/)
@@ -23,7 +31,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [This shouldn't have happened: A vulnerability postmortem](https://googleprojectzero.blogspot.com/2021/12/this-shouldnt-have-happened.html?m=1)
 - [Computer Networking Introduction - Ethernet and IP (Heavily Illustrated)](https://iximiuz.com/en/posts/computer-networking-101/)
 
-**November 2021**
+## November 2021
 
 - [Highlights from Git 2.34](https://github.blog/2021-11-15-highlights-from-git-2-34/)
 - [The Invisible JavaScript Backdoor](https://certitude.consulting/blog/en/invisible-backdoor/)
@@ -38,7 +46,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [The Joy of Cryptography](https://joyofcryptography.com/)
 - [PHP Flexible function Naming](https://news-web.php.net/php.internals/70691)
 
-**October 2021**
+## October 2021
 
 - [IoT Hacking and Rickrolling My High School District](https://whitehoodhacker.net/posts/2021-10-04-the-big-rick)
 - [A Time-Series Analysis of my Girlfriends Mood Swings](https://jabde.com/2021/05/23/girlfriends-mood-time-series-analysis/)
@@ -54,7 +62,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [The Azimuth Project](https://www.azimuthproject.org/azimuth/show/HomePage)
 - [What we can learn from “_why”, the long lost open source developer](https://github.com/readme/featured/why-the-lucky-stiff)
 
-**September 2021**
+## September 2021
 
 - [How we built an auto-scalable Minecraft server for 1000+ players using WorldQL's spatial database](https://www.worldql.com/posts/2021-08-worldql-scalable-minecraft/)
 - [The Rise Of User-Hostile Software](https://den.dev/blog/user-hostile-software/)
@@ -63,7 +71,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Executives Do Not Give A Flying Fuck About “Burnout”](https://blog.startupstash.com/executives-do-not-give-a-flying-fuck-about-burnout-9fd91b88b660)
 - [Managing Steam Bandwidth During COVID-19 Pandemic](https://steamcommunity.com/games/593110/announcements/detail/2074411495515541376)
 
-**August 2021**
+## August 2021
 
 - [Reddit Interview Problems: The Game of Life](https://alexgolec.dev/reddit-interview-problems-the-game-of-life/)
 - [It’s ten o’clock, do you know where your private keys are?](https://blog.sigstore.dev/its-ten-o-clock-do-you-know-where-your-private-keys-are-5c869cf53234)
@@ -72,7 +80,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Most private insurers are no longer waiving cost-sharing for COVID-19 treatment](https://www.healthsystemtracker.org/brief/most-private-insurers-are-no-longer-waiving-cost-sharing-for-covid-19-treatment/)
 - [Machine Learning For Artists](https://ml4a.github.io/classes/itp-F18/#syllabus)
 
-**July 2021**
+## July 2021
 
 - [How We Built r/Place](https://redditblog.com/2017/04/13/how-we-built-rplace/)
 - [A Brief Exposé of P-adics](https://tomrocksmaths.com/2021/07/02/a-brief-expose-of-p-adics/)
@@ -85,7 +93,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [How I accidentally took down GitHub Actions](https://blog.teddykatz.com/2019/11/12/github-actions-dos.html)
 - [Speeding Kills Bear](https://www.nps.gov/yose/blogs/speeding-kills-bear.htm)
 
-**June 2021**
+## June 2021
 
 - [Your CPU May Have Slowed Down on Wednesday](https://travisdowns.github.io/blog/2021/06/17/rip-zero-opt.html)
 - [Introduction to Machine Learning Interviews Book](https://huyenchip.com/ml-interviews-book/)
@@ -99,7 +107,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Testing in the Twenties](https://www.tbray.org/ongoing/When/202x/2021/05/15/Testing-in-2021)
 - [Classic Postmortem: Firaxis' Civilization V](https://www.gamasutra.com/view/news/306040/Classic_Postmortem_Firaxis_Civilization_V.php)
 
-**May 2021**
+## May 2021
 
 - [The Chemistry of Game Design](https://lostgarden.home.blog/2021/03/13/the-chemistry-of-game-design-2/)
 - [A Teenager's Guide to Avoiding Actual Work](https://madned.substack.com/p/a-teenagers-guide-to-avoiding-actual)
@@ -108,7 +116,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [The Instagram ads Facebook won't show you](https://signal.org/blog/the-instagram-ads-you-will-never-see/)
 - [Neural Networks and the Backpropagation Algorithm](https://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/)
 
-**April 2021**
+## April 2021
 
 - [The Last Prank Before PR Ruined Everything](https://www.microsoftcoffee.org/)
 - [How Runescape catches botters, and why they didn't catch me](https://secret.club/2021/04/03/runescape-heuristics.html)
@@ -117,7 +125,7 @@ I needed a place to store the interesting articles that one either finds or is s
 - [TeX Diagram Collections](https://texample.net/tikz/examples/)
 - [Make Generative Pixel Art in Less than 100 Lines of Code](https://www.megacolorboy.com/writings/posts/make-your-own-generative-pixel-art-in-less-than-100-lines-of-code/)
 
-**March 2021**
+## March 2021
 
 - [Understanding Quake’s Fast Inverse Square Root](https://betterexplained.com/articles/understanding-quakes-fast-inverse-square-root/)
 - [The Pizza Chain That Became an AI Front-Runner](https://towardsdatascience.com/the-pizza-chain-that-became-an-ai-front-runner-a0e297320cf6)

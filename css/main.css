@@ -37,6 +37,7 @@
         align-items:center;
         display:inline-block;
         font-family: 'Times New Roman';
+        margin-block-start: 0.5em;
       }
       
       h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
@@ -50,7 +51,7 @@
       h5 { 
           font-size: 1.2em; /* Heading */
           font-family: 'Times New Roman'; 
-          margin-bottom: 0px;
+          margin: 0px;
           white-space: normal;
           overflow-wrap: break-word;
       }
@@ -65,8 +66,8 @@
     }
     
     .posts span {
-        color: #593434;
-        font-family: Monaco, "Courier New", monospace;
+        color: #000000;
+        font-family: monospace;
         font-size: 100%;
     }
 }
@@ -104,32 +105,34 @@ and (min-device-width : 768px)  {
         font-family: 'Times New Roman';
       }
       
+      /* The link spacing is because of this */
       ul {
         font-size: 1.4em; line-height: 1; color:rgba(0,0,0,.8);
         align-items:center;
         display:inline-block;
         font-family: 'Times New Roman';
+        margin-block-start: 0.5em;
       }
       
       h1, h2, h3, h4 {font-size: 1.2em; font-family: 'Times New Roman';}
       h4 { 
           font-size: 1.5em; /* Heading */
           font-family: 'Times New Roman'; 
-          margin-bottom: 0px;
+          margin: 0px;
           white-space: normal;
           overflow-wrap: break-word;
       }
       h5 { 
           font-size: 1.7em; /* Heading */
           font-family: 'Times New Roman'; 
-          margin-bottom: 0px;
+          margin: 0px;
           white-space: normal;
           overflow-wrap: break-word;
       }
 
       posts {
-        list-style-type: none;
-        margin-bottom: 1.2em;
+        list-style-type: string;
+        margin: 0px;
     }
     
     .posts li {
@@ -137,9 +140,9 @@ and (min-device-width : 768px)  {
     }
     
     .posts span {
-        color: #593434;
-        font-family: Monaco, "Courier New", monospace;
-        font-size: 100%;
+        color: #000000;
+        font-family: monospace;
+        font-size: 1em;
     }
 }
 
@@ -147,10 +150,12 @@ a {
   text-decoration: none;
   color: #00aa;
   transition: all 0.2s;
+  margin: 0px;
 }
 a:hover {
   color: #00a;
   text-decoration: underline;
+  margin: 0px;
 }
 
 c {
@@ -185,10 +190,10 @@ footer {
 }
 
 
-/*Poetry*/
+/*Misc and Poetry*/
 ul.misc {
     list-style-type: none;
-    /* margin-bottom: 1.3em; */
+    margin-bottom: 0.5em;
 }
 
 /* ul.misc li { */
@@ -197,7 +202,7 @@ ul.misc {
 
 ul.misc span {
     color: #1a1a1a;
-    font-family: Monaco, "Courier New", monospace;
+    font-family: monospace;
     font-size: 100%;
 }
 
@@ -206,4 +211,17 @@ pre {
     border: solid 1px rgb(0, 0, 0);
     padding: 5px;
     overflow-x:scroll;
+    margin: 0px;
 }    
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
