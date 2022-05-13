@@ -70,6 +70,26 @@
         font-family: monospace;
         font-size: 100%;
     }
+
+
+    .column {
+        float: left;
+        width: 100%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+    img
+    {
+        max-width: 100%;
+        min-width: 200px;
+        height: auto;
+    }
 }
 
 @media screen 
@@ -144,6 +164,26 @@ and (min-device-width : 768px)  {
         font-family: monospace;
         font-size: 1em;
     }
+
+
+    .column {
+        float: left;
+        width: 50%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* img
+    {
+        max-width: 100%;
+        min-width: 200px;
+        height: auto;
+    } */
 }
 
 a {
@@ -213,15 +253,3 @@ pre {
     overflow-x:scroll;
     margin: 0px;
 }    
-
-.column {
-    float: left;
-    width: 50%;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
