@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-13T14:30:38-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My corner of the internet:</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Cleaning Up Old Github Repo Branches</title><link href="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches" rel="alternate" type="text/html" title="Cleaning Up Old Github Repo Branches" /><published>2021-04-07T00:00:00-04:00</published><updated>2021-04-07T00:00:00-04:00</updated><id>http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-14T12:15:00-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Antithetical Parallels</title><subtitle>My corner of the internet:</subtitle><author><name>TestSubjector</name></author><entry><title type="html">Cleaning Up Old Github Repo Branches</title><link href="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches" rel="alternate" type="text/html" title="Cleaning Up Old Github Repo Branches" /><published>2021-04-07T00:00:00-04:00</published><updated>2021-04-07T00:00:00-04:00</updated><id>http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/07/Cleaning-Up-Old-Github-Repo-Branches">&lt;hr /&gt;
 
 &lt;p&gt;A while back I was searching for a specific branch in one of my Github repositories.
 While scrolling through the branch list, it occurred to me that there were just too many branches to go through now (around 30 or so).
@@ -17,6 +17,7 @@ and from your branch list.&lt;/p&gt;
 &lt;p&gt;Full confession, most of the commands given below this sentence you’re reading is from &lt;a href=&quot;https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches&quot;&gt;this Stackoverflow query&lt;/a&gt;, so make sure to check it out.&lt;/p&gt;
 
 &lt;p&gt;First get a fresh clean clone of the desired repository to be pruned.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone YOUR_REPOSITORY.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -30,30 +31,36 @@ Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Tag the required branch directed for future deletion.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git tag archive/&amp;lt;branchname&amp;gt; &amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Delete the old, decrepit branch&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Delete the old, decrypt branch…from your remote (i.e the Github repository)&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; origin/&amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Push the tags to the remote&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push &lt;span class=&quot;nt&quot;&gt;--tags&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Push changes to remote&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin :&amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.&lt;/p&gt;
+&lt;p&gt;To get a branch back from a tag&lt;/p&gt;
 
-&lt;p&gt;PS - To get a branch back from a tag&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;branchname&amp;gt; archive/&amp;lt;branchname&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>TestSubjector</name></author><summary type="html"></summary></entry><entry><title type="html">GTC 2021 Presentation</title><link href="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation" rel="alternate" type="text/html" title="GTC 2021 Presentation" /><published>2021-04-01T00:00:00-04:00</published><updated>2021-04-01T00:00:00-04:00</updated><id>http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation">&lt;hr /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.&lt;/p&gt;</content><author><name>TestSubjector</name></author><summary type="html"></summary></entry><entry><title type="html">GTC 2021 Presentation</title><link href="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation" rel="alternate" type="text/html" title="GTC 2021 Presentation" /><published>2021-04-01T00:00:00-04:00</published><updated>2021-04-01T00:00:00-04:00</updated><id>http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation</id><content type="html" xml:base="http://localhost:4000/blog/2021/04/01/GTC-2021-Presentation">&lt;hr /&gt;
 
 &lt;p&gt;I’ll start by clearly stating that this is not an April Fools post, despite the day it’s being posted on.&lt;/p&gt;
 

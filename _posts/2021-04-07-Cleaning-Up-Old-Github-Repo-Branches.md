@@ -23,6 +23,7 @@ and from your branch list.
 Full confession, most of the commands given below this sentence you're reading is from [this Stackoverflow query](https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches), so make sure to check it out.  
 
 First get a fresh clean clone of the desired repository to be pruned.
+
 ```bash
 git clone YOUR_REPOSITORY.git
 ```
@@ -38,34 +39,39 @@ done
 ```
 
 Tag the required branch directed for future deletion.
+
 ```bash
 git tag archive/<branchname> <branchname>
 ```
 
 Delete the old, decrepit branch
+
 ```bash
 git branch -D <branchname>
 ```
 
 Delete the old, decrypt branch...from your remote (i.e the Github repository)
+
 ```bash
 git branch -d -r origin/<branchname>
 ```
 
 Push the tags to the remote
+
 ```bash
 git push --tags
 ```
 
 Push changes to remote
+
 ```bash
 git push origin :<branchname>
 ```
 
-And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.
+To get a branch back from a tag
 
-
-PS - To get a branch back from a tag
 ```bash
 git checkout -b <branchname> archive/<branchname>
 ```
+
+And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.

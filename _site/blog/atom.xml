@@ -25,7 +25,7 @@
  <title>Antithetical Parallels</title>
  <link href="http://testsubjector.github.io/blog/atom.xml" rel="self"/>
  <link href="http://testsubjector.github.io/blog"/>
- <updated>2022-05-13T14:30:38-04:00</updated>
+ <updated>2022-05-14T12:15:00-04:00</updated>
  <id>http://testsubjector.github.io/blog</id>
  <author>
    <name>Kumar Prasun</name>
@@ -57,6 +57,7 @@ and from your branch list.&lt;/p&gt;
 &lt;p&gt;Full confession, most of the commands given below this sentence you’re reading is from &lt;a href=&quot;https://stackoverflow.com/questions/1307114/how-can-i-archive-git-branches&quot;&gt;this Stackoverflow query&lt;/a&gt;, so make sure to check it out.&lt;/p&gt;
 
 &lt;p&gt;First get a fresh clean clone of the desired repository to be pruned.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone YOUR_REPOSITORY.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -70,30 +71,36 @@ Hence inside the newly cloned directory, we track all the branches&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Tag the required branch directed for future deletion.&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git tag archive/&amp;lt;branchname&amp;gt; &amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Delete the old, decrepit branch&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Delete the old, decrypt branch…from your remote (i.e the Github repository)&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; origin/&amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Push the tags to the remote&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push &lt;span class=&quot;nt&quot;&gt;--tags&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Push changes to remote&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin :&amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.&lt;/p&gt;
+&lt;p&gt;To get a branch back from a tag&lt;/p&gt;
 
-&lt;p&gt;PS - To get a branch back from a tag&lt;/p&gt;
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;branchname&amp;gt; archive/&amp;lt;branchname&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And you are done. Now make a shell/bash script to automate the above steps if you have too many branches. May your code be safe, secured and look up-to-date.&lt;/p&gt;
 </content>
  </entry>
  

@@ -176,7 +176,14 @@ and (min-device-width : 768px)  {
         content: "";
         display: table;
         clear: both;
-      }
+    }
+
+    /* img
+    {
+        max-width: 100%;
+        min-width: 200px;
+        height: auto;
+    } */
 }
 
 a {

@@ -20,18 +20,18 @@ layout: default
                 <br>
             </div>
     </div>
-    <h1 class="row">
-        <div class="col">
+    <div class="row">
+        <div class="column">
             {% if page.previous.url %}
-            <a href="{{page.previous.url | absolute_url}}"> Previous Post &laquo;  {{page.previous.title}} </a>
+            <p style="text-align:left;"><a href="{{page.previous.url | absolute_url}}"> Previous Post &laquo;  {{page.previous.title}}</a></p>
             {% endif %}
         </div>
-        <div class="col">
+        <div class="column">
             {% if page.next.url %}
-            <a href="{{page.next.url | absolute_url}}"> Next Post &raquo; {{page.next.title}} </a>
+            <p style="text-align:right;"><a href="{{page.next.url | absolute_url}}">  Next Post &raquo; {{page.next.title}}</a></p>
             {% endif %}
         </div>
-    </h1>
+    </div>
     <hr>
     <div class="row">
         <div class="clearfix"></div>
