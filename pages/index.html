@@ -6,6 +6,7 @@ subtitle: Let us see.
 ---
 <!-- Misc Posts -->
 <h5>A Compilation of Different Things</h5>
+<hr>
 <ul class="misc">
     {% for post in site.link %}
     <li> <span>{{ post.date | date_to_string }}</span> &raquo; 
@@ -14,6 +15,7 @@ subtitle: Let us see.
 </ul>
 <hr>
 <h5>{{ page.title }}</h5>
+<hr>
 <ul class="misc">
   {% for post in site.misc %}
       <li><span>{{ post.date | date_to_string }}</span> &raquo; 

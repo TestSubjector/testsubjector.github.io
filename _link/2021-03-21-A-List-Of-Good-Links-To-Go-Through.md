@@ -13,6 +13,8 @@ I needed a place to store the interesting articles that one either finds or is s
 - [Web Browser Engineering](https://browser.engineering/)
 - [The Day Redditors Broke the Internet… Again](https://www.redditinc.com/blog/the-day-redditors-broke-the-internet-again)
 - [An Overview of C++ STL Containers](https://embeddedartistry.com/blog/2017/08/02/an-overview-of-c-stl-containers/)
+- [The Aggregate Magic Algorithms](http://aggregate.org/MAGIC/)
+- [Writing Technical Articles](https://www.cs.columbia.edu/~hgs/etc/writing-style.html)
 
 ## January 2022
 

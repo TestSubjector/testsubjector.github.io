@@ -4,6 +4,7 @@ title: Blog Post Index
 ---
 <!-- List of blog posts -->
 <h5>{{ page.title }}</h5>
+<hr>
 <ul class="posts">
     {% for post in site.posts %}
         <li><span>{{ post.date | date_to_string }}</span> &raquo; 
