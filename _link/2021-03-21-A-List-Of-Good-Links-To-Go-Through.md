@@ -6,6 +6,11 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+## June 2022
+
+- [Generator Tricks For Systems Programmers](https://www.dabeaz.com/generators/Generators.pdf)
+- [A look at some of Python's useful itertools](https://naiquevin.github.io/a-look-at-some-of-pythons-useful-itertools.html)
+
 ## May 2022
 
 - [Programming book list](https://danluu.com/programming-books/)
