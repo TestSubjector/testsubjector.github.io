@@ -8,6 +8,7 @@ I needed a place to store the interesting articles that one either finds or is s
 
 ## June 2022
 
+- [That XOR trick](https://florian.github.io/xor-trick/)
 - [Generator Tricks For Systems Programmers](https://www.dabeaz.com/generators/Generators.pdf)
 - [A look at some of Python's useful itertools](https://naiquevin.github.io/a-look-at-some-of-pythons-useful-itertools.html)
 
