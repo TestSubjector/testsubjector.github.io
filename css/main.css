@@ -178,12 +178,12 @@ and (min-device-width : 768px)  {
         clear: both;
     }
 
-    /* img
+    img
     {
         max-width: 100%;
         min-width: 200px;
         height: auto;
-    } */
+    }
 }
 
 a {

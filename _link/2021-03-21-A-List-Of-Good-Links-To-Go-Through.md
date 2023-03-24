@@ -6,6 +6,10 @@ date: 2021-03-21
 
 I needed a place to store the interesting articles that one either finds or is shared with by others. Keeping several tabs open for this purpose was just not cutting it anymore. Hence this post, which I plan to update monthly or so with whatever catches my fancy.
 
+## November 2022
+
+- [Designer Diary: Seeds of Stardew Valley](https://boardgamegeek.com/blogpost/124539/designer-diary-seeds-stardew-valley-board-game) - A look at the design process of the board game adaptation of Stardew Valley.
+
 ## June 2022
 
 - [That XOR trick](https://florian.github.io/xor-trick/)
